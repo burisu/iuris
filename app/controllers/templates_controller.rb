@@ -1,0 +1,3 @@
+
+class TemplatesController < ApplicationController
+end
