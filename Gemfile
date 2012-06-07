@@ -7,7 +7,7 @@ gem 'rails', '3.2.5'
 
 gem 'pg'
 gem 'haml'
-gem 'authlogic'
+gem 'devise'
 gem 'acts_as_audited'
 gem 'paperclip'
 
