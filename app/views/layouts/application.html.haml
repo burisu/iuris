@@ -1,0 +1,21 @@
+!!!
+%html
+  %head
+    %title Iuris
+    = stylesheet_link_tag    "application", :media => "all"
+    = javascript_include_tag "application"
+    = csrf_meta_tags
+  %body
+    #page
+      #header
+        #login=link_to "Se connecter", new_user_session_url
+        .title JuriSEA
+        .slogan Site d'échange et de partage d'informations pour les juristes des FDSEA du Sud Ouest
+      #menu
+        =link_to("Questions/Réponses", messages_url)
+        =link_to("Base de données", references_url)
+        =link_to("Boîte à outils", templates_url)
+      #main=yield
+      #aside
+        %h2="Labels"
+      #footer Copyright 2012 - PelTex

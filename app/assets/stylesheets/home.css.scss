@@ -1,0 +1,106 @@
+// Place all the styles related to the home controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+@import "compass/reset";
+@import "compass/css3";
+@import url(http://fonts.googleapis.com/css?family=Vollkorn:400,400italic|Oleo+Script:400,700|Arapey:400,400italic|Signika:400,600);
+
+$experimental-support-for-svg: true;
+
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video { 
+  font-family: "Arapey";
+  font-size: 16px;
+}
+
+body { 
+  padding: 0;
+  margin: 0;
+  height: 100%;
+  @include background(linear-gradient(left, #DE9, #AC7));
+}
+
+a { 
+  &:link, &:visited, &:active, &:focus {
+    color: #B50;
+    text-decoration: none;
+  }
+  &:hover { 
+    text-decoration: underline;
+  }
+}
+
+#page {
+  max-width: 900px;
+  margin: 12px auto;
+}
+
+#header { 
+  .title { 
+    font-size:49px;
+    color: #B50;
+  }
+  .slogan { 
+    font-size:17px;
+    color: #510;
+    font-style :italic;
+  }
+  #login { 
+    float: right;
+ }
+}
+
+#menu { 
+  margin: 8px 0;
+  padding: 0 3px;
+  background: rgba(255,230,205,0.5);
+  @include box-shadow(0 0 5px rgba(0,0,0,0.2));
+  @include border-radius(3px);
+  a { 
+    padding: 4px;
+    @include inline-block;
+    
+  }
+}
+
+#main { 
+  width: 60%;
+  float:left;
+  margin: 8px;
+  padding: 12px;
+  background: rgba(255,255,255,0.5);
+  @include box-shadow(0 0 5px rgba(0,0,0,0.2));
+  @include border-radius(3px);
+  h2 { 
+    color: #B50;
+    font-size: 22px;
+    font-weight: normal;
+    border-bottom: 1px solid #B50;
+    margin: 16px 0 8px;
+  }
+}
+
+#aside { 
+  width: 30%;
+  float:left;
+  margin: 8px;
+  padding: 12px;
+  background: rgba(255,255,255,0.5);
+  @include box-shadow(0 0 5px rgba(0,0,0,0.2));
+  @include border-radius(3px);
+  h2 { 
+    color: #B50;
+    font-size: 22px;
+    font-weight: normal;
+    border-bottom: 1px solid #B50;
+    margin: 16px 0 8px;
+  }
+}
+
+#footer { 
+  clear: both;
+  text-align: center;
+  height: 20px;
+  font-size: 13px;
+  color: rgba(0,0,0,0.4)
+}
