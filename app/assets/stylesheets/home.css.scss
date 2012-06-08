@@ -64,40 +64,49 @@ a {
 }
 
 #main { 
-  width: 60%;
+  width: 70%;
   float:left;
-  margin: 8px;
-  padding: 12px;
-  background: rgba(255,255,255,0.5);
-  @include box-shadow(0 0 5px rgba(0,0,0,0.2));
-  @include border-radius(3px);
-  h2 { 
-    color: #B50;
-    font-size: 22px;
-    font-weight: normal;
-    border-bottom: 1px solid #B50;
-    margin: 16px 0 8px;
+  margin:0 0 8px;
+  padding:0;
+  .container {
+    margin: 0;
+    padding: 12px;
+    background: rgba(255,255,255,0.5);
+    @include box-shadow(0 0 5px rgba(0,0,0,0.2));
+    @include border-radius(3px);
+    h2 { 
+      color: #B50;
+      font-size: 22px;
+      font-weight: normal;
+      border-bottom: 1px solid #B50;
+      margin: 16px 0 8px;
+    }
   }
 }
 
 #aside { 
   width: 30%;
   float:left;
-  margin: 8px;
-  padding: 12px;
-  background: rgba(255,255,255,0.5);
-  @include box-shadow(0 0 5px rgba(0,0,0,0.2));
-  @include border-radius(3px);
-  h2 { 
-    color: #B50;
-    font-size: 22px;
-    font-weight: normal;
-    border-bottom: 1px solid #B50;
-    margin: 16px 0 8px;
+  margin:0 0 8px;
+  padding:0;
+  .container {
+    margin: 0 0 0 8px;
+    padding: 12px;
+    background: rgba(255,255,255,0.5);
+    @include box-shadow(0 0 5px rgba(0,0,0,0.2));
+    @include border-radius(3px);
+    h2 { 
+      color: #B50;
+      font-size: 22px;
+      font-weight: normal;
+      border-bottom: 1px solid #B50;
+      margin: 16px 0 8px;
+    }
   }
 }
 
 #footer { 
+  margin: 8px 0;
   clear: both;
   text-align: center;
   height: 20px;
