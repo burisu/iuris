@@ -85,6 +85,26 @@ a {
   }
 }
 
+h1 { 
+  display: block;
+  color: black;
+  font-size: 30px;
+  border-bottom: 1px solid black;
+}
+.ttl { 
+  display: block;
+  color: #B50;
+  font-size: 22px;
+  font-weight: normal;
+  border-bottom: 1px solid #B50;
+  margin: 16px 0 8px;
+  &:hover { 
+    text-decoration: none;
+    color: #820;
+  }
+}
+
+
 #aside { 
   width: 30%;
   float:left;

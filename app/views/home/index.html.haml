@@ -1,5 +1,10 @@
-%h2 Dernières questions
+=link_to("Dernières questions", questions_url, :class => "ttl")
+-questions = Message.last_questions(5)
+-if questions.size > 0
+  %ul
+    -for question in questions
+      %li=link_to(question.name, message_url(question))
 
-%h2 Dernières références
+=link_to("Dernières publications", publications_url, :class => "ttl")
 
-%h2 Derniers modèles
+=link_to("Derniers modèles", templates_url, :class => "ttl")

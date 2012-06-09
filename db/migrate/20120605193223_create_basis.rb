@@ -66,9 +66,10 @@ class CreateBasis < ActiveRecord::Migration
     create_table :messages do |t|
       t.belongs_to :author
       t.belongs_to :origin, :polymorphic => true
-      t.boolean :question
+      t.belongs_to :parent
+      t.string :type
       t.string :name, :null => false
-      t.string :body
+      t.text :content
       t.timestamps
     end
     add_index :messages, :author_id
@@ -78,7 +79,7 @@ class CreateBasis < ActiveRecord::Migration
     #   t.belongs_to :author
     #   t.string :state
     #   t.string :name, :null => false
-    #   t.text :body
+    #   t.text :content
     #   t.timestamps
     # end
     # add_index :articles, :author_id

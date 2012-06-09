@@ -1,0 +1,7 @@
+.toolbar
+  =link_to("Poser une question", new_message_url)
+
+
+
+-for question in @questions
+  =link_to(question.name, message_url(question))

@@ -1,0 +1,6 @@
+=simple_form_for @question do |f|
+  =f.input :name
+  =f.input :body, :as => :text, :input_html => {:rows => 7, :cols => 60}
+  .actions
+    =f.submit
+    =link_to(:cancel.t, questions_url)

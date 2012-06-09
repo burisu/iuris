@@ -7,9 +7,12 @@ gem 'rails', '3.2.5'
 
 gem 'pg'
 gem 'haml'
-gem 'devise'
-gem 'acts_as_audited'
+gem 'devise', '2.1.0'
+gem 'acts_as_audited', '2.0.0'
 gem 'paperclip'
+gem 'simple_form'
+gem 'will_paginate'
+gem 'i18n-complements'
 
 # Gems used only for assets and not required
 # in production environments by default.

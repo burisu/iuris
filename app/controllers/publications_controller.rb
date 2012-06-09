@@ -1,3 +1,2 @@
-
 class PublicationsController < ApplicationController
 end

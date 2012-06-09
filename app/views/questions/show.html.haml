@@ -1,0 +1,7 @@
+%h1=@message.name
+.content=@message.body
+
+-for answer in @question.answers
+
+
+=link_to("Proposer une réponse", new_message_url(:question_id => @message.id))
