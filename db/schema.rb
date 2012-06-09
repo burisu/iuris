@@ -14,18 +14,18 @@
 ActiveRecord::Schema.define(:version => 20120605193223) do
 
   create_table "labels", :force => true do |t|
-    t.string   "name",                  :null => false
+    t.string   "name",                     :null => false
     t.text     "description"
-    t.boolean  "usable_with_documents"
     t.boolean  "usable_with_messages"
+    t.boolean  "usable_with_publications"
     t.boolean  "usable_with_templates"
-    t.datetime "created_at",            :null => false
-    t.datetime "updated_at",            :null => false
+    t.datetime "created_at",               :null => false
+    t.datetime "updated_at",               :null => false
   end
 
   add_index "labels", ["name"], :name => "index_labels_on_name"
-  add_index "labels", ["usable_with_documents"], :name => "index_labels_on_usable_with_documents"
   add_index "labels", ["usable_with_messages"], :name => "index_labels_on_usable_with_messages"
+  add_index "labels", ["usable_with_publications"], :name => "index_labels_on_usable_with_publications"
   add_index "labels", ["usable_with_templates"], :name => "index_labels_on_usable_with_templates"
 
   create_table "messages", :force => true do |t|
@@ -42,7 +42,7 @@ ActiveRecord::Schema.define(:version => 20120605193223) do
   add_index "messages", ["author_id"], :name => "index_messages_on_author_id"
   add_index "messages", ["origin_id", "origin_type"], :name => "index_messages_on_origin_id_and_origin_type"
 
-  create_table "references", :force => true do |t|
+  create_table "publications", :force => true do |t|
     t.integer  "author_id"
     t.string   "name",                  :null => false
     t.string   "description"
@@ -57,11 +57,11 @@ ActiveRecord::Schema.define(:version => 20120605193223) do
     t.datetime "updated_at",            :null => false
   end
 
-  add_index "references", ["author_id"], :name => "index_references_on_author_id"
-  add_index "references", ["nature"], :name => "index_references_on_nature"
-  add_index "references", ["state"], :name => "index_references_on_state"
+  add_index "publications", ["author_id"], :name => "index_publications_on_author_id"
+  add_index "publications", ["nature"], :name => "index_publications_on_nature"
+  add_index "publications", ["state"], :name => "index_publications_on_state"
 
-  create_table "site", :force => true do |t|
+  create_table "sites", :force => true do |t|
     t.string   "name"
     t.string   "logo_file_name"
     t.integer  "logo_file_size"

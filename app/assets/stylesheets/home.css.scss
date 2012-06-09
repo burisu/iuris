@@ -32,10 +32,11 @@ a {
 
 #page {
   max-width: 900px;
-  margin: 12px auto;
+  margin: 0 auto;
 }
 
-#header { 
+#header {
+  margin: 8px 0;
   .title { 
     font-size:49px;
     color: #B50;
@@ -58,13 +59,13 @@ a {
   @include border-radius(3px);
   a { 
     padding: 4px;
-    @include inline-block;
-    
+    @include inline-block;    
   }
 }
 
 #main { 
-  width: 70%;
+  width: 100%;
+  #page.connected & { width: 70%; }
   float:left;
   margin:0 0 8px;
   padding:0;

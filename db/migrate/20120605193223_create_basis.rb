@@ -1,6 +1,6 @@
 class CreateBasis < ActiveRecord::Migration
   def change
-    create_table :site do |t|
+    create_table :sites do |t|
       t.string :name
       t.string   :logo_file_name
       t.integer  :logo_file_size
@@ -84,7 +84,7 @@ class CreateBasis < ActiveRecord::Migration
     # add_index :articles, :author_id
     # add_index :articles, :state
 
-    create_table :references do |t|
+    create_table :publications do |t|
       t.belongs_to :author
       t.string :name, :null => false
       t.string :description
@@ -97,9 +97,9 @@ class CreateBasis < ActiveRecord::Migration
       t.datetime :document_updated_at
       t.timestamps
     end
-    add_index :references, :author_id
-    add_index :references, :nature
-    add_index :references, :state
+    add_index :publications, :author_id
+    add_index :publications, :nature
+    add_index :publications, :state
 
     create_table :templates do |t|
       t.belongs_to :author
@@ -123,16 +123,16 @@ class CreateBasis < ActiveRecord::Migration
     create_table :labels do |t|
       t.string :name, :null => false
       t.text :description
-      t.boolean :usable_with_documents
-      # t.boolean :usable_with_articles
       t.boolean :usable_with_messages
+      # t.boolean :usable_with_articles
+      t.boolean :usable_with_publications
       t.boolean :usable_with_templates
       t.timestamps
     end
     add_index :labels, :name
-    add_index :labels, :usable_with_documents
-    # add_index :labels, :usable_with_articles
     add_index :labels, :usable_with_messages
+    # add_index :labels, :usable_with_articles
+    add_index :labels, :usable_with_publications
     add_index :labels, :usable_with_templates
 
   end

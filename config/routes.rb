@@ -4,7 +4,7 @@ Iuris::Application.routes.draw do
   resources :tags
   resources :templates
   resources :messages
-  resources :references
+  resources :publications
   devise_for :users
   root :to => "home#index"
 end

@@ -6,19 +6,21 @@
     = javascript_include_tag "application"
     = csrf_meta_tags
   %body
-    #page
+    #page{:class=>(current_user ? 'connected' : 'disconnected')}
       #header
         #login=link_to "Se connecter", new_user_session_url
         .title JuriSEA
         .slogan Site d'échange et de partage d'informations pour les juristes des FDSEA du Sud Ouest
-      #menu
-        =link_to("Questions/Réponses", messages_url)
-        =link_to("Base de données", references_url)
-        =link_to("Boîte à outils", templates_url)
+      -if current_user
+        #menu
+          =link_to("Questions/Réponses", messages_url)
+          =link_to("Base de données", references_url)
+          =link_to("Boîte à outils", templates_url)
       #main
         .container=yield
-      #aside
-        .container
-          %h2="Contacter un juriste"
-          %h2="Mot-clés"
+      -if current_user
+        #aside
+          .container
+            %h2="Contacter un juriste"
+            %h2="Mot-clés"
       #footer Copyright 2012 - PelTex

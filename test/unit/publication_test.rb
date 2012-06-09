@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class ReferencesControllerTest < ActionController::TestCase
+class PublicationTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end
