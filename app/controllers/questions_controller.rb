@@ -1,7 +1,7 @@
 class QuestionsController < ApplicationController
 
   def index
-    @questions = Question.paginate(:page => params[:page], :per_page => 25)
+    @questions = Question.order("created_at DESC").paginate(:page => params[:page], :per_page => 10)
   end
 
   def show
@@ -10,9 +10,9 @@ class QuestionsController < ApplicationController
   end
   
   def new
-    @question = Question.new(:nature_id => params[:nature_id].to_i)
+    @question = Question.new()
     respond_to do |format|
-      format.html { render_restfully_form}
+      format.html { render_restfully_form }
       format.json { render :json => @question }
       format.xml  { render :xml => @question }
     end
@@ -20,12 +20,13 @@ class QuestionsController < ApplicationController
   
   def create
     @question = Question.new(params[:question])
+    @question.author = current_user
     respond_to do |format|
       if @question.save
         format.html { redirect_to (params[:redirect] || @question) }
         format.json { render json => @question, :status => :created, :location => @question }
       else
-        format.html { render :action => 'new' }
+        format.html { render_restfully_form }
         format.json { render :json => @question.errors, :status => :unprocessable_entity }
       end
     end
@@ -45,7 +46,7 @@ class QuestionsController < ApplicationController
         format.html { redirect_to (params[:redirect] || @question) }
         format.json { head :no_content }
       else
-        format.html { render :action => 'edit' }
+        format.html { render_restfully_form }
         format.json { render :json => @question.errors, :status => :unprocessable_entity }
       end
     end

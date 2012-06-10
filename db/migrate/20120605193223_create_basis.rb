@@ -66,7 +66,6 @@ class CreateBasis < ActiveRecord::Migration
     create_table :messages do |t|
       t.belongs_to :author
       t.belongs_to :origin, :polymorphic => true
-      t.belongs_to :parent
       t.string :type
       t.string :name, :null => false
       t.text :content

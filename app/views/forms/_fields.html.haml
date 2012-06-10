@@ -1,0 +1,4 @@
+.fields.flex
+  =hidden_field_tag(:redirect, params[:redirect]) if params[:redirect]
+  =render :partial=>partial
+  .end

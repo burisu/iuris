@@ -8,14 +8,18 @@
   %body
     #page{:class=>(current_user ? 'connected' : 'disconnected')}
       #header
-        #login=link_to "Se connecter", new_user_session_url
+        #login
+          -if current_user
+            =link_to current_user.full_name, root_url
+          -else
+            =link_to "Se connecter", new_user_session_url
         .title JuriSEA
         .slogan Site d'échange et de partage d'informations pour les juristes des FDSEA du Sud Ouest
       -if current_user
         #menu
-          =link_to("Questions/Réponses", messages_url)
+          =link_to("Questions/Réponses", questions_url)
           =link_to("Base de données", publications_url)
-          =link_to("Boîte à outils", templates_url)
+          =link_to("Boîte à outils", tools_url)
       #main
         .container=yield
       -if current_user

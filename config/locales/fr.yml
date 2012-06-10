@@ -1,0 +1,14 @@
+fr:
+  labels:
+    parts_of_amount:
+      one: 'part d''un montant de'
+      other: 'parts d''un montant de'
+    x_answers:
+      one: '%{count} réponse'
+      other: '%{count} réponses'
+    x_comments:
+      one: '%{count} commentaire'
+      other: '%{count} commentaires'
+  will_paginate:
+    previous_label: "← Précédente"
+    next_label: "Suivante →"

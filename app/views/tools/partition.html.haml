@@ -1,0 +1,16 @@
+%h1 Calcul de parts
+
+.parameters
+  =form_tag({}, :method => :get) do
+    %label Montant du capital social
+    =text_field_tag(:amount, params[:amount], :size=>12, :maxlength => 12) 
+    =submit_tag("Calculer", :name => nil)
+
+-if @partitions
+  %h2="Nombres de parts possibles pour un montant de #{@amount.l(:currency => 'EUR')}"
+  %table#partitions
+    -for partition in @partitions
+      %tr
+        %td.number=partition[0]
+        %td.middle="labels.parts_of_amount".t(:count=>partition[0])
+        %td.amount=partition[1].l(:currency => 'EUR')

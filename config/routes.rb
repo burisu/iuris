@@ -2,17 +2,20 @@ Iuris::Application.routes.draw do
   resource :site, :only => [:edit, :update]
   resources :labels
   resources :tags
-  resources :templates do
-    resources :comments
-  end
-  resources :answers do
-    resources :comments
+  resources :tools, :only => [:index]
+  get :partition, :controller => "tools"
+  # resources :templates do
+  #   resources :comments, :except => [:show, :index]
+  # end
+  resources :answers, :only => [:edit, :update, :destroy] do
+    resources :comments, :except => [:show, :index]
   end
   resources :questions do
-    resources :comments
+    resources :answers, :only => [:new, :create]
+    resources :comments, :except => [:show, :index]
   end
   resources :publications do
-    resources :comments
+    resources :comments, :except => [:show, :index]
   end
   devise_for :users
   root :to => "home#index"

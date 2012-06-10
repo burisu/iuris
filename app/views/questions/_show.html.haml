@@ -1,0 +1,4 @@
+.question
+  =link_to(question.name, question_url(question))
+  ="(il y a #{distance_of_time_in_words_to_now(question.created_at)})"
+  .author=question.author.full_name

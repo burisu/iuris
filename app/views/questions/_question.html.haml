@@ -1,0 +1,8 @@
+.item
+  .title=link_to(question.name, question_url(question))
+  .info
+    %span Posée par
+    %span.author=question.author.full_name
+    %span il y a 
+    %span.ago=distance_of_time_in_words_to_now(question.updated_at)
+    %span="(#{'labels.x_answers'.t(:count=>question.answers.count)}, #{'labels.x_comments'.t(:count=>question.comments.count)})"

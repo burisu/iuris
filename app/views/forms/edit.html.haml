@@ -1,0 +1,5 @@
+=form_tag({:action=>:update}, options.merge(:method => :put)) do
+  .fields=render :partial=>partial
+  .actions
+    =submit_tag("labels.update".t, :disable_with=>"labels.please_wait".t)
+    =link_to("labels.cancel".t, :back)

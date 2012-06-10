@@ -1,0 +1,67 @@
+// Place all the styles related to the tools controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+@import "compass/css3";
+
+table#partitions { 
+  margin: 8px auto;
+  td {
+    padding: 2px;
+    &.number {
+      font-weight: bold;
+      text-align: right;
+    }
+    &.middle {
+      text-align: center;
+    }
+    &.amount {
+      font-weight: bold;
+      text-align: left;
+    }
+  }
+}
+
+.parameters { 
+  @include border-radius(3px);
+  background: #BE9;
+  padding: 8px;
+  margin: 8px 0;
+}
+
+.tool {
+  display: block;
+  border: 1px solid #B50;
+  background: #FFF;
+  padding: 8px;
+  margin: 8px 0 0;
+  @include border-radius(3px);
+  @include box-shadow(0 0 5px rgba(0,0,0,0.2));
+  &:hover, &:hover > *{text-decoration: none }
+  .title {
+    font-size: 22px;
+    color: #510;
+  }
+  .description {
+    font-style: italic;
+  }
+  &:hover { 
+    padding: 7px;
+    border-width: 2px;
+  }
+  .logo { 
+    float:left;
+    height: 48px;
+    width: 48px;
+    background: image-url("tools/partition.png") no-repeat;
+    margin-right: 8px;
+  }
+  &.farming .logo { 
+    background-image: image-url("tools/farming.png");
+  }
+  &.templating .logo { 
+    background-image: image-url("tools/templating.png");
+  }
+  .end { 
+    clear: both;
+  }
+}

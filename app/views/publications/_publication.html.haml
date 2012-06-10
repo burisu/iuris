@@ -1,0 +1,8 @@
+.item
+  .title=link_to(publication.name, publication_url(publication))
+  .info
+    %span Déposée par
+    %span.author=publication.author.full_name
+    %span il y a 
+    %span.ago=distance_of_time_in_words_to_now(publication.created_at)
+    %span="(#{'labels.x_comments'.t(:count=>publication.comments.count)})"

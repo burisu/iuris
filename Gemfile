@@ -12,6 +12,7 @@ gem 'acts_as_audited', '2.0.0'
 gem 'paperclip'
 gem 'simple_form'
 gem 'will_paginate'
+gem 'rails-i18n'
 gem 'i18n-complements'
 
 # Gems used only for assets and not required

@@ -39,7 +39,7 @@ a {
   margin: 8px 0;
   .title { 
     font-size:49px;
-    color: #B50;
+    color: #510;
   }
   .slogan { 
     font-size:17px;
@@ -75,13 +75,6 @@ a {
     background: rgba(255,255,255,0.5);
     @include box-shadow(0 0 5px rgba(0,0,0,0.2));
     @include border-radius(3px);
-    h2 { 
-      color: #B50;
-      font-size: 22px;
-      font-weight: normal;
-      border-bottom: 1px solid #B50;
-      margin: 16px 0 8px;
-    }
   }
 }
 
@@ -91,6 +84,15 @@ h1 {
   font-size: 30px;
   border-bottom: 1px solid black;
 }
+
+h2 { 
+  color: #510;
+  font-size: 22px;
+  font-weight: normal;
+  border-bottom: 1px solid #510;
+  margin: 16px 0 8px;
+}
+
 .ttl { 
   display: block;
   color: #B50;
@@ -116,13 +118,6 @@ h1 {
     background: rgba(255,255,255,0.5);
     @include box-shadow(0 0 5px rgba(0,0,0,0.2));
     @include border-radius(3px);
-    h2 { 
-      color: #B50;
-      font-size: 22px;
-      font-weight: normal;
-      border-bottom: 1px solid #B50;
-      margin: 16px 0 8px;
-    }
   }
 }
 
@@ -133,4 +128,44 @@ h1 {
   height: 20px;
   font-size: 13px;
   color: rgba(0,0,0,0.4)
+}
+
+
+.content { 
+  text-align :justify;
+  margin: 8px 0;
+}
+
+.item { 
+  margin: 8px 0;
+  .title a { font-size: 120%; }
+}
+.answer { 
+  margin: 8px 0;
+}
+.download { 
+  &, & * { font-size: 18px; }
+  text-align: center;
+  display: block;
+  padding: 8px;
+  background: rgba(255, 245, 215, 0.3);
+  @include border-radius(3px);
+}
+
+.pagination { margin: 8px 0 }
+
+.info span { color: #777; }
+
+.toolbar { 
+  background: rgba(255, 245, 215, 0.3);
+  padding: 0;
+  margin: 8px 0;
+  @include border-radius(3px);
+  a { 
+    @include inline-block;
+    padding: 4px 8px; 
+    &:hover { 
+      background: rgba(0, 0, 0, 0.05);
+    }
+  }
 }
