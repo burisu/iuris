@@ -1,17 +1,23 @@
 class CreateBasis < ActiveRecord::Migration
   def change
-    create_table :sites do |t|
-      t.string :name
-      t.string   :logo_file_name
-      t.integer  :logo_file_size
-      t.string   :logo_content_type
-      t.datetime :logo_updated_at
-      t.string :slogan
-      t.text :styles
-      t.text :description
-      t.text :key_words
+    create_table :parameters do |t|
+      t.string   :name, :null => false
+      t.string   :nature, :null => false
+      t.string     :document_value_file_name
+      t.integer    :document_value_file_size
+      t.string     :document_value_content_type
+      t.datetime   :document_value_updated_at
+      t.string     :document_value_fingerprint
+      t.string     :string_value
+      t.boolean    :boolean_value
+      t.decimal    :decimal_value
+      t.date       :date_value
+      t.datetime   :datetime_value
+      t.belongs_to :record_value, :polymorphic => true
       t.timestamps
     end
+    add_index :parameters, :name
+    add_index :parameters, :nature
 
     create_table(:users) do |t|
       t.string :first_name, :null => false
@@ -84,10 +90,27 @@ class CreateBasis < ActiveRecord::Migration
     # add_index :articles, :author_id
     # add_index :articles, :state
 
+    create_table :publication_natures do |t|
+      t.string :name, :null => false
+      t.string :title_format, :null => false
+      t.boolean :need_title,     :null => false, :default => false
+      t.boolean :need_source,    :null => false, :default => false
+      t.boolean :need_reference, :null => false, :default => false
+      t.boolean :need_active_on, :null => false, :default => false
+      t.timestamps
+    end
+
     create_table :publications do |t|
       t.belongs_to :author
-      t.string :name, :null => false
+      t.belongs_to :nature
+      t.text :name, :null => false
       t.string :description
+      # Meta-data
+      t.string :title
+      t.string :source
+      t.string :reference
+      t.date   :active_on
+      # Document
       t.string :nature, :null => false
       t.text   :url
       t.string :state
@@ -95,6 +118,7 @@ class CreateBasis < ActiveRecord::Migration
       t.integer  :document_file_size
       t.string   :document_content_type
       t.datetime :document_updated_at
+      t.string   :document_fingerprint
       t.timestamps
     end
     add_index :publications, :author_id
@@ -123,14 +147,14 @@ class CreateBasis < ActiveRecord::Migration
     create_table :labels do |t|
       t.string :name, :null => false
       t.text :description
-      t.boolean :usable_with_messages
+      t.boolean :usable_with_questions
       # t.boolean :usable_with_articles
       t.boolean :usable_with_publications
       t.boolean :usable_with_templates
       t.timestamps
     end
     add_index :labels, :name
-    add_index :labels, :usable_with_messages
+    add_index :labels, :usable_with_questions
     # add_index :labels, :usable_with_articles
     add_index :labels, :usable_with_publications
     add_index :labels, :usable_with_templates

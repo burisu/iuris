@@ -1,0 +1,3 @@
+
+class PublicationNaturesController < ApplicationController
+end

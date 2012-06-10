@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class SitesControllerTest < ActionController::TestCase
+class PublicationNatureTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end

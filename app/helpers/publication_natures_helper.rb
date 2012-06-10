@@ -1,0 +1,2 @@
+module PublicationNaturesHelper
+end

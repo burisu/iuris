@@ -1,5 +1,6 @@
 Iuris::Application.routes.draw do
-  resource :site, :only => [:edit, :update]
+  resources :parameters
+  resources :publication_natures
   resources :labels
   resources :tags
   resources :tools, :only => [:index]

@@ -16,7 +16,7 @@ ActiveRecord::Schema.define(:version => 20120605193223) do
   create_table "labels", :force => true do |t|
     t.string   "name",                     :null => false
     t.text     "description"
-    t.boolean  "usable_with_messages"
+    t.boolean  "usable_with_questions"
     t.boolean  "usable_with_publications"
     t.boolean  "usable_with_templates"
     t.datetime "created_at",               :null => false
@@ -24,8 +24,8 @@ ActiveRecord::Schema.define(:version => 20120605193223) do
   end
 
   add_index "labels", ["name"], :name => "index_labels_on_name"
-  add_index "labels", ["usable_with_messages"], :name => "index_labels_on_usable_with_messages"
   add_index "labels", ["usable_with_publications"], :name => "index_labels_on_usable_with_publications"
+  add_index "labels", ["usable_with_questions"], :name => "index_labels_on_usable_with_questions"
   add_index "labels", ["usable_with_templates"], :name => "index_labels_on_usable_with_templates"
 
   create_table "messages", :force => true do |t|
@@ -42,10 +42,48 @@ ActiveRecord::Schema.define(:version => 20120605193223) do
   add_index "messages", ["author_id"], :name => "index_messages_on_author_id"
   add_index "messages", ["origin_id", "origin_type"], :name => "index_messages_on_origin_id_and_origin_type"
 
+  create_table "parameters", :force => true do |t|
+    t.string   "name",                        :null => false
+    t.string   "nature",                      :null => false
+    t.string   "document_value_file_name"
+    t.integer  "document_value_file_size"
+    t.string   "document_value_content_type"
+    t.datetime "document_value_updated_at"
+    t.string   "document_value_fingerprint"
+    t.string   "string_value"
+    t.boolean  "boolean_value"
+    t.decimal  "decimal_value"
+    t.date     "date_value"
+    t.datetime "datetime_value"
+    t.integer  "record_value_id"
+    t.string   "record_value_type"
+    t.datetime "created_at",                  :null => false
+    t.datetime "updated_at",                  :null => false
+  end
+
+  add_index "parameters", ["name"], :name => "index_parameters_on_name"
+  add_index "parameters", ["nature"], :name => "index_parameters_on_nature"
+
+  create_table "publication_natures", :force => true do |t|
+    t.string   "name",                              :null => false
+    t.string   "title_format",                      :null => false
+    t.boolean  "need_title",     :default => false, :null => false
+    t.boolean  "need_source",    :default => false, :null => false
+    t.boolean  "need_reference", :default => false, :null => false
+    t.boolean  "need_active_on", :default => false, :null => false
+    t.datetime "created_at",                        :null => false
+    t.datetime "updated_at",                        :null => false
+  end
+
   create_table "publications", :force => true do |t|
     t.integer  "author_id"
-    t.string   "name",                  :null => false
+    t.integer  "nature_id"
+    t.text     "name",                  :null => false
     t.string   "description"
+    t.string   "title"
+    t.string   "source"
+    t.string   "reference"
+    t.date     "active_on"
     t.string   "nature",                :null => false
     t.text     "url"
     t.string   "state"
@@ -53,6 +91,7 @@ ActiveRecord::Schema.define(:version => 20120605193223) do
     t.integer  "document_file_size"
     t.string   "document_content_type"
     t.datetime "document_updated_at"
+    t.string   "document_fingerprint"
     t.datetime "created_at",            :null => false
     t.datetime "updated_at",            :null => false
   end
@@ -60,20 +99,6 @@ ActiveRecord::Schema.define(:version => 20120605193223) do
   add_index "publications", ["author_id"], :name => "index_publications_on_author_id"
   add_index "publications", ["nature"], :name => "index_publications_on_nature"
   add_index "publications", ["state"], :name => "index_publications_on_state"
-
-  create_table "sites", :force => true do |t|
-    t.string   "name"
-    t.string   "logo_file_name"
-    t.integer  "logo_file_size"
-    t.string   "logo_content_type"
-    t.datetime "logo_updated_at"
-    t.string   "slogan"
-    t.text     "styles"
-    t.text     "description"
-    t.text     "key_words"
-    t.datetime "created_at",        :null => false
-    t.datetime "updated_at",        :null => false
-  end
 
   create_table "tags", :force => true do |t|
     t.integer  "label_id"

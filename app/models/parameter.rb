@@ -1,3 +1,3 @@
-class Site < ActiveRecord::Base
+class Parameter < ActiveRecord::Base
   # attr_accessible :title, :body
 end
