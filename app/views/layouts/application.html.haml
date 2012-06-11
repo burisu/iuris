@@ -11,15 +11,12 @@
         #login
           -if current_user
             =link_to current_user.full_name, root_url
+            =link_to "Se déconnecter", destroy_user_session_url, :method => :delete
           -else
             =link_to "Se connecter", new_user_session_url
         .title JuriSEA
         .slogan Site d'échange et de partage d'informations pour les juristes des FDSEA du Sud Ouest
-      -if current_user
-        #menu
-          =link_to("Questions/Réponses", questions_url)
-          =link_to("Base de données", publications_url)
-          =link_to("Boîte à outils", tools_url)
+      =menu_tag if current_user
       #main
         .container=yield
       -if current_user

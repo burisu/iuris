@@ -58,7 +58,7 @@ a {
   @include box-shadow(0 0 5px rgba(0,0,0,0.2));
   @include border-radius(3px);
   a { 
-    padding: 4px;
+    padding: 4px 8px;
     @include inline-block;    
   }
 }
@@ -137,8 +137,12 @@ h2 {
 }
 
 .item { 
-  margin: 8px 0;
+  background: rgba(0, 0, 0, 0.02);
+  border: 1px solid rgba(0,0,0,0.2);
+  margin: -0.5px 0;
+  padding: 4px 6px;
   .title a { font-size: 120%; }
+  .description { font-style: italic }
 }
 .answer { 
   margin: 8px 0;
@@ -150,6 +154,14 @@ h2 {
   padding: 8px;
   background: rgba(255, 245, 215, 0.3);
   @include border-radius(3px);
+}
+
+.parameters { 
+  @include border-radius(3px);
+  background: #BE9;
+  padding: 8px;
+  margin: 8px 0;
+  text-align: center;
 }
 
 .pagination { margin: 8px 0 }

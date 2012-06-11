@@ -3,6 +3,6 @@
 
 -paginator = will_paginate(@questions)
 =paginator
--for question in @questions
-  =render :partial => "questions/question", :object => question
+.items
+  =render :partial => "questions/question", :collection => @questions
 =paginator

@@ -1,0 +1,8 @@
+.toolbar
+  =link_to("Nouveau mot-clé", new_label_url)
+
+-paginator = will_paginate(@labels)
+=paginator
+.items
+  =render :partial => "labels/label", :collection => @labels
+=paginator

@@ -1,8 +1,8 @@
 .toolbar
   =link_to("Déposer une nouvelle publication", new_publication_url)
 
--paginator = will_paginate(@publication)
+-paginator = will_paginate(@publications)
 =paginator
--for publication in @publications
-  =render :partial => "publications/publication", :object => publication
+.items
+  =render :partial => "publications/publication", :collection => @publications
 =paginator

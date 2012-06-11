@@ -70,7 +70,7 @@ ActiveRecord::Schema.define(:version => 20120605193223) do
     t.boolean  "need_title",     :default => false, :null => false
     t.boolean  "need_source",    :default => false, :null => false
     t.boolean  "need_reference", :default => false, :null => false
-    t.boolean  "need_active_on", :default => false, :null => false
+    t.boolean  "need_date",      :default => false, :null => false
     t.datetime "created_at",                        :null => false
     t.datetime "updated_at",                        :null => false
   end
@@ -80,11 +80,11 @@ ActiveRecord::Schema.define(:version => 20120605193223) do
     t.integer  "nature_id"
     t.text     "name",                  :null => false
     t.string   "description"
-    t.string   "title"
-    t.string   "source"
-    t.string   "reference"
-    t.date     "active_on"
-    t.string   "nature",                :null => false
+    t.string   "name_title"
+    t.string   "name_source"
+    t.string   "name_reference"
+    t.date     "name_date"
+    t.string   "origin",                :null => false
     t.text     "url"
     t.string   "state"
     t.string   "document_file_name"
@@ -97,7 +97,9 @@ ActiveRecord::Schema.define(:version => 20120605193223) do
   end
 
   add_index "publications", ["author_id"], :name => "index_publications_on_author_id"
-  add_index "publications", ["nature"], :name => "index_publications_on_nature"
+  add_index "publications", ["name"], :name => "index_publications_on_name"
+  add_index "publications", ["nature_id"], :name => "index_publications_on_nature_id"
+  add_index "publications", ["origin"], :name => "index_publications_on_origin"
   add_index "publications", ["state"], :name => "index_publications_on_state"
 
   create_table "tags", :force => true do |t|

@@ -21,13 +21,6 @@ table#partitions {
   }
 }
 
-.parameters { 
-  @include border-radius(3px);
-  background: #BE9;
-  padding: 8px;
-  margin: 8px 0;
-}
-
 .tool {
   display: block;
   border: 1px solid #B50;

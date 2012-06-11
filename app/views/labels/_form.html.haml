@@ -1,0 +1,5 @@
+=simple_fields_for @label do |f|
+  =f.input :name
+  =f.input :description, :as => :text, :input_html => {:rows => 7, :cols => 60}
+  =f.input :usable_with_publications
+  =f.input :usable_with_questions

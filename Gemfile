@@ -14,6 +14,7 @@ gem 'simple_form'
 gem 'will_paginate'
 gem 'rails-i18n'
 gem 'i18n-complements'
+gem 'formize'
 
 # Gems used only for assets and not required
 # in production environments by default.

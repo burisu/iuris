@@ -56,6 +56,9 @@ GEM
     erubis (2.7.0)
     execjs (1.4.0)
       multi_json (~> 1.0)
+    formize (0.0.27)
+      jquery-rails
+      rails (~> 3)
     fssm (0.2.9)
     haml (3.1.6)
     hike (1.2.1)
@@ -148,6 +151,7 @@ DEPENDENCIES
   coffee-rails (~> 3.2.1)
   compass-rails
   devise (= 2.1.0)
+  formize
   haml
   i18n-complements
   jquery-rails

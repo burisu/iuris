@@ -1,4 +1,8 @@
 =simple_fields_for @publication do |f|
-  =f.input :name
-  =f.input :description
+  =f.association :nature, :input_html => {"data-dependents" => "#publication-name", "data-parameter-name" => "nature_id"}
+
+#publication-name.input.combined{"data-refresh" => new_publication_url, "data-refresh-mode" => "update"}=render :partial => "name_form"
+
+=simple_fields_for @publication do |f|
   =f.input :document, :as => :file
+  =f.input :description, :as => :text, :input_html => {:rows => 7, :cols => 60}

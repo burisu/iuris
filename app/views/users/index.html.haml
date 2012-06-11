@@ -1,0 +1,8 @@
+.toolbar
+  =link_to("Nouvel utilisateur", new_user_url)
+
+-paginator = will_paginate(@users)
+=paginator
+.items
+  =render :partial => "users/user", :collection => @users
+=paginator

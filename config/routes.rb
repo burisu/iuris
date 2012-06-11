@@ -1,7 +1,7 @@
 Iuris::Application.routes.draw do
   resources :parameters
   resources :publication_natures
-  resources :labels
+  resources :labels, :except => [:show]
   resources :tags
   resources :tools, :only => [:index]
   get :partition, :controller => "tools"
@@ -19,5 +19,6 @@ Iuris::Application.routes.draw do
     resources :comments, :except => [:show, :index]
   end
   devise_for :users
+  resources :users
   root :to => "home#index"
 end

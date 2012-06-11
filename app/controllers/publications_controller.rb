@@ -14,9 +14,12 @@ class PublicationsController < ApplicationController
   end
   
   def new
-    @publication = Publication.new()
+    @publication = Publication.new
+    if params[:nature_id]
+      @publication.nature = PublicationNature.find_by_id(params[:nature_id])
+    end
     respond_to do |format|
-      format.html { render_restfully_form(:multipart => true) }
+      format.html { request.xhr? ? render(:partial => "name_form") : render_restfully_form(:multipart => true) }
       format.json { render :json => @publication }
       format.xml  { render :xml => @publication }
     end

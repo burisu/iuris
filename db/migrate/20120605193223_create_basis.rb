@@ -96,7 +96,7 @@ class CreateBasis < ActiveRecord::Migration
       t.boolean :need_title,     :null => false, :default => false
       t.boolean :need_source,    :null => false, :default => false
       t.boolean :need_reference, :null => false, :default => false
-      t.boolean :need_active_on, :null => false, :default => false
+      t.boolean :need_date,      :null => false, :default => false
       t.timestamps
     end
 
@@ -106,12 +106,12 @@ class CreateBasis < ActiveRecord::Migration
       t.text :name, :null => false
       t.string :description
       # Meta-data
-      t.string :title
-      t.string :source
-      t.string :reference
-      t.date   :active_on
+      t.string :name_title
+      t.string :name_source
+      t.string :name_reference
+      t.date   :name_date
       # Document
-      t.string :nature, :null => false
+      t.string :origin, :null => false
       t.text   :url
       t.string :state
       t.string   :document_file_name
@@ -122,7 +122,9 @@ class CreateBasis < ActiveRecord::Migration
       t.timestamps
     end
     add_index :publications, :author_id
-    add_index :publications, :nature
+    add_index :publications, :nature_id
+    add_index :publications, :origin
+    add_index :publications, :name
     add_index :publications, :state
 
     create_table :templates do |t|

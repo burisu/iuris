@@ -1,0 +1,8 @@
+.toolbar
+  =link_to("Nouveau type de publication", new_publication_nature_url)
+
+-paginator = will_paginate(@publication_natures)
+=paginator
+.items
+  =render :partial => "publication_natures/publication_nature", :collection => @publication_natures
+=paginator
