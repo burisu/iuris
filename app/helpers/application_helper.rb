@@ -8,9 +8,9 @@ module ApplicationHelper
     html << link_to("Base de données", publications_url)
     html << link_to("Boîte à outils", tools_url)
     html << link_to("Mot-clés", labels_url)
-    html << link_to("Utilisateurs", users_url)
+    # html << link_to("Utilisateurs", users_url)
     html << link_to("Types de publication", publication_natures_url)
-    html << link_to("Paramètres", parameters_url)
+    # html << link_to("Paramètres", parameters_url)
     html << '</div>'.html_safe
     return html
   end

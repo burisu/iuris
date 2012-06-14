@@ -11,7 +11,7 @@
     -if @question.answers.count.zero? and @question.comments.count.zero?
       =link_to("Modifier", edit_question_url(@question))
       =link_to("Supprimer", question_url(@question), :method => :delete, :confirm => 'labels.are_you_sure'.t)
-  -if @question.author == current_user or current_user.admin?
+  -if @question.author == current_user or current_user.administrator?
     =link_to("Répondre", new_question_answer_url(@question))
   =link_to("Commenter", new_question_comment_url(@question))
 
