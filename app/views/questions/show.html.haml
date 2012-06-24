@@ -1,7 +1,6 @@
-%h2=@question.name
-.content
-  =@question.content
-  =comments_of(@question)
+%h2=beautify(@question.name)
+-unless @question.content.blank?
+  .content=beautify(@question.content)
 .info
   %span=@question.author.full_name
   %span a posé cette question il y a
@@ -15,16 +14,22 @@
   =link_to("Répondre", new_question_answer_url(@question))
   =link_to("Commenter", new_question_comment_url(@question))
 
+=comments_of(@question)
+
 -if @question.answers.count > 0
   %h3="labels.x_answers".t(:count => @question.answers.count)
   -for answer in @question.answers
     .answer
-      .info
-        =link_to(answer.author.full_name, answer.author, :class => "author")
-        %span a répondu il y a
-        %span=distance_of_time_in_words_to_now(answer.updated_at)
-        %span &nbsp;:
-      .content=answer.content
+      %table
+        %tr
+          %td.lg=logo_tag(avatar_url(answer.author, :size => 48))
+          %td.info
+            =link_to(answer.author.full_name, answer.author, :class => "author")
+            %span a répondu il y a
+            %span=distance_of_time_in_words_to_now(answer.updated_at)
+            %span &nbsp;:
+            .content=beautify(answer.content)
+      =comments_of(answer)
       .toolbar
         -if answer.author == current_user
           -if answer.comments.count.zero?

@@ -1,3 +1,4 @@
+.items=render :partial => @answer.question
 
 =simple_fields_for @answer do |f|
   =f.input :content, :as => :text, :input_html => {:rows => 7, :cols => 60}

@@ -5,12 +5,13 @@ class AnswersController < ApplicationController
   end
 
   def show
-    @answer = Answer.find(params[:id])
-    session[:current_answer_id] = @answer.id
+    answer = Answer.find(params[:id])
+    redirect_to question_url(answer.question)
   end
   
   def new
-    @answer = Answer.new()
+    return unless question = Question.find(params[:question_id])
+    @answer = question.answers.new()
     respond_to do |format|
       format.html { render_restfully_form }
       format.json { render :json => @answer }
@@ -19,9 +20,9 @@ class AnswersController < ApplicationController
   end
   
   def create
-    @answer = Answer.new(params[:answer])
+    return unless question = Question.find(params[:question_id])
+    @answer = question.answers.new(params[:answer])
     @answer.author = current_user
-    @answer.question = Question.find(params[:question_id])
     respond_to do |format|
       if @answer.save
         format.html { redirect_to (params[:redirect] || question_url(@answer.question)) }

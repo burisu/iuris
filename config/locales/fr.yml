@@ -1,14 +1,72 @@
 fr:
+  attributes: &attributes
+    address: "Adresse postale"
+    answer:
+      content: "Réponse"
+    comment:
+      content: "Commentaire"
+    email: "Adresse e-mail"
+    first_name: "Prénom"
+    last_name: "Nom de famille"
+    logo: "Logo"
+    name: "Nom"
+    password: "Mot de passe"
+    password_confirmation: "Confirmation du mot de passe"
+    phone: "Téléphone"
+    post: "Poste"
+    public_email: "Adresse e-mail publique"
+    question:
+      name: "Question"
+      content: "Détails du problème"
+    remember_me: "Se souvenir de moi"
+    skills: "Compétences"
+    title_format: "Format de titre"
+  activerecord: 
+    attributes: *attributes
+  activemodel: 
+    attributes: *attributes
   actions:
+    answers:
+      new: &answers-new "Nouvelle réponse"
+      create: *answers-new
+      edit: &answers-edit "Modifier la réponse"
+      update: *answers-edit
     labels:
       index: "Mot-clés"
+    parameters:
+      index: "Paramètres"
     publications:
       index: "Base de données"
+      new: &publications-new "Nouvelle publication"
+      create: *publications-new
+      edit: &publications-edit "Modifier la publication"
+      update: *publications-edit
+    publication_natures:
+      index: "Types de publication"
+      new: &publication_natures-new "Nouveau type de publication"
+      create: *publication_natures-new
+      edit: &publication_natures-edit "Modifier le type de publication"
+      update: *publication_natures-edit
     questions:
       index: "Question & Réponses"
+      new: &questions-new "Nouvelle question"
+      create: *questions-new
+      edit: &questions-edit "Modifier la question"
+      update: *questions-edit
+    registrations:
+      new: &registrations-new "Inscription" 
+      create: *registrations-new
+    sessions:
+      new: "Connexion"
     tools:
       index: "Boîte à outils"
       partition: "Calcul de parts sociales"
+    users:
+      index: "Utilisateurs"
+      new: &users-new "Nouvel utilisateur"
+      create: *users-new
+      edit: &users-edit "Modifier l'utilisateur"
+      update: *users-edit
   models:
     publication_nature:
       name_columns:
@@ -22,6 +80,7 @@ fr:
     parts_of_amount:
       one: 'part d''un montant de'
       other: 'parts d''un montant de'
+    please_wait: "Merci de patienter..."
     update: Modifier
     x_answers:
       one: '%{count} réponse'

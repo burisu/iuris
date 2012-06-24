@@ -1,3 +1,5 @@
 .item
-  %h3.title=link_to(publication_nature.name, edit_publication_nature_url(publication_nature))
-  .description=publication_nature.title_format
+  =logo_tag(publication_nature.logo.url(:thumb), :alt => publication_nature.name)
+  %h3.title=link_to(beautify(publication_nature.name), edit_publication_nature_url(publication_nature))
+  .description=beautify(publication_nature.title_format)
+  .end

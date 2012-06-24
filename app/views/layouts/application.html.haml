@@ -5,12 +5,15 @@
     = stylesheet_link_tag    "application", :media => "all"
     = javascript_include_tag "application"
     = csrf_meta_tags
-  %body
+  -style = ""
+  -if Parameter.has?("site.background")
+    -style = "background: #FFF url(#{Parameter['site.background']}) left bottom no-repeat fixed"
+  %body{:style => style}
     #page{:class=>(current_user ? 'connected' : 'disconnected')}
       #banner
         #login
           -if current_user
-            =link_to current_user.full_name, root_url
+            =link_to current_user.full_name, user_url(current_user)
             =link_to "Se déconnecter", destroy_user_session_url, :method => :delete
           -else
             =link_to "Se connecter", new_user_session_url
@@ -25,8 +28,8 @@
       -if current_user
         #aside
           .container
-            %h3="Contacter un juriste"
-            -for user in User.all
-              =render :partial => "users/user", :object => user
-            %h3="Mot-clés"
+            %h3="Contacter un membre"
+            .items.mini=render :partial => "users/mini_user", :collection => User.all, :spacer_template => "shared/spacer"
+                  
+            -#%h3="Mot-clés (à venir)"
       #footer Copyright 2012 &ndash; PelTex

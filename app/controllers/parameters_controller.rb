@@ -9,7 +9,7 @@ class ParametersController < ApplicationController
     @parameter = Parameter.new()
     @parameter.nature = nature
     respond_to do |format|
-      format.html { render_restfully_form }
+      format.html { render_restfully_form(:multipart => true) }
       format.json { render :json => @parameter }
       format.xml  { render :xml => @parameter }
     end
@@ -22,7 +22,7 @@ class ParametersController < ApplicationController
         format.html { redirect_to (params[:redirect] || parameters_url) }
         format.json { render json => @parameter, :status => :created, :location => @parameter }
       else
-        format.html { render_restfully_form }
+        format.html { render_restfully_form(:multipart => true) }
         format.json { render :json => @parameter.errors, :status => :unprocessable_entity }
       end
     end
@@ -31,7 +31,7 @@ class ParametersController < ApplicationController
   def edit
     @parameter = Parameter.find(params[:id])
     respond_to do |format|
-      format.html { render_restfully_form }
+      format.html { render_restfully_form(:multipart => true) }
     end
   end
   
@@ -42,7 +42,7 @@ class ParametersController < ApplicationController
         format.html { redirect_to (params[:redirect] || parameters_url) }
         format.json { head :no_content }
       else
-        format.html { render_restfully_form }
+        format.html { render_restfully_form(:multipart => true) }
         format.json { render :json => @parameter.errors, :status => :unprocessable_entity }
       end
     end

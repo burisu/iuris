@@ -1,8 +1,10 @@
 .item
-  .title=link_to(publication.name, publication_url(publication))
+  =logo_tag(publication.logo.url(:thumb), :alt => publication.name)
+  %h3.title=link_to(beautify(publication.name), publication_url(publication))
   .info
     %span Déposée par
-    %span.author=publication.author.full_name
+    =link_to(publication.author.full_name, publication.author, :class => "author")
     %span il y a 
     %span.ago=distance_of_time_in_words_to_now(publication.created_at)
     %span="(#{'labels.x_comments'.t(:count=>publication.comments.count)})"
+  .end

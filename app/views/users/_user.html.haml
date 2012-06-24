@@ -1,5 +1,7 @@
 .item
-  .title=link_to(user.full_name, user_url(user))
+  =logo_tag(avatar_url(user, :size => 48))
+  %h3.title=link_to(user.full_name, user_url(user))
   .info
     %span Enregistré le
     %span.ago=user.created_at.l
+  .end

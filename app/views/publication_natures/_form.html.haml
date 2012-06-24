@@ -1,3 +1,4 @@
 =simple_fields_for @publication_nature do |f| 
   =f.input :name
-  =f.input :title_format
+  =f.input :title_format, :as => :text, :input_html => {:rows => 7, :cols => 60}
+  =f.input :logo, :as => :file

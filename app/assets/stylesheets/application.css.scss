@@ -27,7 +27,8 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
   font-size: 13px;
 }
 
-$base-color: #590;
+$base-color: #591;
+/*$base-color: #05B;*/
 $title-color: darken($base-color, 5%);
 
 header, h1, h2, h3, h4, h5, h6 { 
@@ -36,7 +37,14 @@ header, h1, h2, h3, h4, h5, h6 {
     font-family: "Lato", sans-serif;
     color: $title-color;
     font-weight: normal;
-    font-size: 16px;
+  }
+  & a { 
+    display: inline;
+  }
+  & sup { 
+    font-size: 70%;
+    vertical-align: super;
+    text-decoration: none;
   }
   & strong, & b { 
     font-weight: bold;
@@ -44,35 +52,55 @@ header, h1, h2, h3, h4, h5, h6 {
   & em { 
     font-style: italic;
   }
+  .container > & {
+    margin-top: 0.8em;
+    &:first-child { 
+      margin-top: 0;
+    }
+  }
 }
 
-h1 { font-size: 40px }
-h2 { font-size: 25px }
-h3 { font-size: 18px }
-h4 { font-size: 13px }
+h1, h1 span, h1 a { font-size: 40px }
+h2, h2 span, h2 a { font-size: 25px }
+h3, h3 span, h3 a { font-size: 18px }
+h4, h4 span, h4 a { font-size: 13px }
 
 body { 
   padding: 0;
   margin: 0;
   height: 100%;
  /* @include background(linear-gradient(left, #DE9, #AC7));*/
- /* @include background(#FFF linear-gradient(top, #DDD, #FFF) repeat-x);*/
-  background: #FFF image-url("backgrounds/cows-2-small.jpg") center center no-repeat fixed;
+  @include background(#FFF linear-gradient(top, #DDD, #FFF) repeat-x);
+/*  background: #FFF image-url("backgrounds/sunset.jpg") left bottom no-repeat fixed;*/
 }
 
-@mixin page-block($incrustation: 5%) {
+@mixin page-block($incrustation: 2%) {
   background: mix($title-color, #FFF, $incrustation);
-  @include box-shadow(0 0 5px rgba(0,0,0,0.3));
+  @include box-shadow(0 0 7px rgba(0,0,0,0.2));
   @include border-radius(3px);
 }
 
 a { 
   &:link, &:visited, &:active, &:focus {
     color: mix($base-color, #DDD, 75%);
-    text-decoration: none;
+    &, & * { 
+      text-decoration: none;
+    }
   }
   &:hover { 
-    text-decoration: underline;
+    &, & * { 
+      text-decoration: underline;
+    }
+  }
+}
+
+h2 { 
+  .logo { 
+    @include border-radius(6px);
+    height: 96px;
+    width: 96px;
+    float: right;
+    margin: 0 0 8px 8px;
   }
 }
 
@@ -90,13 +118,20 @@ a {
   margin: 0 0 8px;
   padding: 8px;
   @include page-block;
+  background: $base-color;
+  $start-color: mix($base-color, #FFF, 60%);
+  $stop-color: mix($base-color, #FFF, 90%);
+  @include background(linear-gradient(top, $start-color, $stop-color));
   #login { 
     float: right;
   }
   #header {
     margin: 0;
+    padding: 0 8px;
     .title { 
       font-weight: bold;
+      color: white;
+      @include text-shadow(0 0 5px rgba(0, 0, 0, 0.3));
       margin: 0;
     }
     .slogan { 
@@ -104,18 +139,30 @@ a {
       font-style: italic;
       color: rgba(0,0,0,0.4);  /*mix($title-color, #FFF, 70%);*/
       margin: 0;
+      color: white;
+      @include text-shadow(0 0 5px rgba(0, 0, 0, 0.3));
     }
   }
+  a { color: white }
 }
 
 #menu { 
   margin: 8px 0;
   padding: 0 3px;
   @include page-block(12%);
-  background: mix($title-color, #FFF, 12%);
+  $start-color: mix($base-color, #FFF, 5%);
+  $stop-color: mix($base-color, #FFF, 15%);
+  @include background(linear-gradient(top, $start-color, $stop-color));
   a { 
     padding: 4px 8px;
-    @include inline-block;    
+    @include inline-block;
+    border-left: 1px solid $start-color;
+    border-right: 1px solid $stop-color;
+    &:first-child { border-left: none; }
+    &:last-child { border-right: none; }
+    &.current { 
+      font-weight: bold;
+    }
   }
 }
 
@@ -172,25 +219,59 @@ a {
 
 .content { 
   text-align :justify;
-  margin: 8px 0;
+  margin: 4px 0;
 }
 
-.item { 
-  background: rgba(0, 0, 0, 0.02);
-  border: 1px solid rgba(0,0,0,0.2);
-  margin: -0.5px 0;
-  padding: 4px 6px;
-  .description { font-style: italic }
+.items {
+  .spacer { 
+    height: 2px;
+    background: mix($title-color, #FFF, 24%);
+    margin: 8px 0;
+   }
+  .item { 
+    padding: 4px;
+    display: block;
+    .logo { 
+      @include border-radius(3px);
+      height: 48px;
+      width: 48px;
+      float: left; 
+      margin-right: 8px;  
+      background-repeat: none;
+      background-position: center center;
+    }
+    &.partition  .logo { background-image: image-url("tools/partition.png"); }
+    &.farming    .logo { background-image: image-url("tools/farming.png"); }
+    &.templating .logo { background-image: image-url("tools/templating.png"); }
+    .description { 
+      font-style: italic; 
+      color: #777;
+    }
+    .end { clear:both; }
+  }
+  &.mini {
+    .item { 
+      .logo { 
+        height: 32px;
+        width: 32px;
+      }
+    }
+    .spacer { 
+      margin: 4px 0;
+    }
+  }
 }
 .answer { 
   margin: 8px 0;
 }
 .download { 
-  &, & * { font-size: 18px; }
+  clear: both;
+  &, & * { font-size: 18px; font-family: "Lato", sans-serif;}
   text-align: center;
   display: block;
   padding: 8px;
-  background: rgba(255, 245, 215, 0.3);
+  margin: 8px 0;
+  background: mix($base-color, #FFF, 24%);
   @include border-radius(3px);
 }
 
@@ -205,6 +286,21 @@ a {
 .pagination { margin: 8px 0 }
 
 .info span { color: #777; }
+
+table.infos { 
+  width: 100%;
+  border-collapse: collapse;
+  clear: none;
+  td {
+    padding: 4px;
+    &.label{
+      width: 30%;
+      color: #777;
+      font-style: italic;
+      text-align:right;
+    }
+  } 
+}
 
 .toolbar { 
   background: mix($base-color, #FFF, 12%);
@@ -238,38 +334,97 @@ table#partitions {
   }
 }
 
-.tool {
-  display: block;
-  border: 1px solid $base-color;
-  background: #FFF;
-  padding: 8px;
+
+.input {
+  label { 
+    margin: 5px 4px 0 0;
+    &:first-child { 
+      text-align: right;
+      width: 160px;
+      @include inline-block;
+      vertical-align: top;
+    }
+    abbr { 
+      color: red;
+    }
+  }
+}
+
+.actions { 
   margin: 8px 0 0;
-  @include border-radius(3px);
-  @include box-shadow(0 0 5px rgba(0,0,0,0.2));
-  &:hover, &:hover > *{text-decoration: none }
-  .title {
+  padding: 2px;
+  text-align: center;
+  > * { 
+    margin: 0 8px;
   }
-  .description {
-    font-style: italic;
+}
+
+.ui-datepicker {
+  display:none;
+  background: white;
+  padding: 2px;
+  border: 1px solid $base-color;
+  @include page-block;
+  .ui-datepicker-prev { float: left; }
+  .ui-datepicker-next { float: right; }
+  .ui-datepicker-title { 
+    padding: 4px;
+    text-align: center;
   }
-  &:hover { 
-    padding: 7px;
-    border-width: 2px;
+  table { 
+    border-collapse: collapse;
+    td, th { 
+      border: 1px solid mix($title-color, #FFF, 15%);
+    }
+    th { 
+      text-align: center;
+    }
+    td { 
+      a { 
+        display: block;
+        padding: 2px 4px;
+        text-align: center;
+      }
+    }
   }
-  .logo { 
-    float:left;
-    height: 48px;
-    width: 48px;
-    background: image-url("tools/partition.png") no-repeat;
-    margin-right: 8px;
+}
+
+.answer { 
+ table { width: 100%} 
+  & table td.lg { 
+    width: 56px;
+    .logo { 
+      height: 48px;
+      width: 48px;
+      margin: 0 8px 8px 0;
+    }
   }
-  &.farming .logo { 
-    background-image: image-url("tools/farming.png");
+}
+
+  .content { 
+    display: block;
+    background: white;
+    @include border-top-right-radius(8px);
+    @include border-bottom-right-radius(8px);
+    @include border-bottom-left-radius(8px);
+    border : 1px solid $base-color;
+    padding:6px 8px;
   }
-  &.templating .logo { 
-    background-image: image-url("tools/templating.png");
+
+.comments { 
+  padding:  4px 0 0 80px;
+  border-top: 2px solid mix($title-color, #FFF, 24%);
+  .spacer { 
+    border-top: 2px dotted mix($title-color, #FFF, 24%);
+    margin: 4px 0;
   }
-  .end { 
-    clear: both;
+  .comment { 
+    .meta {
+      opacity: 0.6;
+      color: #777;
+      &, & * { 
+        font-size: 11px;
+      }
+    }
   }
 }

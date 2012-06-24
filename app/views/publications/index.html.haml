@@ -4,5 +4,5 @@
 -paginator = will_paginate(@publications)
 =paginator
 .items
-  =render :partial => "publications/publication", :collection => @publications
+  =render :partial => @publications, :spacer_template => "shared/spacer"
 =paginator

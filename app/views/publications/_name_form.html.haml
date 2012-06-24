@@ -1,3 +1,11 @@
 -if @publication.nature
-  %label=Publication.human_attribute_name(:name)
-  %span=publication_name_form(@publication.nature)
+  -for key, field in @publication.nature.title_fields
+    .input{:class => (field.required ? 'required' : '')}
+      %label=field.name
+      -if field.type == :date
+        =date_field_tag("publication[title_values][#{field.id}]", (@publication.title_values[field.id]||Date.today).to_date)
+      -else
+        -if !field.options[:choices].blank?
+          =select_tag("publication[title_values][#{field.id}]", options_for_select(field.options[:choices].split(/\s*\,\s*/), @publication.title_values[field.id]))
+        -else
+          =text_field_tag("publication[title_values][#{field.id}]", @publication.title_values[field.id])

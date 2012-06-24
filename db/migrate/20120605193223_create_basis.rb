@@ -87,7 +87,9 @@ class CreateBasis < ActiveRecord::Migration
     create_table :publication_natures do |t|
       t.string :name, :null => false
       t.text :title_format, :null => false
-      t.text :fields
+      t.text :title_pattern
+      t.text :title_fields
+      t.integer :publications_count, :null => false, :default => 0
       t.boolean :usable, :null => false, :default => false
       t.string   :logo_file_name
       t.integer  :logo_file_size
@@ -103,11 +105,7 @@ class CreateBasis < ActiveRecord::Migration
       t.text :name, :null => false
       t.string :description
       # Meta-data
-      t.text :field_values
-      t.text :name_title
-      t.string :name_source
-      t.string :name_reference
-      t.date   :name_date
+      t.text :title_values
       # Document
       t.string :origin, :null => false
       t.text   :url

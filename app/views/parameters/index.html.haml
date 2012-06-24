@@ -5,5 +5,5 @@
 -paginator = will_paginate(@parameters)
 =paginator
 .items
-  =render :partial => "parameters/parameter", :collection => @parameters
+  =render :partial => @parameters, :spacer_template => "shared/spacer"
 =paginator

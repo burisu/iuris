@@ -8,7 +8,7 @@ Iuris::Application.routes.draw do
   # resources :templates do
   #   resources :comments, :except => [:show, :index]
   # end
-  resources :answers, :only => [:edit, :update, :destroy] do
+  resources :answers, :only => [:show, :edit, :update, :destroy] do
     resources :comments, :except => [:show, :index]
   end
   resources :questions do

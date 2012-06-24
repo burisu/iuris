@@ -1,20 +1,26 @@
-=link_to(partition_url, :class=>"tool partition") do
-  .logo
-  %h3.title=action_title(:action => :partition)
-  .description
-    Cet outil permet de répartir votre capital social en nombres entiers de parts sociales.
-  .end
+.items
 
-=link_to(tools_url, :class=>"tool farming") do
-  .logo
-  %h3.title Calcul de fermages
-  .description
-    À venir...
-  .end
+  .item.partition
+    .logo
+    %h3.title=link_to(action_title(:action => :partition), partition_url)
+    .description
+      Cet outil permet de répartir votre capital social en nombres entiers de parts sociales.
+    .end
 
-=link_to(tools_url, :class=>"tool templating") do
-  .logo
-  %h3.title Générateur d'actes
-  .description
-    À venir... mais pas tout de suite
-  .end
+  .spacer
+
+  .item.farming
+    .logo
+    %h3.title Calcul de fermages
+    .description
+      À venir...
+    .end
+
+  .spacer
+
+  .item.templating
+    .logo
+    %h3.title Générateur d'actes
+    .description
+      À venir... mais pas tout de suite
+    .end

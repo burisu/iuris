@@ -1,8 +1,9 @@
-.toolbar
-  =link_to("Nouvel utilisateur", new_user_url)
+-if current_user.administrator?
+  .toolbar
+    =link_to("Nouvel utilisateur", new_user_url)
 
 -paginator = will_paginate(@users)
 =paginator
 .items
-  =render :partial => "users/user", :collection => @users
+  =render :partial => @users, :spacer_template => "shared/spacer"
 =paginator

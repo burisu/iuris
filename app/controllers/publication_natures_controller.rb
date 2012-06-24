@@ -7,7 +7,7 @@ class PublicationNaturesController < ApplicationController
   def new
     @publication_nature = PublicationNature.new()
     respond_to do |format|
-      format.html { render_restfully_form }
+      format.html { render_restfully_form(:multipart => true) }
       format.json { render :json => @publication_nature }
       format.xml  { render :xml => @publication_nature }
     end
@@ -20,7 +20,7 @@ class PublicationNaturesController < ApplicationController
         format.html { redirect_to (params[:redirect] || publication_natures_url) }
         format.json { render json => @publication_nature, :status => :created, :location => @publication_nature }
       else
-        format.html { render_restfully_form }
+        format.html { render_restfully_form(:multipart => true) }
         format.json { render :json => @publication_nature.errors, :status => :unprocessable_entity }
       end
     end
@@ -29,7 +29,7 @@ class PublicationNaturesController < ApplicationController
   def edit
     @publication_nature = PublicationNature.find(params[:id])
     respond_to do |format|
-      format.html { render_restfully_form }
+      format.html { render_restfully_form(:multipart => true) }
     end
   end
   
@@ -40,7 +40,7 @@ class PublicationNaturesController < ApplicationController
         format.html { redirect_to (params[:redirect] || publication_natures_url) }
         format.json { head :no_content }
       else
-        format.html { render_restfully_form }
+        format.html { render_restfully_form(:multipart => true) }
         format.json { render :json => @publication_nature.errors, :status => :unprocessable_entity }
       end
     end

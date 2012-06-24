@@ -69,17 +69,19 @@ ActiveRecord::Schema.define(:version => 20120605193223) do
   add_index "parameters", ["nature"], :name => "index_parameters_on_nature"
 
   create_table "publication_natures", :force => true do |t|
-    t.string   "name",                                 :null => false
-    t.text     "title_format",                         :null => false
-    t.text     "fields"
-    t.boolean  "usable",            :default => false, :null => false
+    t.string   "name",                                  :null => false
+    t.text     "title_format",                          :null => false
+    t.text     "title_pattern"
+    t.text     "title_fields"
+    t.integer  "publications_count", :default => 0,     :null => false
+    t.boolean  "usable",             :default => false, :null => false
     t.string   "logo_file_name"
     t.integer  "logo_file_size"
     t.string   "logo_content_type"
     t.datetime "logo_updated_at"
-    t.datetime "created_at",                           :null => false
-    t.datetime "updated_at",                           :null => false
-    t.integer  "lock_version",      :default => 0,     :null => false
+    t.datetime "created_at",                            :null => false
+    t.datetime "updated_at",                            :null => false
+    t.integer  "lock_version",       :default => 0,     :null => false
   end
 
   create_table "publications", :force => true do |t|
@@ -87,11 +89,7 @@ ActiveRecord::Schema.define(:version => 20120605193223) do
     t.integer  "nature_id",                            :null => false
     t.text     "name",                                 :null => false
     t.string   "description"
-    t.text     "field_values"
-    t.text     "name_title"
-    t.string   "name_source"
-    t.string   "name_reference"
-    t.date     "name_date"
+    t.text     "title_values"
     t.string   "origin",                               :null => false
     t.text     "url"
     t.string   "state"

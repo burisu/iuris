@@ -2,5 +2,13 @@
   =f.input :first_name
   =f.input :last_name
   =f.input :email
-  =f.input :password
-  =f.input :password_confirmation
+
+  =f.input :post
+  =f.input :address, :as => :text, :input_html => {:rows => 3, :cols => 40}
+  =f.input :phone, :input_html => {:size => 15}
+  =f.input :public_email
+  =f.input :skills, :input_html => {:rows => 8, :cols => 40}
+
+  -if current_user.administrator?
+    =f.input :password
+    =f.input :password_confirmation

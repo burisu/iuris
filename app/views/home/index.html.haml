@@ -1,7 +1,5 @@
 %h2 Dernières questions
--for question in Question.lasts(5)
-  =render :partial => "questions/question", :object => question
+.items=render :partial => Question.lasts(5), :spacer_template => "shared/spacer"
 
 %h2 Dernières publications
--for publication in Publication.lasts(5)
-  =render :partial => "publications/publication", :object => publication
+.items=render :partial => Publication.lasts(5), :spacer_template => "shared/spacer"

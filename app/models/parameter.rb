@@ -2,7 +2,8 @@ class Parameter < ActiveRecord::Base
   def self.natures
     [:string, :document, :boolean, :decimal, :date, :datetime, :record]
   end
-  attr_accessible :name, :label, :nature, :value, :string_value
+  has_attached_file :document_value
+  attr_accessible :name, :label, :nature, :value, :string_value, :document_value
   belongs_to :record_value, :polymorphic => true
 
   def value=(val)
@@ -19,6 +20,10 @@ class Parameter < ActiveRecord::Base
     else
       return "[Parameter missing: #{name}]"
     end    
+  end
+
+  def self.has?(name)
+    return (self.find_by_name(name) ? true : false)
   end
 
 end

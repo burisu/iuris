@@ -1,5 +1,5 @@
 .item
-  %h3.title=link_to(question.name, question_url(question))
+  %h3.title=link_to(beautify(question.name), question_url(question))
   .info
     %span Posée par
     =link_to(question.author.full_name, question.author, :class => "author")
