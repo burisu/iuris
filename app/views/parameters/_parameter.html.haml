@@ -1,0 +1,8 @@
+.item.parameter
+  .title
+    =link_to(edit_parameter_url(parameter)) do
+      %span.name=h(parameter.label)+"&nbsp;:".html_safe
+      %span.value=parameter.value
+  .info
+    =parameter.name
+    =" ("+parameter.nature+")"

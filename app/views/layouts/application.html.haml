@@ -1,27 +1,32 @@
 !!!
 %html
   %head
-    %title Iuris
+    %title=Parameter["site.name"]
     = stylesheet_link_tag    "application", :media => "all"
     = javascript_include_tag "application"
     = csrf_meta_tags
   %body
     #page{:class=>(current_user ? 'connected' : 'disconnected')}
-      #header
+      #banner
         #login
           -if current_user
             =link_to current_user.full_name, root_url
             =link_to "Se déconnecter", destroy_user_session_url, :method => :delete
           -else
             =link_to "Se connecter", new_user_session_url
-        .title JuriSEA
-        .slogan Site d'échange et de partage d'informations pour les juristes des FDSEA du Sud Ouest
+        %header#header
+          %h1.title=Parameter["site.name"]
+          %h2.slogan=Parameter["site.slogan"]
       =menu_tag if current_user
       #main
-        .container=yield
+        .container
+          =page_title
+          =yield
       -if current_user
         #aside
           .container
-            %h2="Contacter un juriste"
-            %h2="Mot-clés"
-      #footer Copyright 2012 - PelTex
+            %h3="Contacter un juriste"
+            -for user in User.all
+              =render :partial => "users/user", :object => user
+            %h3="Mot-clés"
+      #footer Copyright 2012 &ndash; PelTex

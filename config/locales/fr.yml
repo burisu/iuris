@@ -1,14 +1,40 @@
 fr:
+  actions:
+    labels:
+      index: "Mot-clés"
+    publications:
+      index: "Base de données"
+    questions:
+      index: "Question & Réponses"
+    tools:
+      index: "Boîte à outils"
+      partition: "Calcul de parts sociales"
+  models:
+    publication_nature:
+      name_columns:
+        date: 'Date'
+        reference: 'Référence'
+        source: 'Source'
+        title: 'Titre'       
   labels:
+    cancel: Annuler
+    create: Créer
     parts_of_amount:
       one: 'part d''un montant de'
       other: 'parts d''un montant de'
+    update: Modifier
     x_answers:
       one: '%{count} réponse'
       other: '%{count} réponses'
     x_comments:
       one: '%{count} commentaire'
       other: '%{count} commentaires'
+    x_publications:
+      one: '%{count} publication'
+      other: '%{count} publications'
+    x_questions:
+      one: '%{count} question'
+      other: '%{count} questions'
   will_paginate:
     previous_label: "← Précédente"
     next_label: "Suivante →"

@@ -1,6 +1,6 @@
 class Question < Message
+  acts_as_commentable
   has_many :answers, :as => :origin, :order => "updated_at DESC"
-  has_many :comments, :as => :origin
   scope :lasts, lambda { |count|
     order("updated_at DESC").limit(count)
   }

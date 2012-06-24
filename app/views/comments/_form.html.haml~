@@ -1,0 +1,2 @@
+=simple_fields_for @comment do |f|
+  =f.input :content

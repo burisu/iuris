@@ -9,6 +9,10 @@ class User < ActiveRecord::Base
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me, :first_name, :last_name
   # attr_accessible :title, :body
+  has_many :answers, :foreign_key => :author_id
+  has_many :questions, :foreign_key => :author_id
+  has_many :comments, :foreign_key => :author_id
+  has_many :publications, :foreign_key => :author_id
 
   def full_name
     "#{self.first_name} #{self.last_name}"

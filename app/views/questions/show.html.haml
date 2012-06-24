@@ -1,26 +1,26 @@
+%h2=@question.name
+.content
+  =@question.content
+  =comments_of(@question)
 .info
   %span=@question.author.full_name
-  %span a posé la question suivante il y a
-  %span=distance_of_time_in_words_to_now(@question.created_at)
-  %span &nbsp;:
-%h1=@question.name
-.content=@question.content
-
+  %span a posé cette question il y a
+  %span=distance_of_time_in_words_to_now(@question.created_at)+"."
 .toolbar
   -if @question.author == current_user
     -if @question.answers.count.zero? and @question.comments.count.zero?
       =link_to("Modifier", edit_question_url(@question))
       =link_to("Supprimer", question_url(@question), :method => :delete, :confirm => 'labels.are_you_sure'.t)
-  -if @question.author == current_user or current_user.administrator?
-    =link_to("Répondre", new_question_answer_url(@question))
+  -#-if @question.author == current_user or current_user.administrator?
+  =link_to("Répondre", new_question_answer_url(@question))
   =link_to("Commenter", new_question_comment_url(@question))
 
 -if @question.answers.count > 0
-  %h2="labels.x_answers".t(:count => @question.answers.count)
+  %h3="labels.x_answers".t(:count => @question.answers.count)
   -for answer in @question.answers
     .answer
       .info
-        %span=answer.author.full_name
+        =link_to(answer.author.full_name, answer.author, :class => "author")
         %span a répondu il y a
         %span=distance_of_time_in_words_to_now(answer.updated_at)
         %span &nbsp;:

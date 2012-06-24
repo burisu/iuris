@@ -1,0 +1,275 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the top of the
+ * compiled file, but it's generally better to create a new file per style scope.
+ *
+ *= require_self
+ *= require_tree .
+ */
+
+@import "compass/reset";
+@import "compass/css3";
+/*@import url(http://fonts.googleapis.com/css?family=Arapey:400,400italic);*/
+/*@import url(http://fonts.googleapis.com/css?family=Lato:400,400italic,700,700italic);*/
+/*@import url(http://fonts.googleapis.com/css?family=Lato|Volkhov|Merriweather|Crimson+Text);*/
+@import url(http://fonts.googleapis.com/css?family=Lora:400,400italic,700,700italic|PT+Serif:400,400italic,700,700italic|Lato:400,400italic,700,700italic|Rosario:400,400italic,700,700italic|PT+Sans:400,400italic,700,700italic|Asap:400,400italic,700,700italic);
+
+$experimental-support-for-svg: true;
+
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video { 
+  font-family: Arial, sans-serif;
+  /*font-family: "Georgia", serif;*/
+  font-size: 13px;
+}
+
+$base-color: #590;
+$title-color: darken($base-color, 5%);
+
+header, h1, h2, h3, h4, h5, h6 { 
+  margin: 0 0 0.4em;
+  &, & * {
+    font-family: "Lato", sans-serif;
+    color: $title-color;
+    font-weight: normal;
+    font-size: 16px;
+  }
+  & strong, & b { 
+    font-weight: bold;
+  }
+  & em { 
+    font-style: italic;
+  }
+}
+
+h1 { font-size: 40px }
+h2 { font-size: 25px }
+h3 { font-size: 18px }
+h4 { font-size: 13px }
+
+body { 
+  padding: 0;
+  margin: 0;
+  height: 100%;
+ /* @include background(linear-gradient(left, #DE9, #AC7));*/
+ /* @include background(#FFF linear-gradient(top, #DDD, #FFF) repeat-x);*/
+  background: #FFF image-url("backgrounds/cows-2-small.jpg") center center no-repeat fixed;
+}
+
+@mixin page-block($incrustation: 5%) {
+  background: mix($title-color, #FFF, $incrustation);
+  @include box-shadow(0 0 5px rgba(0,0,0,0.3));
+  @include border-radius(3px);
+}
+
+a { 
+  &:link, &:visited, &:active, &:focus {
+    color: mix($base-color, #DDD, 75%);
+    text-decoration: none;
+  }
+  &:hover { 
+    text-decoration: underline;
+  }
+}
+
+#page {
+  background: rgba(255, 255, 255, 0.5);
+  @include border-radius(6px);
+  max-width: 900px;
+  padding: 8px;
+  margin: 8px auto;
+  .page-title { 
+  }
+}
+
+#banner {
+  margin: 0 0 8px;
+  padding: 8px;
+  @include page-block;
+  #login { 
+    float: right;
+  }
+  #header {
+    margin: 0;
+    .title { 
+      font-weight: bold;
+      margin: 0;
+    }
+    .slogan { 
+      font-size: 16px;
+      font-style: italic;
+      color: rgba(0,0,0,0.4);  /*mix($title-color, #FFF, 70%);*/
+      margin: 0;
+    }
+  }
+}
+
+#menu { 
+  margin: 8px 0;
+  padding: 0 3px;
+  @include page-block(12%);
+  background: mix($title-color, #FFF, 12%);
+  a { 
+    padding: 4px 8px;
+    @include inline-block;    
+  }
+}
+
+#main { 
+  width: 100%;
+  #page.connected & { width: 70%; }
+  float:left;
+  margin:0 0 8px;
+  padding:0;
+  .container {
+    margin: 0;
+    padding: 8px;
+    @include page-block;
+  }
+}
+
+.ttl { 
+  display: block;
+  color: #B50;
+  font-size: 22px;
+  font-weight: normal;
+  border-bottom: 1px solid #B50;
+  margin: 16px 0 8px;
+  &:hover { 
+    text-decoration: none;
+    color: #820;
+  }
+}
+
+
+#aside { 
+  width: 30%;
+  float:left;
+  margin:0 0 8px;
+  padding:0;
+  .container {
+    margin: 0 0 0 8px;
+    padding: 8px;
+    @include page-block;
+  }
+}
+
+#footer { 
+  margin: 8px 0 0;
+  padding: 4px;
+  @include page-block;
+  clear: both;
+  text-align: center;
+  vertical-align: middle;
+  font-size: 11px;
+  color: rgba(0,0,0,0.4)
+}
+
+
+.content { 
+  text-align :justify;
+  margin: 8px 0;
+}
+
+.item { 
+  background: rgba(0, 0, 0, 0.02);
+  border: 1px solid rgba(0,0,0,0.2);
+  margin: -0.5px 0;
+  padding: 4px 6px;
+  .description { font-style: italic }
+}
+.answer { 
+  margin: 8px 0;
+}
+.download { 
+  &, & * { font-size: 18px; }
+  text-align: center;
+  display: block;
+  padding: 8px;
+  background: rgba(255, 245, 215, 0.3);
+  @include border-radius(3px);
+}
+
+.parameters { 
+  @include border-radius(3px);
+  background:  mix($base-color, #FFF, 24%);
+  padding: 8px;
+  margin: 8px 0;
+  text-align: center;
+}
+
+.pagination { margin: 8px 0 }
+
+.info span { color: #777; }
+
+.toolbar { 
+  background: mix($base-color, #FFF, 12%);
+  padding: 0;
+  margin: 8px 0;
+  @include border-radius(3px);
+  a { 
+    @include inline-block;
+    padding: 4px 8px; 
+    &:hover { 
+      background: rgba(0, 0, 0, 0.05);
+    }
+  }
+}
+
+table#partitions { 
+  margin: 8px auto;
+  td {
+    padding: 2px;
+    &.number {
+      font-weight: bold;
+      text-align: right;
+    }
+    &.middle {
+      text-align: center;
+    }
+    &.amount {
+      font-weight: bold;
+      text-align: left;
+    }
+  }
+}
+
+.tool {
+  display: block;
+  border: 1px solid $base-color;
+  background: #FFF;
+  padding: 8px;
+  margin: 8px 0 0;
+  @include border-radius(3px);
+  @include box-shadow(0 0 5px rgba(0,0,0,0.2));
+  &:hover, &:hover > *{text-decoration: none }
+  .title {
+  }
+  .description {
+    font-style: italic;
+  }
+  &:hover { 
+    padding: 7px;
+    border-width: 2px;
+  }
+  .logo { 
+    float:left;
+    height: 48px;
+    width: 48px;
+    background: image-url("tools/partition.png") no-repeat;
+    margin-right: 8px;
+  }
+  &.farming .logo { 
+    background-image: image-url("tools/farming.png");
+  }
+  &.templating .logo { 
+    background-image: image-url("tools/templating.png");
+  }
+  .end { 
+    clear: both;
+  }
+}

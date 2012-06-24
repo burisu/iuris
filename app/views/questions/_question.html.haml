@@ -1,8 +1,8 @@
 .item
-  .title=link_to(question.name, question_url(question))
+  %h3.title=link_to(question.name, question_url(question))
   .info
     %span Posée par
-    %span.author=question.author.full_name
+    =link_to(question.author.full_name, question.author, :class => "author")
     %span il y a 
     %span.ago=distance_of_time_in_words_to_now(question.updated_at)
-    %span="(#{'labels.x_answers'.t(:count=>question.answers.count)}, #{'labels.x_comments'.t(:count=>question.comments.count)})"
+    %span=("("+link_to_if(question.answers.count > 0, "labels.x_answers".t(:count=>question.answers.count), question_url(question)) { |name| name}+", "+link_to_if(question.comments.count > 0, "labels.x_comments".t(:count=>question.comments.count), question_url(question)) { |name| name }+")").html_safe

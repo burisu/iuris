@@ -1,0 +1,5 @@
+=simple_fields_for @parameter do |f|
+  -if @parameter.nature == :string
+    =f.input :value, :as => :text
+  -elsif @parameter.nature == :boolean
+    =f.input :value, :as => :boolean

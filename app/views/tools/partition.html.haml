@@ -1,5 +1,3 @@
-%h1 Calcul de parts
-
 .parameters
   =form_tag({}, :method => :get) do
     %label Montant du capital social
@@ -7,7 +5,7 @@
     =submit_tag("Calculer", :name => nil)
 
 -if @partitions
-  %h2="Nombres de parts possibles pour un montant de #{@amount.l(:currency => 'EUR')}"
+  %h3="Nombres de parts possibles pour un montant de #{@amount.l(:currency => 'EUR')}"
   %table#partitions
     -for partition in @partitions
       %tr

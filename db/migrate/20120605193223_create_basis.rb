@@ -2,6 +2,7 @@ class CreateBasis < ActiveRecord::Migration
   def change
     create_table :parameters do |t|
       t.string   :name, :null => false
+      t.string   :label
       t.string   :nature, :null => false
       t.string     :document_value_file_name
       t.integer    :document_value_file_size
@@ -15,6 +16,7 @@ class CreateBasis < ActiveRecord::Migration
       t.datetime   :datetime_value
       t.belongs_to :record_value, :polymorphic => true
       t.timestamps
+      t.integer :lock_version, :null => false, :default => 0
     end
     add_index :parameters, :name
     add_index :parameters, :nature
@@ -62,6 +64,7 @@ class CreateBasis < ActiveRecord::Migration
       ## Token authenticatable
       t.string :authentication_token
       t.timestamps
+      t.integer :lock_version, :null => false, :default => 0
     end
     add_index :users, :email,                :unique => true
     add_index :users, :reset_password_token, :unique => true
@@ -70,43 +73,38 @@ class CreateBasis < ActiveRecord::Migration
     add_index :users, :authentication_token, :unique => true
 
     create_table :messages do |t|
-      t.belongs_to :author
+      t.belongs_to :author, :null => false
       t.belongs_to :origin, :polymorphic => true
-      t.string :type
+      t.string :type, :null => false
       t.string :name, :null => false
       t.text :content
       t.timestamps
+      t.integer :lock_version, :null => false, :default => 0
     end
     add_index :messages, :author_id
     add_index :messages, [:origin_id, :origin_type]
 
-    # create_table :articles do |t|
-    #   t.belongs_to :author
-    #   t.string :state
-    #   t.string :name, :null => false
-    #   t.text :content
-    #   t.timestamps
-    # end
-    # add_index :articles, :author_id
-    # add_index :articles, :state
-
     create_table :publication_natures do |t|
       t.string :name, :null => false
-      t.string :title_format, :null => false
-      t.boolean :need_title,     :null => false, :default => false
-      t.boolean :need_source,    :null => false, :default => false
-      t.boolean :need_reference, :null => false, :default => false
-      t.boolean :need_date,      :null => false, :default => false
+      t.text :title_format, :null => false
+      t.text :fields
+      t.boolean :usable, :null => false, :default => false
+      t.string   :logo_file_name
+      t.integer  :logo_file_size
+      t.string   :logo_content_type
+      t.datetime :logo_updated_at
       t.timestamps
+      t.integer :lock_version, :null => false, :default => 0
     end
 
     create_table :publications do |t|
-      t.belongs_to :author
-      t.belongs_to :nature
+      t.belongs_to :author, :null => false
+      t.belongs_to :nature, :null => false
       t.text :name, :null => false
       t.string :description
       # Meta-data
-      t.string :name_title
+      t.text :field_values
+      t.text :name_title
       t.string :name_source
       t.string :name_reference
       t.date   :name_date
@@ -120,6 +118,7 @@ class CreateBasis < ActiveRecord::Migration
       t.datetime :document_updated_at
       t.string   :document_fingerprint
       t.timestamps
+      t.integer :lock_version, :null => false, :default => 0
     end
     add_index :publications, :author_id
     add_index :publications, :nature_id
@@ -128,20 +127,22 @@ class CreateBasis < ActiveRecord::Migration
     add_index :publications, :state
 
     create_table :templates do |t|
-      t.belongs_to :author
+      t.belongs_to :author, :null => false
       t.string :name, :null => false
       t.string :state
       t.text :content
       t.integer :uses_count, :null => false, :default => 0
       t.timestamps
+      t.integer :lock_version, :null => false, :default => 0
     end
     add_index :templates, :author_id
     add_index :templates, :state
 
     create_table :tags do |t|
-      t.belongs_to :label
-      t.belongs_to :tagged, :polymorphic => true
+      t.belongs_to :label, :null => false
+      t.belongs_to :tagged, :polymorphic => true, :null => false
       t.timestamps
+      t.integer :lock_version, :null => false, :default => 0
     end
     add_index :tags, :label_id
     add_index :tags, [:tagged_id, :tagged_type]
@@ -154,6 +155,7 @@ class CreateBasis < ActiveRecord::Migration
       t.boolean :usable_with_publications
       t.boolean :usable_with_templates
       t.timestamps
+      t.integer :lock_version, :null => false, :default => 0
     end
     add_index :labels, :name
     add_index :labels, :usable_with_questions

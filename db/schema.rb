@@ -14,13 +14,14 @@
 ActiveRecord::Schema.define(:version => 20120605193223) do
 
   create_table "labels", :force => true do |t|
-    t.string   "name",                     :null => false
+    t.string   "name",                                    :null => false
     t.text     "description"
     t.boolean  "usable_with_questions"
     t.boolean  "usable_with_publications"
     t.boolean  "usable_with_templates"
-    t.datetime "created_at",               :null => false
-    t.datetime "updated_at",               :null => false
+    t.datetime "created_at",                              :null => false
+    t.datetime "updated_at",                              :null => false
+    t.integer  "lock_version",             :default => 0, :null => false
   end
 
   add_index "labels", ["name"], :name => "index_labels_on_name"
@@ -29,22 +30,24 @@ ActiveRecord::Schema.define(:version => 20120605193223) do
   add_index "labels", ["usable_with_templates"], :name => "index_labels_on_usable_with_templates"
 
   create_table "messages", :force => true do |t|
-    t.integer  "author_id"
+    t.integer  "author_id",                   :null => false
     t.integer  "origin_id"
     t.string   "origin_type"
-    t.string   "type"
-    t.string   "name",        :null => false
+    t.string   "type",                        :null => false
+    t.string   "name",                        :null => false
     t.text     "content"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at",                  :null => false
+    t.datetime "updated_at",                  :null => false
+    t.integer  "lock_version", :default => 0, :null => false
   end
 
   add_index "messages", ["author_id"], :name => "index_messages_on_author_id"
   add_index "messages", ["origin_id", "origin_type"], :name => "index_messages_on_origin_id_and_origin_type"
 
   create_table "parameters", :force => true do |t|
-    t.string   "name",                        :null => false
-    t.string   "nature",                      :null => false
+    t.string   "name",                                       :null => false
+    t.string   "label"
+    t.string   "nature",                                     :null => false
     t.string   "document_value_file_name"
     t.integer  "document_value_file_size"
     t.string   "document_value_content_type"
@@ -57,34 +60,39 @@ ActiveRecord::Schema.define(:version => 20120605193223) do
     t.datetime "datetime_value"
     t.integer  "record_value_id"
     t.string   "record_value_type"
-    t.datetime "created_at",                  :null => false
-    t.datetime "updated_at",                  :null => false
+    t.datetime "created_at",                                 :null => false
+    t.datetime "updated_at",                                 :null => false
+    t.integer  "lock_version",                :default => 0, :null => false
   end
 
   add_index "parameters", ["name"], :name => "index_parameters_on_name"
   add_index "parameters", ["nature"], :name => "index_parameters_on_nature"
 
   create_table "publication_natures", :force => true do |t|
-    t.string   "name",                              :null => false
-    t.string   "title_format",                      :null => false
-    t.boolean  "need_title",     :default => false, :null => false
-    t.boolean  "need_source",    :default => false, :null => false
-    t.boolean  "need_reference", :default => false, :null => false
-    t.boolean  "need_date",      :default => false, :null => false
-    t.datetime "created_at",                        :null => false
-    t.datetime "updated_at",                        :null => false
+    t.string   "name",                                 :null => false
+    t.text     "title_format",                         :null => false
+    t.text     "fields"
+    t.boolean  "usable",            :default => false, :null => false
+    t.string   "logo_file_name"
+    t.integer  "logo_file_size"
+    t.string   "logo_content_type"
+    t.datetime "logo_updated_at"
+    t.datetime "created_at",                           :null => false
+    t.datetime "updated_at",                           :null => false
+    t.integer  "lock_version",      :default => 0,     :null => false
   end
 
   create_table "publications", :force => true do |t|
-    t.integer  "author_id"
-    t.integer  "nature_id"
-    t.text     "name",                  :null => false
+    t.integer  "author_id",                            :null => false
+    t.integer  "nature_id",                            :null => false
+    t.text     "name",                                 :null => false
     t.string   "description"
-    t.string   "name_title"
+    t.text     "field_values"
+    t.text     "name_title"
     t.string   "name_source"
     t.string   "name_reference"
     t.date     "name_date"
-    t.string   "origin",                :null => false
+    t.string   "origin",                               :null => false
     t.text     "url"
     t.string   "state"
     t.string   "document_file_name"
@@ -92,8 +100,9 @@ ActiveRecord::Schema.define(:version => 20120605193223) do
     t.string   "document_content_type"
     t.datetime "document_updated_at"
     t.string   "document_fingerprint"
-    t.datetime "created_at",            :null => false
-    t.datetime "updated_at",            :null => false
+    t.datetime "created_at",                           :null => false
+    t.datetime "updated_at",                           :null => false
+    t.integer  "lock_version",          :default => 0, :null => false
   end
 
   add_index "publications", ["author_id"], :name => "index_publications_on_author_id"
@@ -103,24 +112,26 @@ ActiveRecord::Schema.define(:version => 20120605193223) do
   add_index "publications", ["state"], :name => "index_publications_on_state"
 
   create_table "tags", :force => true do |t|
-    t.integer  "label_id"
-    t.integer  "tagged_id"
-    t.string   "tagged_type"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.integer  "label_id",                    :null => false
+    t.integer  "tagged_id",                   :null => false
+    t.string   "tagged_type",                 :null => false
+    t.datetime "created_at",                  :null => false
+    t.datetime "updated_at",                  :null => false
+    t.integer  "lock_version", :default => 0, :null => false
   end
 
   add_index "tags", ["label_id"], :name => "index_tags_on_label_id"
   add_index "tags", ["tagged_id", "tagged_type"], :name => "index_tags_on_tagged_id_and_tagged_type"
 
   create_table "templates", :force => true do |t|
-    t.integer  "author_id"
-    t.string   "name",                      :null => false
+    t.integer  "author_id",                   :null => false
+    t.string   "name",                        :null => false
     t.string   "state"
     t.text     "content"
-    t.integer  "uses_count", :default => 0, :null => false
-    t.datetime "created_at",                :null => false
-    t.datetime "updated_at",                :null => false
+    t.integer  "uses_count",   :default => 0, :null => false
+    t.datetime "created_at",                  :null => false
+    t.datetime "updated_at",                  :null => false
+    t.integer  "lock_version", :default => 0, :null => false
   end
 
   add_index "templates", ["author_id"], :name => "index_templates_on_author_id"
@@ -155,6 +166,7 @@ ActiveRecord::Schema.define(:version => 20120605193223) do
     t.string   "authentication_token"
     t.datetime "created_at",                                :null => false
     t.datetime "updated_at",                                :null => false
+    t.integer  "lock_version",           :default => 0,     :null => false
   end
 
   add_index "users", ["authentication_token"], :name => "index_users_on_authentication_token", :unique => true

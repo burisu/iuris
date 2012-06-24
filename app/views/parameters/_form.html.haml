@@ -1,0 +1,19 @@
+-nature = @parameter.nature.to_sym
+=simple_fields_for @parameter do |f|
+  =f.input :nature, :as => :hidden
+  =f.input :name
+  =f.input :label
+  -if nature == :string
+    =f.input :value, :as => :text
+  -elsif nature == :boolean
+    =f.input :value, :as => :boolean
+  -elsif nature == :decimal
+    =f.input :value, :as => :decimal
+  -elsif nature == :document
+    =f.input :value, :as => :file
+  -elsif nature == :date
+    =f.input :value, :as => :date
+  -elsif nature == :datetime
+    =f.input :value, :as => :datetime
+  -else
+    %em Pas encore supporté

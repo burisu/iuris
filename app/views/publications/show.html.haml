@@ -1,5 +1,5 @@
 .info
-  %span=@publication.author.full_name
+  =link_to(@publication.author.full_name, @publication.author, :class=> "author")
   %span a déposé la publication suivante il y a
   %span=distance_of_time_in_words_to_now(@publication.created_at)
   %span &nbsp;:
@@ -11,6 +11,7 @@
     &laquo; 
     =@publication.name
     &raquo;
+=comments_of(@publication)
 
 .toolbar
   -if @publication.author == current_user

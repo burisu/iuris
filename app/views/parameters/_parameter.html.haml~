@@ -1,0 +1,6 @@
+.item.parameter
+  .title=link_to(label.name, edit_label_url(label))
+  -unless label.usable_with.blank?
+    .description=label.usable_with
+  -unless label.description.blank?
+    .description=label.description

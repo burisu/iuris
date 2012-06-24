@@ -1,0 +1,9 @@
+.toolbar
+  -for t in Parameter.natures
+    =link_to(h("Nouveau paramètre ")+"<strong>#{t}</strong>".html_safe, new_label_url)
+
+-paginator = will_paginate(@labels)
+=paginator
+.items
+  =render :partial => "labels/label", :collection => @labels
+=paginator

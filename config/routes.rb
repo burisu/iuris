@@ -18,7 +18,7 @@ Iuris::Application.routes.draw do
   resources :publications do
     resources :comments, :except => [:show, :index]
   end
-  devise_for :users
+  devise_for :users, :path_prefix => 'auth'
   resources :users
   root :to => "home#index"
 end
