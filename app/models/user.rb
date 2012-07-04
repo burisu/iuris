@@ -29,7 +29,7 @@ class User < ActiveRecord::Base
 
   def notify_team(notification, *args)
     for user in User.where("id != ?", self.id).all
-      Notifier.send(notification, self, *args).deliver
+      Notifier.send(notification, user, *args).deliver
     end
   end
 
