@@ -1,0 +1,11 @@
+Bonjour <%= @recipient.first_name -%>,
+
+Une nouvelle question a été posé par <%=@question.author.full_name-%> :
+
+<%= word_wrap(@question.name, :line_width => 70) %>
+<%= word_wrap(@question.content, :line_width => 70) %>
+
+Pour y répondre : <%= Parameter["site.host"]+url_for(@question) %>
+
+Cordialement,
+<%= render :partial => "notifier/signature" -%>

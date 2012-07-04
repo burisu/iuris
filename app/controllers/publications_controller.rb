@@ -30,6 +30,7 @@ class PublicationsController < ApplicationController
     @publication.author = current_user
     respond_to do |format|
       if @publication.save
+        current_user.notify_team(:new_publication, @publication)
         format.html { redirect_to (params[:redirect] || @publication) }
         format.json { render json => @publication, :status => :created, :location => @publication }
       else

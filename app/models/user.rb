@@ -23,4 +23,14 @@ class User < ActiveRecord::Base
     "#{self.first_name} #{self.last_name}"
   end
 
+  def email_sign
+    "\"" + self.full_name.gsub('"', "''") + "\" <" + self.email + ">"
+  end
+
+  def notify_team(notification, *args)
+    for user in User.where("id != ?", self.id).all
+      Notifier.send(notification, self, *args).deliver
+    end
+  end
+
 end

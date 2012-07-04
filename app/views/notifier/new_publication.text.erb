@@ -1,0 +1,12 @@
+Bonjour <%= @recipient.first_name -%>,
+
+Une nouvelle publication a été déposé par <%=@publication.author.full_name-%> :
+
+<%= word_wrap(@publication.name, :line_width => 70) %>
+<%= word_wrap(@publication.description, :line_width => 70) %>
+
+
+Pour récupérer le document : <%= Parameter["site.host"]+url_for(@publication) %>
+
+Cordialement,
+<%= render :partial => "notifier/signature" -%>
