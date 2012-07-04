@@ -3,8 +3,8 @@ class Parameter < ActiveRecord::Base
     [:string, :document, :boolean, :decimal, :date, :datetime, :record]
   end
   has_attached_file :document_value, {
-    :path => ":rails_root/public/system/:attachment/:hash/:style/:filename",
-    :url => "/system/:attachment/:id/:style/:filename"
+    :path => ":rails_root/public/system/:class/:attachment/:id_partition/:style/:filename",
+    :url => "/system/:class/:attachment/:id_partition/:style/:filename"
   }
   attr_accessible :name, :label, :nature, :value, :string_value, :document_value
   belongs_to :record_value, :polymorphic => true
