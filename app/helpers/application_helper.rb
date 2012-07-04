@@ -65,7 +65,14 @@ module ApplicationHelper
   end
 
   def beautify(original_text)
-    text = h(original_text.to_s)
+    text = h(original_text.to_s.strip)
+
+    text.gsub!(/^\s*(\-|\*)\s+([^\n]+)(\n|$)/, '<ul><li>\2</li></ul>')
+    text.gsub!(/\<\/ul\>\s*\<ul\>/, '')
+
+    text.gsub!(/^\s*(\#)\s+([^\n]+)(\n|$)/, '<ol><li>\1</li></ol>')
+    text.gsub!(/\<\/ol\>\s*\<ol\>/, '')
+
     text.gsub!(/\s+\,\s*/, ', ')
     text.gsub!(/\s*\:/, '&nbsp;:')
     text.gsub!(/\s*\?/, '&nbsp;?')
