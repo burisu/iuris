@@ -21,7 +21,6 @@
     .toolbar
       =link_to("Commenter la question", new_question_comment_url(@question))
 
-
 -if @question.answers.count > 0
   %h3="labels.x_answers".t(:count => @question.answers.count)
   .items=render :partial => "questions/answer", :collection => @question.answers, :spacer_template => "shared/spacer"

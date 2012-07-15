@@ -465,7 +465,8 @@ table#partitions {
   }
 
 .comments { 
-  padding:  4px 0 0 56px;
+  margin: 8px 0 0;
+  padding:  4px 0 0 112px;
 /*  border-top: 2px solid mix($title-color, #FFF, 24%);*/
   .spacer { 
     border-top: 2px dotted mix($title-color, #FFF, 24%);

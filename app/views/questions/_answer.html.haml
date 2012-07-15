@@ -3,11 +3,12 @@
     %tr
       %td.lg=logo_tag(avatar_url(answer.author, :size => 48))
       %td.ms
-        .content=beautify(answer.content)
         .info
           =link_to(answer.author.full_name, answer.author, :class => "author")
           %span a répondu il y a
           %span=distance_of_time_in_words_to_now(answer.updated_at)
+          %span :
+        .content=beautify(answer.content)
         -if answer.author == current_user
           -if answer.comments.count.zero?
             .toolbar
