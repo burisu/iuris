@@ -1,0 +1,7 @@
+=form_tag(search_url, :method => :get) do
+  .search-bar
+    %table
+      %tr
+        %td.txt=text_field_tag("q", params[:q], :placeholder=>"Rechercher...")
+        %td.btn=submit_tag("Chercher", :name => nil)
+-#=link_to("Chercher", "#", "data-submit-form" => "true")
