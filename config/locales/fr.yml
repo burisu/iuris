@@ -31,6 +31,11 @@ fr:
       create: *answers-new
       edit: &answers-edit "Modifier la réponse"
       update: *answers-edit
+    home:
+      search!: 
+        zero: "Aucun résultat pour «\u00a0%{search}\u00a0»"
+        one: "%{count} résultat pour «\u00a0%{search}\u00a0»"
+        other: "%{count} résultats pour «\u00a0%{search}\u00a0»"
     labels:
       index: "Mot-clés"
     parameters:
@@ -75,7 +80,15 @@ fr:
         source: 'Source'
         title: 'Titre'       
   labels:
+    answer_to_question:
+      zero: "Proposer une réponse"
+      one: "Proposer une nouvelle réponse"
+      other: "Proposer une nouvelle réponse"
     cancel: Annuler
+    comment_judged:
+      zero: "Faire une remarque/question"
+      one: "Ajouter une remarque/question à la discussion"
+      other: "Ajouter une remarque/question à la discussion"
     create: Créer
     parts_of_amount:
       one: 'part d''un montant de'

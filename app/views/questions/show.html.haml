@@ -1,6 +1,8 @@
-%h2=beautify(@question.name)
+%h2
+  =logo_tag(avatar_url(@question.author, :size => 96))
+  =beautify(@question.name)
 -unless @question.content.blank?
-  .content=beautify(@question.content)
+  .question.content=beautify(@question.content)
 .info
   %span=@question.author.full_name
   %span a posé cette question il y a
@@ -10,30 +12,17 @@
     -if @question.answers.count.zero? and @question.comments.count.zero?
       =link_to("Modifier", edit_question_url(@question))
       =link_to("Supprimer", question_url(@question), :method => :delete, :confirm => 'labels.are_you_sure'.t)
-  -#-if @question.author == current_user or current_user.administrator?
-  =link_to("Répondre", new_question_answer_url(@question))
-  =link_to("Commenter", new_question_comment_url(@question))
+  =link_to("labels.answer_to_question".t(:count => @question.answers.count), new_question_answer_url(@question))
+  -if @question.comments.count.zero?
+    =link_to("Commenter la question", new_question_comment_url(@question))
 
-=comments_of(@question)
+=comments_of(@question) do
+  -unless @question.comments.count.zero?
+    .toolbar
+      =link_to("Commenter la question", new_question_comment_url(@question))
+
 
 -if @question.answers.count > 0
   %h3="labels.x_answers".t(:count => @question.answers.count)
-  -for answer in @question.answers
-    .answer
-      %table
-        %tr
-          %td.lg=logo_tag(avatar_url(answer.author, :size => 48))
-          %td.info
-            =link_to(answer.author.full_name, answer.author, :class => "author")
-            %span a répondu il y a
-            %span=distance_of_time_in_words_to_now(answer.updated_at)
-            %span &nbsp;:
-            .content=beautify(answer.content)
-      =comments_of(answer)
-      .toolbar
-        -if answer.author == current_user
-          -if answer.comments.count.zero?
-            =link_to("Modifier", edit_answer_url(answer))
-            =link_to("Supprimer", answer_url(answer), :method => :delete, :confirm => 'labels.are_you_sure'.t)
-        =link_to("Commenter", new_answer_comment_url(answer))
+  .items=render :partial => "questions/answer", :collection => @question.answers, :spacer_template => "shared/spacer"
 

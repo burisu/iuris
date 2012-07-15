@@ -1,4 +1,17 @@
-.items
+.item.answer
+  =logo_tag(avatar_url(answer.author, :size => 48))
+  .content=beautify(answer.content)
+  .info
+    %span Déposé par
+    =link_to(answer.author.full_name, answer.author, :class => "author")
+    %span il y a 
+    %span.ago=distance_of_time_in_words_to_now(answer.created_at)
+    %span en réponse à
+    =link_to(answer.question.name, question_url(answer.question))
+  .end
+
+
+-#.items
   =render :partial => answer.question
   .item
     %h3.title Réponse

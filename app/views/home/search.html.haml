@@ -1,5 +1,9 @@
-%h2 
--#="labels.x_results_for_search".t(:count => @results.values.join.count, :search =>params[:q])
+%h2=action_title(:action => :search!, :count => @results.collect{|k,v| v.count}.sum, :search => params[:q])
+
+-for klass, result in @results.sort{|a,b| b[1].count <=> a[1].count }
+  -if result.count > 0
+    %h3="labels.x_#{klass.name.underscore.pluralize}".t(:count => result.count)
+    .results.items=render :partial => result, :spacer_template => "shared/spacer"
 
 
 

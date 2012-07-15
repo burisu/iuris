@@ -1,5 +1,6 @@
 class Publication < ActiveRecord::Base
   acts_as_commentable
+  acts_as_searchable
   attr_accessible :name, :description, :document, :nature_id, :title_values
   belongs_to :author, :class_name => "User"
   belongs_to :nature, :class_name => "PublicationNature", :counter_cache => true

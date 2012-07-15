@@ -21,7 +21,7 @@ module ApplicationHelper
 
   def page_title
     tr = "actions.#{controller_name}.#{action_name}"
-    if tr.t.match(/^translation missing\:/) and Rails.env.production?
+    if tr.t.match(/^translation missing\:/) # and Rails.env.production?
       return ''
     else
       return content_tag(:h2, tr.t, :class=>"page-title")
@@ -35,24 +35,29 @@ module ApplicationHelper
   end
 
 
-  def comments_of(judged)
+  def comments_of(judged, &block)
     html = ""
     count = judged.comments.count
-    if count > 0
+    if count > 0 or block_given?
       html << "<div class=\"comments\">"
       # html << content_tag(:h3, "labels.x_comments".t(:count=>count))
       judged.comments.reorder('created_at ASC').each_with_index do |comment, index|
         html << "<div class='spacer'></div>" if index > 0
         html << "<div class='comment'>"
-        html << content_tag(:span, comment.content, :class => :content)
-        html << "<span class=\"meta\">"
-        html << " &ndash; "
+        html << logo_tag(avatar_url(comment.author, :size => 32))
+        html << content_tag(:span, beautify(comment.content), :class => :content)
+        html << "<span class=\"info\">"
+        # html << " &ndash; "
         html << link_to(comment.author.full_name, comment.author, :class => :author)
         html << " il y a "
         html << content_tag(:span, distance_of_time_in_words_to_now(comment.created_at), :class => :date)
         html << "</span>"
+        html << "<div class=\"end\"></div>"
         html << "</div>"
 
+      end
+      if block_given?
+        html << capture(&block)
       end
       html << "</div>"
     end
@@ -67,6 +72,13 @@ module ApplicationHelper
   def beautify(original_text)
     text = h(original_text.to_s.strip)
 
+    if params[:q]
+      keys = params[:q].mb_chars.downcase.split(/\s+/)
+      for key in keys
+        text = highlight(text, key)
+      end
+    end
+
     text.gsub!(/^\s*(\-|\*)\s+([^\n]+)(\n|$)/, '<ul><li>\2</li></ul>')
     text.gsub!(/\<\/ul\>\s*\<ul\>/, '')
 
@@ -75,12 +87,13 @@ module ApplicationHelper
 
     text.gsub!(/\s+\,\s*/, ', ')
     text.gsub!(/\s*\:/, '&nbsp;:')
-    text.gsub!(/\s*\?/, '&nbsp;?')
+    text.gsub!(/[\s\u00A0]*\?/, '&nbsp;?')
     text.gsub!('&gt;&gt;', '&nbsp;&raquo;')
     text.gsub!('&lt;&lt;', '&laquo;&nbsp;')
     text.gsub!(/\~/, '&nbsp;')
     text.gsub!(/(\&nbsp\;)+/, '&nbsp;')
     text.gsub!(/\n/, '<br/>')
+
     # text.gsub!(/(\d+)(ième|ier|ière|ème|er|ère|nde|nd)/, '\1<sup>\2</sup>')
     return text.html_safe
   end

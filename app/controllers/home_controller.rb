@@ -6,8 +6,8 @@ class HomeController < ApplicationController
   def search
     @results = {}
     params[:q]
-    for klass in [Question, Publication]
-      # @results[klass] = klass.search(params[:q])
+    for klass in [Question, Answer, Publication, Comment]
+      @results[klass] = klass.search(params[:q])
     end
   end
 
