@@ -1,6 +1,11 @@
 class PublicationNature < ActiveRecord::Base
   attr_accessible :name, :title_format, :logo
-  has_attached_file :logo, :styles => { :medium => "96x96#", :thumb => "48x48#" }
+  has_attached_file :logo, {
+    :styles => { :medium => "96x96#", :thumb => "48x48#" },
+    :path => ":rails_root/public/system/:class/:attachment/:id_partition/:style/:filename",
+    :url => "/system/:class/:attachment/:id_partition/:style/:filename"
+  }
+
   has_many :publications, :dependent => :restrict 
   default_scope order(:name)
   serialize :title_fields, Hash

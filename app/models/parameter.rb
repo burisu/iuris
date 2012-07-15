@@ -2,7 +2,10 @@ class Parameter < ActiveRecord::Base
   def self.natures
     [:string, :document, :boolean, :decimal, :date, :datetime, :record]
   end
-  has_attached_file :document_value
+  has_attached_file :document_value, {
+    :path => ":rails_root/public/system/:class/:attachment/:id_partition/:style/:filename",
+    :url => "/system/:class/:attachment/:id_partition/:style/:filename"
+  }
   attr_accessible :name, :label, :nature, :value, :string_value, :document_value
   belongs_to :record_value, :polymorphic => true
 

@@ -221,6 +221,19 @@ h2 {
 .content { 
   text-align :justify;
   margin: 4px 0;
+  line-height: 1.3em;
+  ul { 
+    padding-left: 2em;
+    li { 
+      margin: 0.5em 0;
+      list-style-type: square; 
+    }
+  }
+  ol { 
+    li { 
+      list-style-type: roman;
+    }
+  }
 }
 
 .items {
@@ -393,6 +406,7 @@ table#partitions {
 .answer { 
  table { width: 100%} 
   & table td.lg { 
+    vertical-align: top;
     width: 56px;
     .logo { 
       height: 48px;
