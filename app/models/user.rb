@@ -16,6 +16,8 @@ class User < ActiveRecord::Base
   has_many :publications, :foreign_key => :author_id
 
   before_validation do
+    self.first_name = self.first_name.mb_chars.capitalize
+    self.last_name = self.last_name.mb_chars.upcase
     self.administrator = true if User.count.zero?
   end
 

@@ -14,10 +14,11 @@
 
 @import "compass/reset";
 @import "compass/css3";
+@import "compass/utilities";
 /*@import url(http://fonts.googleapis.com/css?family=Arapey:400,400italic);*/
 /*@import url(http://fonts.googleapis.com/css?family=Lato:400,400italic,700,700italic);*/
 /*@import url(http://fonts.googleapis.com/css?family=Lato|Volkhov|Merriweather|Crimson+Text);*/
-@import url(http://fonts.googleapis.com/css?family=Lora:400,400italic,700,700italic|PT+Serif:400,400italic,700,700italic|Lato:400,400italic,700,700italic|Rosario:400,400italic,700,700italic|PT+Sans:400,400italic,700,700italic|Asap:400,400italic,700,700italic);
+@import url(http://fonts.googleapis.com/css?family=Lato:400,400italic,700,700italic);
 
 $experimental-support-for-svg: true;
 
@@ -424,6 +425,36 @@ table#partitions {
       color: #777;
       &, & * { 
         font-size: 11px;
+      }
+    }
+  }
+}
+
+.search-bar { 
+  padding: 3px;
+  border: 1px solid #777;
+  table {
+    width: 100%;
+    td.txt {
+      input[type="text"] { 
+        padding: 0;
+        border: none;
+        height: 18px;
+        margin: 0;
+        width: 100%;
+      }
+    }
+    td.btn {
+      height: 18px;
+      width: 18px;
+      input[type="submit"] { 
+        @include squish-text;
+        @include inline-block;
+        margin: 0;
+        border: none;
+        height: 18px;
+        width: 18px;
+        background: image-url("search.png");
       }
     }
   }

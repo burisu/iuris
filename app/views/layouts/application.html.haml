@@ -28,6 +28,9 @@
       -if current_user
         #aside
           .container
+            %h3="Recherche"
+            =render :partial => "home/search"
+
             %h3="Contacter un membre"
             .items.mini=render :partial => "users/mini_user", :collection => User.all, :spacer_template => "shared/spacer"
                   

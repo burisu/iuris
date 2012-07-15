@@ -5,10 +5,13 @@ class Publication < ActiveRecord::Base
   belongs_to :nature, :class_name => "PublicationNature", :counter_cache => true
   has_attached_file :document, :url=>'/:class/:id.pdf', :path=>':rails_root/private/:class/:id_partition/:style.:extension'
   validates_attachment_content_type :document, :content_type => ["application/x-pdf", "application/pdf"]
+  validates_attachment_presence :document
   validates_presence_of :nature
   serialize :title_values, Hash
   delegate :logo, :to => :nature
+ # acts_as_searchable :joins => :comments 
 
+  default_scope :include => :nature
   scope :lasts, lambda { |count|
     order("updated_at DESC").limit(count)
   }

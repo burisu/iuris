@@ -1,8 +1,8 @@
 Iuris::Application.routes.draw do
-  resources :parameters
-  resources :publication_natures
-  resources :labels, :except => [:show]
-  resources :tags
+  get :search, :controller => :home
+
+  devise_for :users, :path_prefix => 'auth'
+
   resources :tools, :only => [:index]
   get :partition, :controller => "tools"
   # resources :templates do
@@ -18,7 +18,12 @@ Iuris::Application.routes.draw do
   resources :publications do
     resources :comments, :except => [:show, :index]
   end
-  devise_for :users, :path_prefix => 'auth'
+
+  resources :parameters
+  resources :publication_natures
+  resources :labels, :except => [:show]
+  resources :tags
+
   resources :users
   root :to => "home#index"
 end
