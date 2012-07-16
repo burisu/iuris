@@ -1,12 +1,13 @@
 %h2
   =logo_tag(@publication.logo.url(:medium))
   =beautify(@publication.name)
--unless@publication.description.blank?
+-unless @publication.description.blank?
   .content=beautify(@publication.description)
 .info
   =link_to(@publication.author.full_name, @publication.author, :class=> "author")
   %span a déposé la publication il y a
   %span=distance_of_time_in_words_to_now(@publication.created_at)
+=labels_for(@publication)
 =link_to("Télécharger", publication_url(@publication, :format => :pdf), :class=>"download")
 =comments_of(@publication)
 

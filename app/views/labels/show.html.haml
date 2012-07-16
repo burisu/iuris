@@ -1,0 +1,7 @@
+%h2=@label.name
+
+.items
+  -@label.tags.each_with_index do |tag, index|
+    =render "shared/spacer" if index > 0
+    =render tag.tagged
+

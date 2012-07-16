@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120605193223) do
+ActiveRecord::Schema.define(:version => 20120716201253) do
 
   create_table "labels", :force => true do |t|
     t.string   "name",                                    :null => false
@@ -22,6 +22,7 @@ ActiveRecord::Schema.define(:version => 20120605193223) do
     t.datetime "created_at",                              :null => false
     t.datetime "updated_at",                              :null => false
     t.integer  "lock_version",             :default => 0, :null => false
+    t.integer  "tags_count",               :default => 0, :null => false
   end
 
   add_index "labels", ["name"], :name => "index_labels_on_name"

@@ -1,0 +1,7 @@
+.tagger
+  .tags
+    -for label in Label.valids
+      .stat
+        =link_to(label.name, label, :class => :tag)
+        &times
+        =label.tags_count

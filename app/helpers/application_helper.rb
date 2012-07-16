@@ -7,7 +7,7 @@ module ApplicationHelper
     html_options = {}
     html_options[:class] = 'current' if controller_name.to_s == "home"
     html << link_to("&#9728;".html_safe, root_url, html_options)
-    for kontroller in ["questions", "publications", "tools", "users!", "publication_natures!", "parameters!"] # "labels!", 
+    for kontroller in ["questions", "publications", "tools", "users!", "publication_natures!", "labels!", "parameters!"] # 
       if kontroller[-1..-1] != "!" or (kontroller[-1..-1] == "!" and current_user.administrator?)
         kontroller = kontroller.gsub(/\!*$/, '')
         html_options = {}
@@ -116,5 +116,51 @@ module ApplicationHelper
     configuration.update(options)
     return "https://secure.gravatar.com/avatar/#{hash}?s=#{configuration[:size]}&d=#{h(configuration[:default])}".html_safe # &f=#{options[:force] ? 'y' : 'n'}
   end
+
+  def labels_for(tagged)
+    tagged_id = tagged.class.name.underscore+"-"+tagged.id.to_s
+    tags_id = "tags-of-"+tagged_id
+    html = ""
+    html << "<div class=\"tagger\">"
+    html << "<span class=\"tags\" id=\"#{tags_id}\">"
+    html << tags_of(tagged)
+    html << "</span>"
+    if current_user == tagged.author
+      field_id = tagged_id + "-label"
+      html << text_field_tag("label", nil, :id => field_id, "data-autocomplete-with" => unroll_labels_url)
+      html << button_tag("+", "data-add-tag-label" => field_id, "data-add-tag-url"=>url_for(:controller => :tags, :action => :create, :tagged => tagged_id), "data-add-tag-to" => tags_id)
+    end
+    html << "</div>"
+    return html.html_safe
+  end
+
+  def labels_of(tagged)
+    tagged_id = tagged.class.name.underscore+"-"+tagged.id.to_s
+    tags_id = "tags-of-"+tagged_id
+    html = ""
+    html << "<div class=\"tagger\">"
+    html << "<span class=\"tags\" id=\"#{tags_id}\">"
+    for tag in tagged.tags
+      html << link_to(tag.label.name, tag.label, :class => :tag, :id => "tag-#{tag.id}")
+    end
+    html << "</span>"
+    html << "</div>"
+    return html.html_safe
+  end
+
+
+  def tags_of(tagged)
+    html = ""
+    for tag in tagged.tags
+      tag_id = "tag-#{tag.id}"
+      html << link_to(tag.label.name, tag.label, :class => :tag, :id => tag_id)
+      if current_user  == tagged.author
+        html << link_to("Enlever", tag, :class => :remove, "data-remove-tag" => tag_id)
+      end
+    end
+    return html.html_safe
+  end
+
+
 
 end

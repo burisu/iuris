@@ -7,6 +7,7 @@
   %span=@question.author.full_name
   %span a posé cette question il y a
   %span=distance_of_time_in_words_to_now(@question.created_at)+"."
+=labels_for(@question)
 .toolbar
   -if @question.author == current_user
     -if @question.answers.count.zero? and @question.comments.count.zero?
@@ -25,3 +26,4 @@
   %h3="labels.x_answers".t(:count => @question.answers.count)
   .items=render :partial => "questions/answer", :collection => @question.answers, :spacer_template => "shared/spacer"
 
+.end

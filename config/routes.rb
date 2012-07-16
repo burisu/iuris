@@ -21,8 +21,12 @@ Iuris::Application.routes.draw do
 
   resources :parameters
   resources :publication_natures
-  resources :labels, :except => [:show]
-  resources :tags
+  resources :labels do
+    collection do
+      get :unroll
+    end
+  end
+  resources :tags, :except => [:index, :show]
 
   resources :users
   root :to => "home#index"

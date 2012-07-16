@@ -33,6 +33,7 @@
 
             %h3="Contacter un membre"
             .items.mini=render :partial => "users/mini_user", :collection => User.all, :spacer_template => "shared/spacer"
-                  
-            -#%h3="Mot-clés (à venir)"
+
+            %h3="Mot-clés"
+            =render :partial => "labels/all"
       #footer Copyright 2012 &ndash; PelTex

@@ -22,7 +22,7 @@
 
 $experimental-support-for-svg: true;
 $base-color: #591;
-/*$base-color: #05B;*/
+/*$base-color: #05B; */
 $title-color: darken($base-color, 15%);
 $text-color: #000;
 $link-color: $base-color;
@@ -506,6 +506,67 @@ table#partitions {
         height: 18px;
         width: 18px;
         background: mix($base-color, #FFF,60%) image-url("search.png");
+      }
+    }
+  }
+}
+
+.tagger { 
+  vertical-align: middle;
+  .tag { 
+    @include inline-block;
+    @include border-radius(3px);
+    font-family: "Lato", sans-serif;
+    padding: 3px 6px;
+    margin: 2px 6px 2px 0;
+    background: mix($base-color, #FFF, 60%);
+    color: white;
+    font-size: 15px;
+    @include text-shadow(-1px -1px 1px $base-color);
+    @include box-shadow(0 0 5px rgba(0, 0, 0, 0.2));
+  }
+  .remove { 
+    @include hide-text;
+    @include inline-block;
+    @include opacity(0.3);
+    width: 11px;
+    height: 16px;
+    margin-right: 5px;
+    @include background(image-url("remove.png") no-repeat);
+    &:hover { 
+    @include opacity(0.7);
+    }
+  }
+}
+
+
+
+.ui-autocomplete { position: absolute; cursor: default; }
+* html .ui-autocomplete { width:1px; } /* without this, the menu expands to 100% in IE6 */
+.ui-menu {
+  list-style:none;
+  padding: 2px;
+  margin: 0 0 0 -7px;
+  display:block;
+  float: left;
+  background: mix($base-color, #FFF, 5%);
+  border: 1px solid mix($base-color, #FFF, 15%);
+  @include box-shadow(0 0 7px rgba(0,0,0,0.3));
+  .ui-menu-item {
+    margin:0;
+    padding: 0;
+    zoom: 1;
+    float: left;
+    clear: left;
+    width: 100%;
+    a {
+      text-decoration:none;
+      display:block;
+      padding:.2em .4em;
+      line-height:1.5;
+      zoom:1;
+      &#ui-active-menuitem { 
+        background: transparentize($base-color, 0.8);
       }
     }
   }

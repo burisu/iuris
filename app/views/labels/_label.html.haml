@@ -1,5 +1,5 @@
 .item.label
-  .title=link_to(label.name, edit_label_url(label))
+  %h3.title=link_to(label.name, edit_label_url(label))
   -unless label.usable_with.blank?
     .description=label.usable_with
   -unless label.description.blank?

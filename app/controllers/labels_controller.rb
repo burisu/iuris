@@ -4,6 +4,11 @@ class LabelsController < ApplicationController
     @labels = Label.order("name ASC").paginate(:page => params[:page], :per_page => 10)
   end
   
+  def show
+    @label = Label.find_by_name(params[:id])    
+  end
+  
+
   def new
     @label = Label.new()
     respond_to do |format|
@@ -27,14 +32,14 @@ class LabelsController < ApplicationController
   end
   
   def edit
-    @label = Label.find(params[:id])
+    @label = Label.find_by_name(params[:id])
     respond_to do |format|
       format.html { render_restfully_form }
     end
   end
   
   def update
-    @label = Label.find(params[:id])
+    @label = Label.find_by_name(params[:id])
     respond_to do |format|
       if @label.update_attributes(params[:label])
         format.html { redirect_to (params[:redirect] || labels_url) }
@@ -47,7 +52,7 @@ class LabelsController < ApplicationController
   end
   
   def destroy
-    @label = Label.find(params[:id])
+    @label = Label.find_by_name(params[:id])
     @label.destroy
     respond_to do |format|
       format.html { redirect_to (params[:redirect] || labels_url) }
@@ -55,5 +60,13 @@ class LabelsController < ApplicationController
     end
   end
 
+
+  def unroll
+    key = params[:term]
+    labels = Label.where("LOWER(name) LIKE ?", '%'+key.strip.mb_chars.downcase.gsub(/\s+/, '%')+'%').collect{|l| {:id => l.name, :label => l.name, :value => l.name}}
+    respond_to do |format|
+      format.json { render :json => labels }
+    end
+  end
 
 end

@@ -19,6 +19,30 @@
   <defs
      id="defs4">
     <linearGradient
+       inkscape:collect="always"
+       id="linearGradient3643">
+      <stop
+         style="stop-color:#a2a6a5;stop-opacity:1;"
+         offset="0"
+         id="stop3645" />
+      <stop
+         style="stop-color:#a2a6a5;stop-opacity:0;"
+         offset="1"
+         id="stop3647" />
+    </linearGradient>
+    <linearGradient
+       inkscape:collect="always"
+       id="linearGradient3635">
+      <stop
+         style="stop-color:#a2a6a5;stop-opacity:1;"
+         offset="0"
+         id="stop3637" />
+      <stop
+         style="stop-color:#a2a6a5;stop-opacity:0;"
+         offset="1"
+         id="stop3639" />
+    </linearGradient>
+    <linearGradient
        id="linearGradient3686">
       <stop
          style="stop-color:#000000;stop-opacity:0.17777778;"
@@ -121,6 +145,36 @@
        r="17.324004"
        gradientTransform="matrix(-0.09429848,2.1816258,-1.9280433,-0.08937296,1511.2439,707.01885)"
        gradientUnits="userSpaceOnUse" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient3635"
+       id="linearGradient3641"
+       x1="-306.5"
+       y1="99"
+       x2="-241"
+       y2="99"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(0.15599549,0,0,0.16027781,67.663192,683.88566)" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient3643"
+       id="linearGradient3649"
+       x1="-265"
+       y1="100.25"
+       x2="-252.5"
+       y2="100.25"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(0.15114291,0,0,0.15544041,66.178302,684.5121)" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient3643"
+       id="linearGradient3657"
+       x1="-305"
+       y1="48.5"
+       x2="-241.5"
+       y2="48.5"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(0.15599549,0,0,0.16027781,67.663192,684.27233)" />
   </defs>
   <sodipodi:namedview
      id="base"
@@ -130,8 +184,8 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="8"
-     inkscape:cx="-117.6875"
-     inkscape:cy="-106.08758"
+     inkscape:cx="-172.33287"
+     inkscape:cy="-66.33758"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -240,66 +294,37 @@
        height="48"
        x="141.92857"
        y="660.46936" />
-    <text
-       xml:space="preserve"
-       style="font-size:48px;font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;opacity:0.65693431;fill:#000000;fill-opacity:1;stroke:none;filter:url(#filter3663);font-family:LMMathSymbols6;-inkscape-font-specification:LMMathSymbols6 Italic"
-       x="88.446571"
-       y="695.01935"
-       id="text3620-5"
-       sodipodi:linespacing="125%"
-       transform="matrix(1.0463841,0,0,1.0104358,-4.255392,-7.3569271)"
-       inkscape:export-filename="/home/brice/Projets/iuris/app/assets/images/question-96.png"
-       inkscape:export-xdpi="180"
-       inkscape:export-ydpi="180"><tspan
-         sodipodi:role="line"
-         id="tspan3628-3"
-         x="88.446571"
-         y="695.01935">Q</tspan></text>
-    <text
-       xml:space="preserve"
-       style="font-size:49.35613632px;font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:LMMathSymbols6;-inkscape-font-specification:LMMathSymbols6 Italic"
-       x="85.331429"
-       y="706.34644"
-       id="text3620"
-       sodipodi:linespacing="125%"
-       transform="scale(1.0176331,0.98267246)"
-       inkscape:export-filename="/home/brice/Projets/iuris/app/assets/images/question-96.png"
-       inkscape:export-xdpi="180"
-       inkscape:export-ydpi="180"><tspan
-         sodipodi:role="line"
-         id="tspan3628"
-         x="85.331429"
-         y="706.34644">Q</tspan></text>
-    <text
-       xml:space="preserve"
-       style="font-size:48px;font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;opacity:0.65693431;fill:#000000;fill-opacity:1;stroke:none;filter:url(#filter3663-8);font-family:LMMathSymbols6;-inkscape-font-specification:LMMathSymbols6 Italic"
-       x="88.446571"
-       y="695.01935"
-       id="text3620-5-0"
-       sodipodi:linespacing="125%"
-       transform="matrix(1.0463841,0,0,1.0104358,-74.819264,-14.984067)"
-       inkscape:export-filename="/home/brice/Projets/iuris/app/assets/images/question-96.png"
-       inkscape:export-xdpi="180"
-       inkscape:export-ydpi="180"><tspan
-         sodipodi:role="line"
-         id="tspan3628-3-7"
-         x="88.446571"
-         y="695.01935">Q</tspan></text>
-    <text
-       xml:space="preserve"
-       style="font-size:64.25236511px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;fill:url(#radialGradient3692);fill-opacity:1;stroke:none;font-family:Nimbus Sans L;-inkscape-font-specification:Nimbus Sans L Bold"
-       x="45.997292"
-       y="809.46521"
-       id="text3620-0"
-       sodipodi:linespacing="125%"
-       transform="scale(1.0641798,0.93969082)"
-       inkscape:export-filename="/home/brice/Projets/iuris/app/assets/images/question-48.png"
+    <path
+       style="fill:url(#linearGradient3641);fill-opacity:1;stroke:#000000;stroke-width:0.99999994px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 19.928571,695.18524 1.998012,9.45639 5.927828,0 2.135871,-9.8571 -10.061711,0 0,0.40071 z"
+       id="path2853"
+       sodipodi:nodetypes="cccccc"
+       inkscape:export-filename="/home/brice/Projets/iuris/app/assets/images/remove.png"
        inkscape:export-xdpi="90"
-       inkscape:export-ydpi="90"><tspan
-         sodipodi:role="line"
-         id="tspan3628-7"
-         x="45.997292"
-         y="809.46521"
-         style="fill:url(#radialGradient3692);fill-opacity:1">Q</tspan></text>
+       inkscape:export-ydpi="90" />
+    <path
+       style="fill:url(#linearGradient3657);fill-opacity:1;stroke:#000000;stroke-width:0.99999994px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 20.16257,691.56497 9.749716,2.885 0,-1.20209 -2.261933,-1.0418 -0.311995,-1.60277 -2.495931,-0.96168 -1.247961,1.04181 -2.963919,-0.48083 -0.467977,1.36236 z"
+       id="path2855"
+       sodipodi:nodetypes="ccccccccc"
+       inkscape:export-filename="/home/brice/Projets/iuris/app/assets/images/remove.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.99999994px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 23.144613,696.70788 0.650969,6.26486"
+       id="path2857"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="/home/brice/Projets/iuris/app/assets/images/remove.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.99999994px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 26.777625,696.70788 -0.825065,6.00708"
+       id="path2859"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="/home/brice/Projets/iuris/app/assets/images/remove.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
   </g>
 </svg>

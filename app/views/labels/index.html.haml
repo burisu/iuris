@@ -3,6 +3,5 @@
 
 -paginator = will_paginate(@labels)
 =paginator
-.items
-  =render :partial => "labels/label", :collection => @labels
+.items=render :partial =>  @labels, :spacer_template => "shared/spacer"
 =paginator
