@@ -107,6 +107,10 @@ fr:
     x_questions:
       one: '%{count} question'
       other: '%{count} questions'
+    x_users:
+      one: '%{count} membre'
+      other: '%{count} membres'
+
   will_paginate:
     previous_label: "← Précédente"
     next_label: "Suivante →"
