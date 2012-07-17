@@ -1,0 +1,11 @@
+Bonjour <%= @recipient.first_name -%>,
+
+<%=word_wrap("Une réponse a été déposée par #{@answer.author.full_name} (en réponse à #{@answer.question.name}) :", :line_width => 70)%>
+
+<%= word_wrap(@answer.content, :line_width => 70) %>
+
+Pour y compléter, réagir ou proposer une nouvelle réponse : 
+<%= Parameter["site.url"]+url_for(@question) %>
+
+Cordialement,
+<%= render :partial => "notifier/signature" -%>

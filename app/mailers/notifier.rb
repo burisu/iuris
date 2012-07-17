@@ -5,13 +5,13 @@ class Notifier < ActionMailer::Base
   def new_question(user, question)
     @recipient = user
     @question = question
-    mail(:to => @recipient.email_sign, :subject => mail_subject("Nouvelle question"))
+    mail(:to => @recipient.email_sign, :subject => mail_subject("Nouvelle question : "+@question.name))
   end
 
   def new_answer(user, answer)
     @recipient = user
     @answer = answer
-    mail(:to => @recipient.email_sign, :subject => mail_subject("Nouvelle réponse"))
+    mail(:to => @recipient.email_sign, :subject => mail_subject("Nouvelle réponse à "+@question.name))
   end
   
   def new_comment(user, comment)
@@ -23,7 +23,7 @@ class Notifier < ActionMailer::Base
   def new_publication(user, publication)
     @recipient = user
     @publication = publication
-    mail(:to => @recipient.email_sign, :subject => mail_subject("Nouvelle publication"))
+    mail(:to => @recipient.email_sign, :subject => mail_subject("Nouvelle publication : "+@publication.name))
   end
 
   protected

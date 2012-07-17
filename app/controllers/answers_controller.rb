@@ -25,6 +25,7 @@ class AnswersController < ApplicationController
     @answer.author = current_user
     respond_to do |format|
       if @answer.save
+        current_user.notify_team(:new_answer, @answer)
         format.html { redirect_to (params[:redirect] || question_url(@answer.question)) }
         format.json { render json => @answer, :status => :created, :location => @answer }
       else
