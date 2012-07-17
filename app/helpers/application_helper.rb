@@ -34,6 +34,14 @@ module ApplicationHelper
     return "actions.#{kontroller}.#{aktion}".t(options)
   end
 
+  def version
+    value = nil
+    File.open(Rails.root.join("VERSION"), "rb") do |f|
+      value = f.read
+    end
+    return value
+  end
+
 
   def comments_of(judged, &block)
     html = ""
