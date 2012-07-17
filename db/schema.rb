@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120716201253) do
+ActiveRecord::Schema.define(:version => 20120717180652) do
 
   create_table "labels", :force => true do |t|
     t.string   "name",                                    :null => false
@@ -40,6 +40,7 @@ ActiveRecord::Schema.define(:version => 20120716201253) do
     t.datetime "created_at",                  :null => false
     t.datetime "updated_at",                  :null => false
     t.integer  "lock_version", :default => 0, :null => false
+    t.text     "tags_list"
   end
 
   add_index "messages", ["author_id"], :name => "index_messages_on_author_id"
@@ -102,6 +103,7 @@ ActiveRecord::Schema.define(:version => 20120716201253) do
     t.datetime "created_at",                           :null => false
     t.datetime "updated_at",                           :null => false
     t.integer  "lock_version",          :default => 0, :null => false
+    t.text     "tags_list"
   end
 
   add_index "publications", ["author_id"], :name => "index_publications_on_author_id"

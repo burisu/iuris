@@ -10,4 +10,13 @@ class Tag < ActiveRecord::Base
   validate(:on => :update) do
     errors.add(:label_id, :unique) if Tag.where("id != ? AND label_id=? AND tagged_id = ? AND tagged_type = ?", self.id, self.label_id, self.tagged_id, self.tagged_type).first
   end
+
+  after_save do
+    self.tagged.save
+  end
+
+  after_destroy do
+    self.tagged.save
+  end
+
 end

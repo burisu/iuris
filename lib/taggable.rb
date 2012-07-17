@@ -13,6 +13,11 @@ module Iuris  #:nodoc:
         code  = ""
         code << "has_many :tags, :as => :tagged, :include => :label\n"
         code << "has_many :labels, :through => :tags, :order => :name\n"
+        if self.columns.detect{|c| c.name.to_s == "tags_list"}
+          code << "before_validation do\n"
+          code << "  self.tags_list = self.tags.collect{|t| t.label.name}.join(', ')\n"
+          code << "end\n"
+        end
         class_eval code
       end
 
