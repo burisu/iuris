@@ -11,7 +11,7 @@ class Notifier < ActionMailer::Base
   def new_answer(user, answer)
     @recipient = user
     @answer = answer
-    mail(:to => @recipient.email_sign, :subject => mail_subject("Nouvelle réponse à "+@question.name))
+    mail(:to => @recipient.email_sign, :subject => mail_subject("Nouvelle réponse à "+@answer.question.name))
   end
   
   def new_comment(user, comment)
