@@ -1,4 +1,4 @@
-=form_tag({:action=>:create}, options) do
+=form_tag({:action=>:create}, options.merge(:class => "form-horizontal")) do
   .fields=render :partial=>partial
   .actions
     =submit_tag("labels.create".t, :disable_with=>"labels.please_wait".t)

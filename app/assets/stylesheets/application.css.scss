@@ -18,7 +18,8 @@
 /*@import url(http://fonts.googleapis.com/css?family=Arapey:400,400italic);*/
 /*@import url(http://fonts.googleapis.com/css?family=Lato:400,400italic,700,700italic);*/
 /*@import url(http://fonts.googleapis.com/css?family=Lato|Volkhov|Merriweather|Crimson+Text);*/
-@import url(http://fonts.googleapis.com/css?family=Lato:400,400italic,700,700italic);
+/*@import url(http://fonts.googleapis.com/css?family=Lato:400,400italic,700,700italic);*/
+
 
 $experimental-support-for-svg: true;
 $base-color: #591;
@@ -26,23 +27,40 @@ $base-color: #591;
 $title-color: darken($base-color, 15%);
 $text-color: #000;
 $link-color: $base-color;
+$linkColor: $link-color;
 
+@import "bootstrap";
+@import "bootstrap-responsive";
+
+body > .navbar .brand {
+  font-weight: bold;
+}
+
+body > #menu.navbar.navbar-fixed-top { 
+  margin: 0;
+  .navbar-inner { 
+    padding: 0 3px;
+  }
+}
+
+
+/*
 html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video { 
   font-family: Arial, sans-serif;
-  /*font-family: "Georgia", serif;*/
   font-size: 13px;
 }
+*/
 
 strong { 
   font-weight: bold;
 }
-
+/*
 header, h1, h2, h3, h4, h5, h6 { 
   margin: 0 0 0.4em;
   &, & * {
-    font-family: "Lato", sans-serif;
+//    font-family: "Lato", sans-serif;
+//    font-weight: normal;
     color: $title-color;
-    font-weight: normal;
   }
   & a { 
     display: inline;
@@ -58,26 +76,20 @@ header, h1, h2, h3, h4, h5, h6 {
   & em { 
     font-style: italic;
   }
-  .container > & {
-    margin-top: 0.8em;
-    &:first-child { 
-      margin-top: 0;
-    }
-  }
 }
 
 h1, h1 span, h1 a, h1 * { font-size: 40px }
 h2, h2 span, h2 a, h2 * { font-size: 25px }
 h3, h3 span, h3 a, h3 * { font-size: 18px }
 h4, h4 span, h4 a, h4 * { font-size: 13px }
-
+*/
 body { 
   padding: 0;
   margin: 0;
   height: 100%;
- /* @include background(linear-gradient(left, #DE9, #AC7));*/
+  /* @include background(linear-gradient(left, #DE9, #AC7));*/
   @include background(#FFF linear-gradient(top, #DDD, #FFF) repeat-x);
-/*  background: #FFF image-url("backgrounds/sunset.jpg") left bottom no-repeat fixed;*/
+/* background: #FFF image-url("backgrounds/sunset.jpg") left bottom no-repeat fixed;*/
 }
 
 @mixin page-block($incrustation: 2%) {
@@ -122,12 +134,19 @@ h2 {
 
 #page {
   background: rgba(255, 255, 255, 0.5);
+  padding: 8px;
+
+  @media only screen and (min-width: 980px) { 
+    margin-top: 40px;
+  }
+/*
+  margin-top: 8px;
+  margin-bottom: 8px;
   @include border-radius(6px);
   max-width: 900px;
-  padding: 8px;
-  margin: 8px auto;
   .page-title { 
   }
+*/
 }
 
 #banner {
@@ -162,7 +181,7 @@ h2 {
   a { color: white }
 }
 
-#menu { 
+/*#menu { 
   margin: 8px 0;
   padding: 0 3px;
   @include page-block(12%);
@@ -180,18 +199,13 @@ h2 {
       font-weight: bold;
     }
   }
-}
+}*/
 
 #main { 
-  width: 100%;
-  #page.connected & { width: 70%; }
-  float:left;
-  margin:0 0 8px;
-  padding:0;
-  .container {
-    margin: 0;
-    padding: 8px;
+  .wrapper { 
     @include page-block;
+    padding: 8px;
+    margin: 0 0 8px 0;
   }
 }
 
@@ -210,14 +224,11 @@ h2 {
 
 
 #aside { 
-  width: 30%;
-  float:left;
-  margin:0 0 8px;
   padding:0;
-  .container {
-    margin: 0 0 0 8px;
-    padding: 8px;
+  .wrapper { 
     @include page-block;
+    padding: 8px;
+    margin: 0 0 8px 0;
   }
 }
 
@@ -295,7 +306,10 @@ h2 {
 
 .download { 
   clear: both;
-  &, & * { font-size: 18px; font-family: "Lato", sans-serif;}
+  &, & * { 
+    font-size: 18px; 
+  /*  font-family: "Lato", sans-serif;*/
+  }
   text-align: center;
   display: block;
   padding: 8px;
@@ -516,7 +530,7 @@ table#partitions {
   .tag { 
     @include inline-block;
     @include border-radius(3px);
-    font-family: "Lato", sans-serif;
+/*    font-family: "Lato", sans-serif;*/
     padding: 3px 6px;
     margin: 2px 6px 2px 0;
     background: mix($base-color, #FFF, 60%);

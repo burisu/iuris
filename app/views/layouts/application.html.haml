@@ -9,34 +9,27 @@
   -if Parameter.has?("site.background")
     -style = "background: #FFF url(#{Parameter['site.background']}) left bottom no-repeat fixed"
   %body{:style => style}
-    #page{:class=>(current_user ? 'connected' : 'disconnected')}
-      #banner
-        #login
-          -if current_user
-            =link_to current_user.full_name, user_url(current_user)
-            =link_to "Se déconnecter", destroy_user_session_url, :method => :delete
-          -else
-            =link_to "Se connecter", new_user_session_url
-        %header#header
-          %h1.title=Parameter["site.name"]
-          %h2.slogan=Parameter["site.slogan"]
-      =menu_tag if current_user
-      #main
-        .container
-          =page_title
-          =yield
-      -if current_user
-        #aside
-          .container
-            %h3="Recherche"
-            =render :partial => "home/search"
+    =menu_tag if current_user
+    #page.container{:class=>(current_user ? 'connected' : 'disconnected')}
+      #wrap.row-fluid
+        #main.span9
+          .wrapper
+            =page_title
+            =notification(:error)
+            =notification(:warning)
+            =notification(:success)
+            =notification(:notice)
+            =yield
+        -if current_user
+          #aside.span3
+            .wrapper
+              %h3="Contacter un membre"
+              .items.mini=render :partial => "users/mini_user", :collection => User.all, :spacer_template => "shared/spacer"
 
-            %h3="Contacter un membre"
-            .items.mini=render :partial => "users/mini_user", :collection => User.all, :spacer_template => "shared/spacer"
-
-            -#%h3="Mot-clés"
-            -#=render :partial => "labels/all"
-      #footer
-        ="Copyright 2012 &ndash; PelTex &ndash; ".html_safe
-        =cache do
-          =version
+              -#%h3="Mot-clés"
+              -#=render :partial => "labels/all"
+      .row-fluid
+        #footer
+          ="Copyright 2012 &ndash; PelTex &ndash; ".html_safe
+          =cache do
+            =version

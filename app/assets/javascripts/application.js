@@ -14,4 +14,5 @@
 //= require jquery-ui
 //= require jquery_ujs
 //= require formize
+//= require bootstrap
 //= require_tree .

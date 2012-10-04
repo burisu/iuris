@@ -3,21 +3,75 @@ module ApplicationHelper
   
   def menu_tag
     # separator = ' &nbsp; '.html_safe
-    html = '<div id="menu">'.html_safe
+    html = '<div id="menu" class="navbar navbar-fixed-top"><div class="navbar-inner"><div class="container">'.html_safe
+    
+    html << '<a class="btn btn-navbar" data-toggle="collapse" data-target=".subnav-collapse"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></a>'.html_safe
+
+    html << ('<a class="brand" href="'+h(root_url)+'">'+h(Parameter["site.name"])+'</a>').html_safe
     html_options = {}
     html_options[:class] = 'current' if controller_name.to_s == "home"
-    html << link_to("&#9728;".html_safe, root_url, html_options)
-    for kontroller in ["questions", "publications", "tools", "users!", "publication_natures!", "labels!", "parameters!"] # 
-      if kontroller[-1..-1] != "!" or (kontroller[-1..-1] == "!" and current_user.administrator?)
-        kontroller = kontroller.gsub(/\!*$/, '')
-        html_options = {}
-        html_options[:class] = 'current' if controller_name.to_s == kontroller
-        html << link_to(action_title(:controller => kontroller), {:controller => kontroller, :action => :index}, html_options)
-      end
+
+
+
+
+    # html << link_to("&#9728;".html_safe, root_url, html_options)
+    html << '<div class="nav-collapse subnav-collapse collapse">'.html_safe
+
+    #search
+
+    html << '<ul class="nav">'.html_safe
+    for kontroller in ["questions", "publications", "tools"] # 
+      html << ("<li" + (controller_name.to_s == kontroller ? " class=\"active\"" : "")+ ">").html_safe
+      html << link_to(action_title(:controller => kontroller), {:controller => kontroller, :action => :index})
+      html << '</li>'.html_safe
     end
+    if current_user
+      ak = ["users", "publication_natures", "labels", "parameters"]
+      html << "<li class=\"dropdown#{ak.include?(controller_name.to_s) ? ' active' : ''}\">".html_safe
+      html << "<a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">".html_safe
+      html << "<i class=\"icon-plus\"></i>".html_safe
+      html << "<b class=\"caret\"></b></a>".html_safe
+      html << "<ul class=\"dropdown-menu\">".html_safe
+      html << content_tag(:li, link_to(current_user.full_name, user_url(current_user)))
+      html << content_tag(:li, link_to("Se déconnecter", destroy_user_session_url, :method => :delete))
+      if current_user.administrator?
+        html << '<li class="divider"></li>'.html_safe          
+        for kontroller in ak
+          html << ("<li" + (controller_name.to_s == kontroller ? " class=\"active\"" : "")+ ">").html_safe
+          html << link_to(action_title(:controller => kontroller), {:controller => kontroller, :action => :index})
+          html << '</li>'.html_safe    
+        end
+      end
+      html << "</ul>".html_safe
+      html << "</li>".html_safe
+    else
+      html << content_tag(:li, link_to("Se connecter", new_user_session_url))
+    end
+    html << '</ul>'.html_safe
+
+    html << "<form class=\"navbar-search pull-right\" action=\"#{search_url}\">".html_safe
+    html << text_field_tag("q", params[:q], :placeholder => "Rechercher...", :class => "search-query span2")
+    html << '</form>'.html_safe
     html << '</div>'.html_safe
+
+    html << '</div></div></div>'.html_safe
     return html
   end
+
+  NTR = {:notice => "Information", :warning => "Attention !", :success => "Bien joué !", :alert => "Oupps..."}
+
+  def notification(mode)
+    if flash[mode]
+      bs_name = {:notice => :info, :warning => "", :alert => :error}[mode] || mode
+      html = "".html_safe
+      html << content_tag(:button, "&times;".html_safe, :type => "button", :class => "close", "data-dismiss" => "alert")
+      html << content_tag(:h4, (NTR[mode]||mode).to_s.mb_chars.capitalize)
+      html << flash[mode]
+      return content_tag(:div, html, :class => "alert alert-block alert-#{bs_name}")
+    end
+    return ""
+  end
+  
 
   def page_title
     tr = "actions.#{controller_name}.#{action_name}"
@@ -135,8 +189,9 @@ module ApplicationHelper
     html << "</span>"
     if current_user == tagged.author
       field_id = tagged_id + "-label"
-      html << text_field_tag("label", nil, :id => field_id, "data-autocomplete-with" => unroll_labels_url)
-      html << button_tag("+", "data-add-tag-label" => field_id, "data-add-tag-url"=>url_for(:controller => :tags, :action => :create, :tagged => tagged_id), "data-add-tag-to" => tags_id)
+      form =  text_field_tag("label", nil, :id => field_id, "data-autocomplete-with" => unroll_labels_url)
+      form << button_tag(content_tag(:i, "", :class => "icon-tag"), "data-add-tag-label" => field_id, "data-add-tag-url"=>url_for(:controller => :tags, :action => :create, :tagged => tagged_id), "data-add-tag-to" => tags_id, :class => "btn")
+      html << content_tag(:span, form, :class => "input-append")
     end
     html << "</div>"
     return html.html_safe
