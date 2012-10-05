@@ -9,13 +9,9 @@
         %td.label=User.human_attribute_name(info)
         %td.value=beautify(@user.send(info))
    
-
 -if @user == current_user or current_user.administrator
-  .toolbar
-    =link_to("Mettre à jour ses informations", edit_user_url(@user))
-
-
-
+  =toolbar do
+    =tool("Mettre à jour ses informations", edit_user_url(@user), :icon => :edit)
 
 %h3="labels.x_questions".t(:count => @user.questions.count)
 %h3="labels.x_answers".t(:count => @user.answers.count)

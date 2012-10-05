@@ -1,7 +1,8 @@
+# -*- coding: utf-8 -*-
 class PublicationsController < ApplicationController
 
   def index
-    @publications = Publication.order("updated_at DESC").paginate(:page => params[:page], :per_page => 10)
+    @publications = Publication.order("created_at DESC").paginate(:page => params[:page], :per_page => 10)
   end
 
   def show
@@ -31,7 +32,7 @@ class PublicationsController < ApplicationController
     respond_to do |format|
       if @publication.save
         current_user.notify_team(:new_publication, @publication)
-        format.html { redirect_to (params[:redirect] || @publication) }
+        format.html { redirect_to (params[:redirect] || @publication), :notice => "Les autres utilisateurs ont été notifié par mail" }
         format.json { render json => @publication, :status => :created, :location => @publication }
       else
         format.html { render_restfully_form(:multipart => true) }

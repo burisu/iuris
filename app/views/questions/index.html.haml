@@ -1,5 +1,5 @@
-.toolbar
-  =link_to("Poser une nouvelle question", new_question_url)
+=toolbar do
+  =tool("Poser une nouvelle question", new_question_url)
 
 -paginator = will_paginate(@questions)
 =paginator

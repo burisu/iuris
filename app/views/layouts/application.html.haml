@@ -20,16 +20,21 @@
             =notification(:success)
             =notification(:notice)
             =yield
-        -if current_user
-          #aside.span3
-            .wrapper
-              %h3="Contacter un membre"
-              .items.mini=render :partial => "users/mini_user", :collection => User.all, :spacer_template => "shared/spacer"
+        #aside.span3
+          .wrapper
+            -if current_user
+              -content_for :side do
+                %h3="Contacter un membre"
+                .items.mini=render :partial => "users/mini_user", :collection => User.all, :spacer_template => "shared/spacer"
 
-              -#%h3="Mot-clés"
-              -#=render :partial => "labels/all"
+                -#%h3="Mot-clés"
+                -#=render :partial => "labels/all"
+            -else
+              -if Parameter.has?('site.logo')
+                .site-logo{:style => "background-image: url(#{Parameter['site.logo']})"}
+            =yield :side
       .row-fluid
         #footer
-          ="Copyright 2012 &ndash; PelTex &ndash; ".html_safe
+          ="#{Parameter['site.name']} &ndash; #{Parameter['site.slogan']} &ndash; Copyright 2012 &ndash; PelTex &ndash; ".html_safe
           =cache do
             =version

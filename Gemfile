@@ -8,13 +8,14 @@ gem 'rails', '3.2.8'
 gem 'pg'
 gem 'haml'
 gem 'devise', '2.1.0'
-gem 'acts_as_audited', '2.0.0'
+gem 'audited-activerecord', '~> 3.0'
 gem 'paperclip'
 gem 'simple_form'
 gem 'will_paginate'
 gem 'rails-i18n'
 gem 'i18n-complements'
 gem 'formize'
+gem 'bootstrap-will_paginate'
 
 # Gems used only for assets and not required
 # in production environments by default.

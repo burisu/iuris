@@ -1,8 +1,8 @@
-.parameters
-  =form_tag({}, :method => :get) do
-    %label Montant du capital social
+=form_tag({}, :method => :get, :class => "form-inline parameters") do
+  %label Montant du capital social
+  %span.input-append
     =text_field_tag(:amount, params[:amount], :size=>12, :maxlength => 12) 
-    =submit_tag("Calculer", :name => nil)
+    =button_tag("Calculer", :type => :submit, :class => "btn")
 
 -if @partitions
   %h3="Nombres de parts possibles pour un montant de #{@amount.l(:currency => 'EUR')}"

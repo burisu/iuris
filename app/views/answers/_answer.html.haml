@@ -4,8 +4,7 @@
   .info
     %span Déposé par
     =link_to(answer.author.full_name, answer.author, :class => "author")
-    %span il y a 
-    %span.ago=distance_of_time_in_words_to_now(answer.created_at)
+    =on(answer.created_at)
     %span en réponse à
     =link_to(answer.question.name, question_url(answer.question))
   .end

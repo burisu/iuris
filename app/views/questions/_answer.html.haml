@@ -1,19 +1,16 @@
 .answer
-  %table
-    %tr
-      %td.lg=logo_tag(avatar_url(answer.author, :size => 48))
-      %td.ms
-        .info
-          =link_to(answer.author.full_name, answer.author, :class => "author")
-          %span a répondu il y a
-          %span=distance_of_time_in_words_to_now(answer.updated_at)
-          %span :
-        .content=beautify(answer.content)
-        -if answer.author == current_user
-          -if answer.comments.count.zero?
-            .toolbar
-              =link_to("Modifier", edit_answer_url(answer))
-              =link_to("Supprimer", answer_url(answer), :method => :delete, :confirm => 'labels.are_you_sure'.t)
-  =comments_of(answer) do
-    .toolbar
-      =link_to("labels.comment_judged".t(:count => answer.comments.count), new_answer_comment_url(answer))
+  =toolbar(:class => "pull-right") do
+    -if answer.author == current_user
+      =tool("Modifier", edit_answer_url(answer), :icon => :edit)
+      -if answer.comments.count.zero?
+        =tool("Supprimer", answer_url(answer), :method => :delete, :confirm => 'labels.are_you_sure'.t, :icon => :destroy)
+    =tool("labels.comment_judged".t(:count => answer.comments.count), new_answer_comment_url(answer), :icon => :comment)
+  =logo_tag(avatar_url(answer.author, :size => 48), :class => "pull-left")
+  .ms
+    .info
+      =link_to(answer.author.full_name, answer.author, :class => "author")
+      %span a répondu
+      =on(answer.created_at)
+      %span :
+    .content=beautify(answer.content)
+  =comments_of(answer)

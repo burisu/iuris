@@ -1,5 +1,5 @@
-.toolbar
-  =link_to("Nouveau type de publication", new_publication_nature_url)
+=toolbar do
+  =tool("Nouveau type de publication", new_publication_nature_url, :icon => :new)
 
 -paginator = will_paginate(@publication_natures)
 =paginator

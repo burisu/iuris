@@ -1,5 +1,5 @@
-.toolbar
-  =link_to("Nouveau mot-clé", new_label_url)
+=toolbar do
+  =tool("Nouveau mot-clé", new_label_url, :icon => :new)
 
 -paginator = will_paginate(@labels)
 =paginator

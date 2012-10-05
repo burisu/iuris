@@ -112,5 +112,5 @@ fr:
       other: '%{count} membres'
 
   will_paginate:
-    previous_label: "← Précédente"
-    next_label: "Suivante →"
+    previous_label: "«"
+    next_label: "»"

@@ -1,6 +1,6 @@
 -if current_user.administrator?
-  .toolbar
-    =link_to("Nouvel utilisateur", new_user_url)
+  =toolbar do
+    =tool("Nouvel utilisateur", new_user_url, :icon => :new)
 
 -paginator = will_paginate(@users)
 =paginator

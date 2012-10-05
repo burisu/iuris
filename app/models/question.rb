@@ -2,7 +2,7 @@ class Question < Message
   acts_as_commentable
   acts_as_searchable
   acts_as_taggable
-  has_many :answers, :as => :origin, :order => "updated_at DESC"
+  has_many :answers, :as => :origin, :order => "created_at ASC"
   validates_presence_of :name
   scope :lasts, lambda { |count|
     order("updated_at DESC").limit(count)

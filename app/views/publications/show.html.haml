@@ -1,19 +1,19 @@
 %h2
   =logo_tag(@publication.logo.url(:medium))
   =beautify(@publication.name)
+=labels_for(@publication)
+=toolbar do
+  -if @publication.author == current_user
+    =tool("Modifier", edit_publication_url(@publication), :icon => :edit)
+    -if @publication.comments.count.zero?
+      =tool("Supprimer", publication_url(@publication), :method => :delete, :confirm => 'labels.are_you_sure'.t, :icon => :destroy)
+  =tool("Commenter", new_publication_comment_url(@publication), :icon => :comment)
 -unless @publication.description.blank?
   .content=beautify(@publication.description)
 .info
   =link_to(@publication.author.full_name, @publication.author, :class=> "author")
-  %span a déposé la publication il y a
-  %span=distance_of_time_in_words_to_now(@publication.created_at)
-=labels_for(@publication)
+  %span a déposé la publication
+  =on(@publication.created_at)
 =link_to("Télécharger", publication_url(@publication, :format => :pdf), :class=>"download")
 =comments_of(@publication)
 
-.toolbar
-  -if @publication.author == current_user
-    -if @publication.comments.count.zero?
-      =link_to("Modifier", edit_publication_url(@publication))
-      =link_to("Supprimer", publication_url(@publication), :method => :delete, :confirm => 'labels.are_you_sure'.t)
-  =link_to("Commenter", new_publication_comment_url(@publication))

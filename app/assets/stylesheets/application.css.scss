@@ -106,7 +106,7 @@ body {
   float: left;
 }
 
-
+/*
 a { 
   &:link, &:visited, &:active, &:focus {
     &, & * { 
@@ -121,7 +121,7 @@ a {
     }
   }
 }
-
+*/
 h2 { 
   .logo { 
     @include border-radius(6px);
@@ -179,6 +179,14 @@ h2 {
     }
   }
   a { color: white }
+}
+
+.site-logo { 
+  background-size: 100%;
+  height: 350px;
+  margin: 8px auto;
+  background-repeat: no-repeat;
+  background-position: center center;
 }
 
 /*#menu { 
@@ -243,6 +251,20 @@ h2 {
   color: rgba(0,0,0,0.4)
 }
 
+.controls { 
+  input.large { 
+    font-size: 20px;
+    line-height: 28px;
+    height: 28px;
+    font-weight: bold;
+    width: 92%;
+  }
+  textarea { 
+    width: 92%;
+    resize: vertical;
+  }
+}
+
 
 .content { 
   text-align :justify;
@@ -273,6 +295,7 @@ h2 {
   .item { 
     padding: 4px;
     display: block;
+    .title { margin: 0 }
     .logo { 
       @include border-radius(3px);
       height: 48px;
@@ -326,7 +349,7 @@ h2 {
   text-align: center;
 }
 
-.pagination { margin: 8px 0 }
+.pagination { @extend .pagination-centered }
 
 .info { 
   margin-top: 4px;
@@ -445,27 +468,25 @@ table#partitions {
   font-size : 110%;
 }
 
+.form-actions { 
+  .logo { 
+    margin: 0;
+    float: right;
+  }
+}
+
 .answer { 
-  margin: 8px 0;
+  margin: 16px 0;
+  @include border-radius(3px) ;
+  padding: 8px;
+  @include clearfix;
   .logo { 
     height: 48px;
     width: 48px;
-    margin: 0 8px 8px 0;
+    margin: 0 8px 4px 0;
   }
-  table { 
-    width: 100%;
-    td { 
-      vertical-align: top;
-      &.lg { 
-        width: 56px;
-      }
-      &.ms { 
-        .content { 
-          font-size : 110%;
-        }
-      }
-    }
-  }
+  .ms { margin-left: 56px; }
+  .btn-toolbar { margin: 0 0 4px 8px }
 }
 
   .content { 
@@ -480,13 +501,15 @@ table#partitions {
 
 .comments { 
   margin: 8px 0 0;
-  padding:  4px 0 0 112px;
+  padding:  4px 0 0 64px;
 /*  border-top: 2px solid mix($title-color, #FFF, 24%);*/
   .spacer { 
     border-top: 2px dotted mix($title-color, #FFF, 24%);
     margin: 4px 0;
   }
   .comment { 
+    @include clearfix;
+    .ms { margin-left: 40px; }
     .logo { 
       height: 32px;
       width: 32px;

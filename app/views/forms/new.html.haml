@@ -1,5 +1,5 @@
 =form_tag({:action=>:create}, options.merge(:class => "form-horizontal")) do
   .fields=render :partial=>partial
-  .actions
-    =submit_tag("labels.create".t, :disable_with=>"labels.please_wait".t)
-    =link_to("labels.cancel".t, :back)
+  .form-actions
+    =submit_tag("labels.create".t, :disable_with=>"labels.please_wait".t, :class => "btn btn-primary")
+    =link_to("labels.cancel".t, :back, :class => "btn")

@@ -1,0 +1,11 @@
+Bonjour <%= @recipient.first_name -%>,
+
+<%=word_wrap("#{@comment.author.full_name} a commenté " + (@comment.judged.is_a?(Answer) ? "la réponse de #{@comment.judged.author.full_name} à la question #{@comment.judged.question.name}" : @comment.judged.is_a?(Publication) ? "la publication #{@comment.judged.name}" : "la question #{@comment.judged.name}"), :line_width => 70)%>
+
+<%= word_wrap(@comment.content, :line_width => 70) %>
+
+Pour participer à la discussion : 
+<%= Parameter["site.url"]+url_for(@comment.judged.is_a?(Answer) ? @comment.judged.question : @comment.judged) %>
+
+Cordialement,
+<%= render :partial => "notifier/signature" -%>

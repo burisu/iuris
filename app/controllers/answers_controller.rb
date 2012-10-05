@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 class AnswersController < ApplicationController
 
   def index
@@ -26,7 +27,7 @@ class AnswersController < ApplicationController
     respond_to do |format|
       if @answer.save
         current_user.notify_team(:new_answer, @answer)
-        format.html { redirect_to (params[:redirect] || question_url(@answer.question)) }
+        format.html { redirect_to (params[:redirect] || question_url(@answer.question)), :notice => "Les autres utilisateurs ont été notifié par mail"}
         format.json { render json => @answer, :status => :created, :location => @answer }
       else
         format.html { render_restfully_form }

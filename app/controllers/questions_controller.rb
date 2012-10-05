@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 class QuestionsController < ApplicationController
 
   def index
@@ -6,6 +7,7 @@ class QuestionsController < ApplicationController
 
   def show
     @question = Question.find(params[:id])
+    @answer = current_user.answers.build(:question => @question)
     session[:current_question_id] = @question.id
   end
   
@@ -24,7 +26,7 @@ class QuestionsController < ApplicationController
     respond_to do |format|
       if @question.save
         current_user.notify_team(:new_question, @question)
-        format.html { redirect_to (params[:redirect] || @question) }
+        format.html { redirect_to (params[:redirect] || @question), :notice => "Les autres utilisateurs ont été notifié par mail" }
         format.json { render json => @question, :status => :created, :location => @question }
       else
         format.html { render_restfully_form }

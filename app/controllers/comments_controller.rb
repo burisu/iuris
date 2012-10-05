@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 class CommentsController < ApplicationController
 
   def index
@@ -25,7 +26,8 @@ class CommentsController < ApplicationController
     @comment.author = current_user
     respond_to do |format|
       if @comment.save
-        format.html { redirect_to (params[:redirect] || judged_url(@comment.judged)) }
+        current_user.notify_team(:new_comment, @comment)
+        format.html { redirect_to (params[:redirect] || judged_url(@comment.judged)), :notice => "Les autres utilisateurs ont été notifié par mail" }
         format.json { render json => @comment, :status => :created, :location => @comment }
       else
         format.html { render_restfully_form }

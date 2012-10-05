@@ -106,15 +106,16 @@ module ApplicationHelper
       judged.comments.reorder('created_at ASC').each_with_index do |comment, index|
         html << "<div class='spacer'></div>" if index > 0
         html << "<div class='comment'>"
-        html << logo_tag(avatar_url(comment.author, :size => 32))
+        html << logo_tag(avatar_url(comment.author, :size => 32), :title => comment.author.full_name)
+        html << "<div class='ms'>"
         html << content_tag(:span, beautify(comment.content), :class => :content)
         html << "<span class=\"info\">"
         # html << " &ndash; "
         html << link_to(comment.author.full_name, comment.author, :class => :author)
-        html << " il y a "
-        html << content_tag(:span, distance_of_time_in_words_to_now(comment.created_at), :class => :date)
+        html << " "
+        html << on(comment.created_at)
         html << "</span>"
-        html << "<div class=\"end\"></div>"
+        html << "</div>"
         html << "</div>"
 
       end
@@ -161,8 +162,8 @@ module ApplicationHelper
   end
 
   def logo_tag(image_url, options = {})
-    default_options = {:class => "logo"}
-    options = default_options.merge(options)
+    options[:class] ||= ""
+    options[:class] << " logo"
     style = "background-image: url('#{h(image_url)}')"
     if options[:style]
       options[:style] << "; "+style
@@ -225,5 +226,57 @@ module ApplicationHelper
   end
 
 
+  def toolbar(options = {}, &block)
+    options[:class] ||= ""
+    options[:class] << " btn-toolbar"
+    return content_tag(:div, content_tag(:div, capture(&block), :class => "btn-group"), options)
+  end
+
+  INTERPOLATE = {
+    "destroy" => "trash",
+    "delete" => "trash",
+    "edit" => "pencil",
+    "new" => "plus"
+  }
+
+  def tool(*args)
+    args[2] ||= {}
+    args[2][:class] ||= ""
+    args[2][:class] << " btn"
+    if args[2][:icon]
+      icon = args[2].delete(:icon).to_s
+      icon.gsub!(/\_/, '-')
+      icon = INTERPOLATE[icon] || icon
+      args[2][:title] = args[0]
+      args[0] = content_tag(:i, nil, :class => "icon-"+icon) #  + h(args[0])
+    end
+    link_to(*args)
+  end
+  
+
+  def on(made_at)
+    today = Date.today
+    made_on = made_at.to_date
+    date = if made_on == today
+             # Aujourd'hui (à ??:??)
+             "aujourd'hui"
+           elsif made_on == today - 1
+             # Hier (à ??:??)
+             "hier"
+           elsif made_on == today - 2
+             # Avant-hier (à ??:??)
+             "avant-hier"
+           elsif made_on - today < 1.year
+             # le ?? ???? (à ??:??)
+             "le " + made_on.to_date.l(:format => :short)
+           else
+             # le ?? ???? ???? (à ??:??)
+             "le " + made_on.to_date.l(:format => :long)
+           end
+    if made_at.is_a?(Time) or made_at.is_a?(DateTime)
+      date += " à #{made_at.hour}:#{made_at.min.to_s.rjust(2, '0')}" #  #{made_at.zone}
+    end
+    return content_tag(:span, date, :title => made_at.iso8601, :class => :date)
+  end
 
 end
