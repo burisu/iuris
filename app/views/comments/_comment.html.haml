@@ -1,10 +1,9 @@
-.item.comment
-  =logo_tag(avatar_url(comment.author, :size => 48))
-  .content=beautify(comment.content)
-  .info
-    %span Déposé par
-    =link_to(comment.author.full_name, comment.author, :class => "author")
-    =on(comment.created_at)
-    %span en référence à
-    =link_to(comment.judged_name, judged_url(comment.judged_resource))
-  .end
+.comment
+  =toolbar(:class => "pull-right") do 
+    =tool("Modifier", edit_comment_url(comment), :icon => :edit)
+  =logo_tag(avatar_url(comment.author, :size => 32), :title => comment.author.full_name)
+  .ms
+    %span=beautify(comment.content)
+    .info
+      =link_to(comment.author.full_name, comment.author, :class => "author")
+      =on(comment.created_at)

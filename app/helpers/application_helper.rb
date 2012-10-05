@@ -105,18 +105,19 @@ module ApplicationHelper
       # html << content_tag(:h3, "labels.x_comments".t(:count=>count))
       judged.comments.reorder('created_at ASC').each_with_index do |comment, index|
         html << "<div class='spacer'></div>" if index > 0
-        html << "<div class='comment'>"
-        html << logo_tag(avatar_url(comment.author, :size => 32), :title => comment.author.full_name)
-        html << "<div class='ms'>"
-        html << content_tag(:span, beautify(comment.content), :class => :content)
-        html << "<span class=\"info\">"
-        # html << " &ndash; "
-        html << link_to(comment.author.full_name, comment.author, :class => :author)
-        html << " "
-        html << on(comment.created_at)
-        html << "</span>"
-        html << "</div>"
-        html << "</div>"
+        html << render(:partial => "comments/comment", :object => comment)
+        # html << "<div class='comment'>"
+        # html << logo_tag(avatar_url(comment.author, :size => 32), :title => comment.author.full_name)
+        # html << "<div class='ms'>"
+        # html << content_tag(:span, beautify(comment.content), :class => :content)
+        # html << "<span class=\"info\">"
+        # # html << " &ndash; "
+        # html << link_to(comment.author.full_name, comment.author, :class => :author)
+        # html << " "
+        # html << on(comment.created_at)
+        # html << "</span>"
+        # html << "</div>"
+        # html << "</div>"
 
       end
       if block_given?

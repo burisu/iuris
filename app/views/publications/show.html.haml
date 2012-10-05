@@ -2,7 +2,7 @@
   =logo_tag(@publication.logo.url(:medium))
   =beautify(@publication.name)
 =labels_for(@publication)
-=toolbar do
+=toolbar(:class => "pull-right")  do
   -if @publication.author == current_user
     =tool("Modifier", edit_publication_url(@publication), :icon => :edit)
     -if @publication.comments.count.zero?

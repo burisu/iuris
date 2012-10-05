@@ -2,7 +2,7 @@
   =logo_tag(avatar_url(@question.author, :size => 96))
   =beautify(@question.name)
 =labels_for(@question)
-=toolbar do
+=toolbar(:class => "pull-right") do
   -if @question.author == current_user
     =tool("Modifier", edit_question_url(@question), :icon => :edit)
     -if @question.answers.count.zero? and @question.comments.count.zero?

@@ -2,16 +2,17 @@
   =logo_tag(avatar_url(@user, :size => 96))
   =@user.full_name
 %h3=@user.post
-%table.infos
-  -for info in [:address, :phone, :public_email, :skills]
-    - unless @user.send(info).blank?
-      %tr
-        %td.label=User.human_attribute_name(info)
-        %td.value=beautify(@user.send(info))
+-for info in [:address, :phone, :public_email, :skills]
+  - unless @user.send(info).blank?
+    %dl.dl-horizontal
+      %dt=User.human_attribute_name(info)
+      %dd=beautify(@user.send(info))
    
 -if @user == current_user or current_user.administrator
   =toolbar do
     =tool("Mettre à jour ses informations", edit_user_url(@user), :icon => :edit)
+    -if current_user.administrator?
+      =tool("Changer de mot de passe", edit_user_url(@user, :mode => :password), :icon => :lock)
 
 %h3="labels.x_questions".t(:count => @user.questions.count)
 %h3="labels.x_answers".t(:count => @user.answers.count)
