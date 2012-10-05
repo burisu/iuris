@@ -23,4 +23,11 @@ class Comment < Message
     end
   end
 
+  def last?
+    if c = self.class.where(:origin_id => self.origin_id).reorder("id DESC").first
+      return true if c.id == self.id
+    end
+    return false
+  end
+
 end

@@ -84,6 +84,7 @@ fr:
       zero: "Proposer une réponse"
       one: "Proposer une nouvelle réponse"
       other: "Proposer une nouvelle réponse"
+    are_you_sure: "Êtes-vous sûr(e) ?"
     cancel: Annuler
     comment_judged:
       zero: "Faire une remarque/question"
