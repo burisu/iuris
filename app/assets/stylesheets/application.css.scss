@@ -254,8 +254,8 @@ h2 {
 .controls { 
   input.large { 
     font-size: 20px;
-    line-height: 28px;
-    height: 28px;
+    line-height: 24px;
+    height: 24px;
     font-weight: bold;
     width: 92%;
   }
@@ -295,7 +295,11 @@ h2 {
   .item { 
     padding: 4px;
     display: block;
-    .title { margin: 0 }
+    .title { 
+      margin: 0;
+      font-size: 20px;
+      line-height: 24px;
+    }
     .logo { 
       @include border-radius(3px);
       height: 48px;
@@ -316,6 +320,14 @@ h2 {
   }
   &.mini {
     .item { 
+      .title { 
+        line-height: 20px;
+        &, & * { font-size: 16px }
+      }
+      .description { 
+        font-size: 11px;
+        line-height: 12px;
+      }  
       .logo { 
         height: 32px;
         width: 32px;
@@ -552,15 +564,17 @@ table#partitions {
   vertical-align: middle;
   .tag { 
     @include inline-block;
-    @include border-radius(3px);
+    @include border-radius(12px);
 /*    font-family: "Lato", sans-serif;*/
-    padding: 3px 6px;
+    padding: 3px 8px 4px;
     margin: 2px 6px 2px 0;
     background: mix($base-color, #FFF, 60%);
     color: white;
-    font-size: 15px;
-    @include text-shadow(-1px -1px 1px $base-color);
-    @include box-shadow(0 0 5px rgba(0, 0, 0, 0.2));
+    font-size: 13px;
+    line-height: 13px;
+    font-weight: bold;
+    @include text-shadow(0 0 3px $base-color);
+    @include box-shadow(0 0 5px white);
   }
   .remove { 
     @include hide-text;
