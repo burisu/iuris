@@ -1,4 +1,4 @@
-class ToolsController < ApplicationController
+class ToolsController < BackendController
 
   # Lists tools
   def index

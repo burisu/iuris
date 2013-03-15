@@ -1,4 +1,4 @@
-class PublicationNaturesController < ApplicationController
+class PublicationNaturesController < BackendController
 
   def index
     @publication_natures = PublicationNature.order(:name).paginate(:page => params[:page], :per_page => 10)

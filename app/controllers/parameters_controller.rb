@@ -1,4 +1,4 @@
-class ParametersController < ApplicationController
+class ParametersController < BackendController
 
   def index
     @parameters = Parameter.order("name ASC").paginate(:page => params[:page], :per_page => 10)

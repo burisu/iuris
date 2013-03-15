@@ -9,7 +9,7 @@ module Iuris  #:nodoc:
     module ClassMethods
 
       def acts_as_searchable(options = {})
-        columns = options[:columns] || self.content_columns.collect{|c| c.name}
+        columns = options[:columns] || self.content_columns.collect{|c| c.name} rescue []
         code  = ""
         code << "def self.search(key)\n"
         code << "  words = key.mb_chars.downcase.gsub(/[^a-z0-9\ ]+/, '%').split(/\s+/).collect{|w| '%'+w+'%'}\n"

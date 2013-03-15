@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-class CommentsController < ApplicationController
+class CommentsController < BackendController
 
   def index
     @comments = Comment.paginate(:page => params[:page], :per_page => 25)

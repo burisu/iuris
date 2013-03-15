@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-class PublicationsController < ApplicationController
+class PublicationsController < BackendController
 
   def index
     @publications = Publication.order("created_at DESC").paginate(:page => params[:page], :per_page => 10)

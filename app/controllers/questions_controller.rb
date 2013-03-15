@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-class QuestionsController < ApplicationController
+class QuestionsController < BackendController
 
   def index
     @questions = Question.order("created_at DESC").paginate(:page => params[:page], :per_page => 10)

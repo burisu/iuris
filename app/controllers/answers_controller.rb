@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-class AnswersController < ApplicationController
+class AnswersController < BackendController
 
   def index
     @answers = Answer.paginate(:page => params[:page], :per_page => 25)

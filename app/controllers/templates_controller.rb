@@ -1,3 +1,3 @@
 
-class TemplatesController < ApplicationController
+class TemplatesController < BackendController
 end

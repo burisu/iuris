@@ -1,4 +1,4 @@
-class LabelsController < ApplicationController
+class LabelsController < BackendController
 
   def index
     @labels = Label.order("name ASC").paginate(:page => params[:page], :per_page => 10)

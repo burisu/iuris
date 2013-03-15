@@ -1,5 +1,5 @@
 
-class TagsController < ApplicationController
+class TagsController < BackendController
 
   def create
     done = false
