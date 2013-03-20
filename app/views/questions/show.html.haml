@@ -12,7 +12,7 @@
 
 -unless @question.content.blank?
   .question.content=beautify(@question.content)
-.info
+.meta-info
   %span=@question.author.full_name
   %span a posé cette question
   =on(@question.created_at)+"."

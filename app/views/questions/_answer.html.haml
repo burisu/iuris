@@ -7,7 +7,7 @@
     =tool("labels.comment_judged".t(:count => answer.comments.count), new_answer_comment_url(answer), :icon => :comment)
   =logo_tag(avatar_url(answer.author, :size => 48), :class => "pull-left")
   .ms
-    .info
+    .meta-info
       =link_to(answer.author.full_name, answer.author, :class => "author")
       %span a répondu
       =on(answer.created_at)

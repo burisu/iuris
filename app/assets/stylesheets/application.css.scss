@@ -310,6 +310,7 @@ h2 {
       background-position: center center;
     }
     &.partition  .logo { background-image: image-url("tools/partition.png"); }
+    &.delays     .logo { background-image: image-url("tools/delays.png"); }
     &.farming    .logo { background-image: image-url("tools/farming.png"); }
     &.templating .logo { background-image: image-url("tools/templating.png"); }
     .description { 
@@ -363,13 +364,13 @@ h2 {
 
 .pagination { @extend .pagination-centered }
 
-.info { 
+.meta-info { 
   margin-top: 4px;
   line-height: 1.2em;
   &, & * { font-size: 11px; }
-  @include opacity(0.3);
+  @include opacity(30);
   .item:hover &, &:hover { 
-    @include opacity(0.7);
+    @include opacity(70);
   }
 }
 .end { clear: both; }
@@ -561,6 +562,19 @@ table#partitions {
   }
 }
 
+input[data-datepicker][data-date-format] {
+  width: 12ex;
+  text-align: center;
+}
+
+.delays-delay {
+  width: 4ex;
+  text-align: center;
+}
+.delays-dir {
+  width: 20ex;
+}
+
 .tagger { 
   vertical-align: middle;
   .tag { 
@@ -580,13 +594,13 @@ table#partitions {
   .remove { 
     @include hide-text;
     @include inline-block;
-    @include opacity(0.3);
+    @include opacity(30);
     width: 11px;
     height: 16px;
     margin-right: 5px;
     @include background(image-url("remove.png") no-repeat);
     &:hover { 
-    @include opacity(0.7);
+    @include opacity(70);
     }
   }
 }

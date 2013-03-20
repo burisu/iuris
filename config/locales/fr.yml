@@ -66,6 +66,7 @@ fr:
     tools:
       index: "Boîte à outils"
       partition: "Calcul de parts sociales"
+      delays: "Calcul d'échéances"
     users:
       index: "Utilisateurs"
       new: &users-new "Nouvel utilisateur"
@@ -102,6 +103,12 @@ fr:
     x_comments:
       one: '%{count} commentaire'
       other: '%{count} commentaires'
+    x_days:
+      one: '%{count} jour'
+      other: '%{count} jours'
+    x_months:
+      one: '%{count} mois'
+      other: '%{count} moiss'
     x_publications:
       one: '%{count} publication'
       other: '%{count} publications'
@@ -111,6 +118,10 @@ fr:
     x_users:
       one: '%{count} membre'
       other: '%{count} membres'
+    x_years:
+      one: '%{count} année'
+      other: '%{count} années'
+ 
 
   will_paginate:
     previous_label: "«"

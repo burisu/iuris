@@ -7,6 +7,6 @@
   =logo_tag(avatar_url(comment.author, :size => 32), :title => comment.author.full_name)
   .ms
     %span=beautify(comment.content)
-    .info
+    .meta-info
       =link_to(comment.author.full_name, comment.author, :class => "author")
       =on(comment.created_at)

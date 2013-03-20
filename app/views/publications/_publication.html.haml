@@ -2,7 +2,7 @@
   =logo_tag(publication.logo.url(:thumb), :alt => publication.name)
   %h3.title=link_to(beautify(publication.name), publication_url(publication))
   =labels_of(publication)
-  .info
+  .meta-info
     %span Déposée par
     =link_to(publication.author.full_name, publication.author, :class => "author")
     =on(publication.created_at)

@@ -5,6 +5,7 @@ Iuris::Application.routes.draw do
 
   resources :tools, :only => [:index]
   get :partition, :controller => "tools"
+  get :delays, :controller => "tools"
   # resources :templates do
   #   resources :comments, :except => [:show, :index]
   # end

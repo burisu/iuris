@@ -1,7 +1,7 @@
 .item.answer
   =logo_tag(avatar_url(answer.author, :size => 48))
   .content=beautify(answer.content)
-  .info
+  .meta-info
     %span Déposé par
     =link_to(answer.author.full_name, answer.author, :class => "author")
     =on(answer.created_at)

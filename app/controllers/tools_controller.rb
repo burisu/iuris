@@ -21,4 +21,25 @@ class ToolsController < BackendController
     end
   end
 
+  def delays
+    params[:date] = params[:date].to_date rescue Date.today
+    if deadline = params[:date].to_date
+      dir = (params[:dir] == "since" ? 1 : -1)        
+      if dir > 0
+        deadline = deadline.next_year(params[:years].to_i)
+        deadline = deadline.next_month(params[:months].to_i)
+        deadline = deadline.next_day(params[:days].to_i)
+      else
+        deadline = deadline.prev_year(params[:years].to_i)
+        deadline = deadline.prev_month(params[:months].to_i)
+        deadline = deadline.prev_day(params[:days].to_i)
+      end
+      if request.xhr?
+        render :partial => "deadline", :locals => {:deadline => deadline }
+      else
+        @deadline = deadline
+      end
+    end
+  end
+
 end

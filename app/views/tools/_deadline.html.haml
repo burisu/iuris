@@ -1,0 +1,29 @@
+-unless deadline.nil?
+  %h3 Résultat
+  -sentence= h("Si ")
+  -intervals = [] 
+  -if params[:years].to_i > 0
+    -intervals << content_tag(:em, "labels.x_years".t(:count => params[:years].to_i))
+  -if params[:months].to_i > 0
+    -intervals << content_tag(:em, "labels.x_months".t(:count => params[:months].to_i))
+  -if params[:days].to_i > 0
+    -intervals << content_tag(:em, "labels.x_days".t(:count => params[:days].to_i))
+  -if intervals.empty?
+    -sentence << h("je n'applique aucun délai")
+  -else 
+    -sentence << h("j'applique un délai de ")
+    -sentence << intervals.to_sentence 
+  -sentence << h(" ")
+  -sentence << h(params[:dir] == "since" ? "à partir du" : "pour arriver au")
+  -sentence << h(" ")
+  -sentence << params[:date].l(:format => :long)
+  -sentence << ", "
+  -if Date.today == deadline
+    -sentence << h("l'échéance tombe ") + content_tag(:strong, "aujourd'hui")
+  -elsif deadline > Date.today
+    -sentence << h("l'échéance tombera le ") + content_tag(:strong, deadline.l(:format => '%A %-d %B %Y'))
+  -else
+    -sentence << h("l'échéance est tombée le ") + content_tag(:strong, deadline.l(:format => '%A %-d %B %Y'))
+-sentence << h(".")
+
+%p=sentence

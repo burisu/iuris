@@ -10,7 +10,7 @@
   =tool("Commenter", new_publication_comment_url(@publication), :icon => :comment)
 -unless @publication.description.blank?
   .content=beautify(@publication.description)
-.info
+.meta-info
   =link_to(@publication.author.full_name, @publication.author, :class=> "author")
   %span a déposé la publication
   =on(@publication.created_at)

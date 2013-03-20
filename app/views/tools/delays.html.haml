@@ -1,0 +1,14 @@
+=form_tag({}, :method => :get, :class => "form-inline parameters") do
+  %label J'applique le délai de
+  %span=number_field_tag(:years, (params[:years] || 0), :class => "delays-delay")
+  %label années,
+  %span=number_field_tag(:months, (params[:months] || 0), :class => "delays-delay")
+  %label mois et
+  %span=number_field_tag(:days, (params[:days] || 0), :class => "delays-delay")
+  %label jours
+  %span=select_tag(:dir, options_for_select([["à partir du", "since"], ["pour arriver au", "ago"]], params[:dir]), :class => "delays-dir") 
+  %span=date_field_tag(:date, params[:date])
+  =button_tag("Calculer", :type => :submit, :class => "btn", :name => nil)
+
+#deadline=render(:partial => "deadline", :object => @deadline)
+  

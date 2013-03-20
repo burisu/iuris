@@ -1,13 +1,13 @@
 source 'https://rubygems.org'
 
-gem 'rails', '3.2.12'
+gem 'rails', '3.2.13'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 gem 'pg'
 gem 'haml'
-gem 'devise', '2.1.0'
+gem 'devise', '~> 2.1.0'
 gem 'audited-activerecord', '~> 3.0'
 gem 'paperclip'
 gem 'simple_form'
@@ -56,4 +56,6 @@ group :development do
   gem 'quiet_assets'
   gem 'better_errors'
   gem 'rack-mini-profiler'
+
+  gem 'thin'
 end
