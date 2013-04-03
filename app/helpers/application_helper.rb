@@ -206,7 +206,7 @@ module ApplicationHelper
     html << "<div class=\"tagger\">"
     html << "<span class=\"tags\" id=\"#{tags_id}\">"
     for tag in tagged.tags
-      html << link_to(tag.label.name, tag.label, :class => :tag, :id => "tag-#{tag.id}")
+      html << content_tag(:span, link_to(tag.label.name, tag.label), :class => :tag, :id => "tag-#{tag.id}")
     end
     html << "</span>"
     html << "</div>"
@@ -218,10 +218,11 @@ module ApplicationHelper
     html = ""
     for tag in tagged.tags
       tag_id = "tag-#{tag.id}"
-      html << link_to(tag.label.name, tag.label, :class => :tag, :id => tag_id)
+      tag_html = link_to(tag.label.name, tag.label)
       if current_user  == tagged.author
-        html << link_to("Enlever", tag, :class => :remove, "data-remove-tag" => tag_id)
+        tag_html << h(" ") + link_to(content_tag(:i, '', :class => 'icon-remove'), tag, "data-remove-tag" => tag_id, :title => "Enlever")
       end
+      html << content_tag(:span, tag_html, :class => :tag, :id => tag_id)
     end
     return html.html_safe
   end

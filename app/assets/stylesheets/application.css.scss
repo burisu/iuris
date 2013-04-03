@@ -30,6 +30,7 @@ $link-color: $base-color;
 $linkColor: $link-color;
 
 @import "bootstrap";
+@import "font-awesome";
 @import "bootstrap-responsive";
 
 body > .navbar .brand {
@@ -579,29 +580,36 @@ input[data-datepicker][data-date-format] {
   vertical-align: middle;
   .tag { 
     @include inline-block;
-    @include border-radius(12px);
+    @include border-radius(100px);
 /*    font-family: "Lato", sans-serif;*/
     padding: 3px 8px 4px;
     margin: 2px 6px 2px 0;
     background: mix($base-color, #FFF, 60%);
-    color: white;
-    font-size: 13px;
-    line-height: 13px;
-    font-weight: bold;
-    @include text-shadow(0 0 3px $base-color);
+    &, & a {
+      color: white;
+      font-size: 13px;
+      line-height: 13px;
+      font-weight: bold;
+      @include text-shadow(0 0 3px $base-color);
+    }
     @include box-shadow(0 0 5px white);
   }
   .remove { 
-    @include hide-text;
+    font-size: 0;
     @include inline-block;
-    @include opacity(30);
     width: 11px;
     height: 16px;
     margin-right: 5px;
-    @include background(image-url("remove.png") no-repeat);
-    &:hover { 
-    @include opacity(70);
+    // @include background(image-url("remove.png") no-repeat);
+    i { 
+      @extend .icon-trash;
     }
+    &:hover { 
+      @include opacity(70);
+    }
+  }
+  .input-append {
+     margin-bottom: 0;
   }
 }
 
