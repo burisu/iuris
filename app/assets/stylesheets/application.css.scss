@@ -405,8 +405,20 @@ table.infos {
   }
 }
 
-table#partitions { 
+table.partitions { 
   margin: 8px auto;
+  tr.round {
+    $max-opacity: 0.45;
+    $max-level: 3;
+    td {
+      background: rgba(green, $max-opacity);
+    }
+    @for $level from 1 through $max-level {
+      &.round-#{$level} td {
+        background: rgba($base-color, $level*($max-opacity/$max-level));
+      }
+    }
+  }
   td {
     padding: 2px;
     &.number {
@@ -419,6 +431,11 @@ table#partitions {
     &.amount {
       font-weight: bold;
       text-align: left;
+    }
+    &.delta {
+      font-style: italic;
+      &.negative { color: red }
+      &.positive { color: green }
     }
   }
 }

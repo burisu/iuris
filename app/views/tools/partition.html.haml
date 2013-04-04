@@ -2,13 +2,30 @@
   %label Montant du capital social
   %span.input-append
     =text_field_tag(:amount, params[:amount], :size=>12, :maxlength => 12) 
-    =button_tag("Calculer", :type => :submit, :class => "btn")
+    =button_tag("Calculer", :type => :submit, :class => "btn", :name => nil)
 
 -if @partitions
   %h3="Nombres de parts possibles pour un montant de #{@amount.l(:currency => 'EUR')}"
-  %table#partitions
+  %table.partitions#partitions
     -for partition in @partitions
       %tr
         %td.number=partition[0]
         %td.middle="labels.parts_of_amount".t(:count=>partition[0])
         %td.amount=partition[1].l(:currency => 'EUR')
+
+-if @rounded_partitions
+  %h3="Nombres de parts possibles avec arrondis"
+  .parameters.form-inline
+    %label{:for => :round} N'afficher que les comptes ronds
+    =check_box_tag('round', '1', false, :onclick => "$('#rounded-partitions .square').toggle()")
+  %table.partitions#rounded-partitions
+    -for partition in @rounded_partitions
+      %tr{:class => (partition[1].to_s[-1] == "0" ? "round round-"+partition[1].to_s.gsub(/[1-9]+/, '').size.to_s : "square")}
+        %td.number=partition[0]
+        %td.middle="labels.parts_of_amount".t(:count=>partition[0])
+        %td.amount=partition[1].l(:currency => 'EUR')
+        %td.total=h("soit un nouveau capital de ") + content_tag(:strong, (partition[1] * partition[0]).l(:currency => 'EUR'))
+        -if partition[2].zero?
+          %td
+        -else
+          %td.delta{:class => (partition[2] < 0 ? "negative" : "positive")}="(&Delta; = ".html_safe + h(partition[2] < 0 ? "" : "+") + partition[2].l(:currency => 'EUR') + h(")")

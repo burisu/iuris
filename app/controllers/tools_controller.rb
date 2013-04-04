@@ -18,6 +18,15 @@ class ToolsController < BackendController
         end
       end
       @partitions = (partitions + partitions.collect{|a| [(a[1]*magnitude).to_i, a[0].to_f/magnitude]}.reverse).uniq
+      # Arrondis
+      partitions = []
+      for x in 1..(Math.sqrt(@amount.to_d) * 2).ceil
+        part = (@amount.to_d / x.to_d).round
+        partitions << [x, part, (part * x) - @amount.to_d]
+        # partitions << [x, part, (part * x) - @amount.to_d]
+      end
+      @rounded_partitions = (partitions + partitions.collect{|a| [a[1], a[0], a[2]]}.reverse).uniq.sort{|a,b| a[0..1] <=> b[0..1]}
+      # @rounded_partitions = @partitions.collect{|a| [a[0], a[1].round, (a[0] * a[1].round) - @amount.to_d] }.delete_if{|a| a[1].zero? }
     end
   end
 
