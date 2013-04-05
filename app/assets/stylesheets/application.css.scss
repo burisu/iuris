@@ -418,6 +418,9 @@ table.partitions {
         background: rgba($base-color, $level*($max-opacity/$max-level));
       }
     }
+    &.round-0 td {
+      background: none;
+    }
   }
   td {
     padding: 2px;

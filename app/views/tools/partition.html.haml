@@ -17,10 +17,11 @@
   %h3="Nombres de parts possibles avec arrondis"
   .parameters.form-inline
     %label{:for => :round} N'afficher que les comptes ronds
-    =check_box_tag('round', '1', false, :onclick => "$('#rounded-partitions .square').toggle()")
+    =check_box_tag('round', '1', true, :onclick => "$('#rounded-partitions .round-0').toggle()")
   %table.partitions#rounded-partitions
     -for partition in @rounded_partitions
-      %tr{:class => (partition[1].to_s[-1] == "0" ? "round round-"+partition[1].to_s.gsub(/[1-9]+/, '').size.to_s : "square")}
+      -magnitude = partition[1].to_s.size - partition[1].to_s.gsub(/0+$/, '').size
+      %tr.round{:class => "round-#{magnitude}", :style => (magnitude.zero? ? 'display: none' : '')}
         %td.number=partition[0]
         %td.middle="labels.parts_of_amount".t(:count=>partition[0])
         %td.amount=partition[1].l(:currency => 'EUR')

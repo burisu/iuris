@@ -35,6 +35,6 @@
             =yield :side
       .row-fluid
         #footer
-          ="#{Parameter['site.name']} &ndash; #{Parameter['site.slogan']} &ndash; Copyright 2012 &ndash; PelTex &ndash; ".html_safe
           =cache do
+            ="#{Parameter['site.name']} &ndash; #{Parameter['site.slogan']} &ndash; Copyright 2012-#{Date.today.year} &ndash; PelTex &ndash; ".html_safe
             =version

@@ -34,7 +34,7 @@ GEM
       activerecord (~> 3.0)
       audited (= 3.0.0)
     bcrypt-ruby (3.0.1)
-    better_errors (0.7.2)
+    better_errors (0.8.0)
       coderay (>= 1.0.0)
       erubis (>= 2.6.6)
     bootstrap-sass (2.3.1.0)
