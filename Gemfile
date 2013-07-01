@@ -2,6 +2,8 @@ source 'https://rubygems.org'
 
 gem 'rails', '3.2.13'
 
+gem 'annotate'
+
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
@@ -33,6 +35,7 @@ group :assets do
 end
 
 gem 'jquery-rails'
+gem 'jquery-ui-rails'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
@@ -56,6 +59,7 @@ end
 group :development do
   gem 'quiet_assets'
   gem 'better_errors'
+  gem 'binding_of_caller'
   gem 'rack-mini-profiler'
 
   gem 'thin'

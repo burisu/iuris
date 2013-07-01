@@ -1,3 +1,19 @@
+# == Schema Information
+#
+# Table name: labels
+#
+#  id                       :integer          not null, primary key
+#  name                     :string(255)      not null
+#  description              :text
+#  usable_with_questions    :boolean
+#  usable_with_publications :boolean
+#  usable_with_templates    :boolean
+#  created_at               :datetime         not null
+#  updated_at               :datetime         not null
+#  lock_version             :integer          default(0), not null
+#  tags_count               :integer          default(0), not null
+#
+
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
 # This model initially had no columns defined.  If you add columns to the

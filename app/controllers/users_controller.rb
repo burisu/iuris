@@ -1,6 +1,11 @@
 class UsersController < BackendController
+  skip_before_filter :check_fields!, :only => [:edit, :update]
 
   def index
+    unless current_user.administrator?
+      redirect_to root_url
+      return
+    end
     @users = User.order(:last_name, :first_name).paginate(:page => params[:page], :per_page => 10)
   end
 
@@ -18,6 +23,10 @@ class UsersController < BackendController
   end
   
   def create
+    unless current_user.administrator?
+      head :forbidden
+      return
+    end
     @user = User.new(params[:user])
     respond_to do |format|
       if @user.save
@@ -32,6 +41,10 @@ class UsersController < BackendController
   
   def edit
     @user = User.find(params[:id])
+    unless current_user.administrator? or current_user.id == @user.id
+      head :forbidden
+      return
+    end
     respond_to do |format|
       format.html { render_restfully_form }
     end
@@ -39,6 +52,10 @@ class UsersController < BackendController
   
   def update
     @user = User.find(params[:id])
+    unless current_user.administrator? or current_user.id == @user.id
+      head :forbidden
+      return
+    end
     respond_to do |format|
       if @user.update_attributes(params[:user])
         format.html { redirect_to (params[:redirect] || users_url) }
@@ -51,6 +68,10 @@ class UsersController < BackendController
   end
   
   def destroy
+    unless current_user.administrator?
+      head :forbidden
+      return
+    end
     @user = User.find(params[:id])
     @user.destroy
     respond_to do |format|
@@ -58,4 +79,5 @@ class UsersController < BackendController
       format.json { head :no_content }
     end
   end
+
 end

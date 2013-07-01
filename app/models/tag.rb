@@ -1,3 +1,16 @@
+# == Schema Information
+#
+# Table name: tags
+#
+#  id           :integer          not null, primary key
+#  label_id     :integer          not null
+#  tagged_id    :integer          not null
+#  tagged_type  :string(255)      not null
+#  created_at   :datetime         not null
+#  updated_at   :datetime         not null
+#  lock_version :integer          default(0), not null
+#
+
 class Tag < ActiveRecord::Base
   attr_accessible :label, :tagged
   belongs_to :label, :counter_cache => true
