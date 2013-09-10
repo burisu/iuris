@@ -41,7 +41,8 @@ class User < ActiveRecord::Base
   acts_as_searchable
   devise :database_authenticatable, :trackable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :lockable
-  validates_presence_of :first_name, :last_name, :email, :skills, :post, :phone
+  validates_presence_of :first_name, :last_name
+  validates_presence_of :email, :skills, :post, :phone, :on => :update
   default_scope order(:last_name, :first_name)
 
   # Setup accessible (or protected) attributes for your model
