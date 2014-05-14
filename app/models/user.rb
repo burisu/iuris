@@ -57,6 +57,7 @@ class User < ActiveRecord::Base
     self.first_name = self.first_name.mb_chars.capitalize
     self.last_name = self.last_name.mb_chars.upcase
     self.administrator = true if User.count.zero?
+    true
   end
 
   def full_name

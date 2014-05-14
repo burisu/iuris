@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '3.2.14'
+gem 'rails', '3.2.18'
 
 gem 'annotate'
 
@@ -16,7 +16,7 @@ gem 'simple_form'
 gem 'will_paginate'
 gem 'rails-i18n'
 gem 'i18n-complements'
-gem 'formize'
+gem 'formize', '~> 1.1'
 gem 'bootstrap-will_paginate'
 
 # Gems used only for assets and not required
@@ -25,7 +25,7 @@ group :assets do
   gem 'sass-rails',   '~> 3.2.3'
   gem 'coffee-rails', '~> 3.2.1'
   gem 'compass-rails'
-  gem 'bootstrap-sass'
+  gem 'bootstrap-sass', '~> 2.3'
   gem 'font-awesome-sass-rails'
 
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
