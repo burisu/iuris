@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '3.2.18'
+gem 'rails', '3.2.19'
 
 gem 'annotate'
 
@@ -16,7 +16,7 @@ gem 'simple_form'
 gem 'will_paginate'
 gem 'rails-i18n'
 gem 'i18n-complements'
-gem 'formize', '~> 1.1'
+gem 'formize', '~> 1.1.3'
 gem 'bootstrap-will_paginate'
 
 # Gems used only for assets and not required
