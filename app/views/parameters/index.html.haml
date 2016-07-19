@@ -1,9 +1,9 @@
-=toolbar do
-  -for t in Parameter.natures
-    =tool("Nouveau paramètre #{t}".html_safe, new_parameter_url(:nature => t), :icon => t)
+= toolbar do
+  - for t in Parameter.natures
+    = tool("Nouveau paramètre #{t}".html_safe, new_parameter_url(:nature => t), :icon => t)
 
--paginator = will_paginate(@parameters)
-=paginator
+- paginator = will_paginate(@parameters)
+= paginator
 .items
-  =render :partial => @parameters, :spacer_template => "shared/spacer"
-=paginator
+  = render :partial => @parameters, :spacer_template => "shared/spacer"
+= paginator

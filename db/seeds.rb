@@ -19,3 +19,6 @@ Label.create!(:name => 'SCEA')
 
 Parameter.create!(:name => 'site.name', :nature => "string", :string_value => "Iuris")
 Parameter.create!(:name => 'site.slogan', :nature => "string", :string_value => "Iur is Iuris")
+
+password = '12345678'
+User.create(:email => 'admin@jurisea.org', first_name: 'Admin', last_name: 'STRATOR', password: password, password_confirmation: password)

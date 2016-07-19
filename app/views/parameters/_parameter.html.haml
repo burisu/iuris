@@ -1,6 +1,6 @@
 .item.parameter
-  %h3.title=link_to(parameter.label, edit_parameter_url(parameter))
-  .description=parameter.value
+  %h3.title= link_to(parameter.label || parameter.name.humanize, edit_parameter_url(parameter))
+  .description= parameter.value
   .meta-info
-    =parameter.name
-    =" ("+parameter.nature+")"
+    = parameter.name
+    = " ("+parameter.nature+")"

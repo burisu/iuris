@@ -97,10 +97,10 @@ module ApplicationHelper
   end
 
 
-  def comments_of(judged, &block)
+  def comments_of(judged, options = {}, &block)
     html = ""
     count = judged.comments.count
-    if count > 0 or block_given?
+    if count > 0 or block_given? or options[:new_path]
       html << "<div class=\"comments\">"
       # html << content_tag(:h3, "labels.x_comments".t(:count=>count))
       judged.comments.reorder('created_at ASC').each_with_index do |comment, index|
@@ -123,6 +123,17 @@ module ApplicationHelper
       if block_given?
         html << capture(&block)
       end
+    if options[:new_path]
+      html << content_tag(:div, :class => 'comment') do
+        logo_tag(avatar_url(current_user, :size => 30), :title => current_user.full_name, :style => 'margin-top: 10px; width: 30px; height: 30px') +
+          content_tag(:div, :class => 'ms') do
+          toolbar do
+            tool(options[:new_label] || 'Commenter ou compléter', options[:new_path], :icon => :comment, :text => true)
+          end
+        end
+      end
+    end
+
       html << "</div>"
     end
     return html.html_safe
@@ -249,14 +260,17 @@ module ApplicationHelper
       icon = args[2].delete(:icon).to_s
       icon.gsub!(/\_/, '-')
       icon = INTERPOLATE[icon] || icon
-      args[2][:title] = args[0]
+      text = args[0]
+      args[2][:title] = text
       args[0] = content_tag(:i, nil, :class => "icon-"+icon) #  + h(args[0])
+      args[0] << h(' ' + text) if args[2][:text]
     end
     link_to(*args)
   end
   
 
   def on(made_at)
+    return h('il y a ') + content_tag(:span, distance_of_time_in_words_to_now(made_at), :title => made_at.l(format: :long))
     today = Date.today
     made_on = made_at.to_date
     date = if made_on == today

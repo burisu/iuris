@@ -1,16 +1,15 @@
 .answer
-  =toolbar(:class => "pull-right") do
-    -if answer.author == current_user
-      =tool("Modifier", edit_answer_url(answer), :icon => :edit)
-      -if answer.comments.count.zero?
-        =tool("Supprimer", answer_url(answer), :method => :delete, :confirm => 'labels.are_you_sure'.t, :icon => :destroy)
-    =tool("labels.comment_judged".t(:count => answer.comments.count), new_answer_comment_url(answer), :icon => :comment)
-  =logo_tag(avatar_url(answer.author, :size => 48), :class => "pull-left")
+  = toolbar(:class => "pull-right") do
+    - if answer.author == current_user
+      = tool("Modifier", edit_answer_url(answer), :icon => :edit)
+      - if answer.comments.count.zero?
+        = tool("Supprimer", answer_url(answer), :method => :delete, :confirm => 'labels.are_you_sure'.t, :icon => :destroy)
+  = logo_tag(avatar_url(answer.author, :size => 48), :class => "pull-left")
   .ms
     .meta-info
-      =link_to(answer.author.full_name, answer.author, :class => "author")
+      = link_to(answer.author.full_name, answer.author, :class => "author")
       %span a répondu
-      =on(answer.created_at)
+      = on(answer.created_at)
       %span :
-    .content=beautify(answer.content)
-  =comments_of(answer)
+    .content= beautify(answer.content)
+  = comments_of(answer, :new_path => new_answer_comment_url(answer))

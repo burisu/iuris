@@ -34,6 +34,8 @@ class Parameter < ActiveRecord::Base
   attr_accessible :name, :label, :nature, :value, :string_value, :document_value
   belongs_to :record_value, :polymorphic => true
 
+  do_not_validate_attachment_file_type :document_value
+  
   def value=(val)
     self.send("#{self.nature}_value=", val)
   end

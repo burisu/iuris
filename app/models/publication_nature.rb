@@ -29,6 +29,7 @@ class PublicationNature < ActiveRecord::Base
   has_many :publications, :dependent => :restrict 
   default_scope order(:name)
   serialize :title_fields, Hash
+  do_not_validate_attachment_file_type :logo  
 
   Field = Struct.new(:id, :name, :pattern, :type, :required, :options)
 

@@ -1,40 +1,40 @@
 !!!
 %html
   %head
-    %title=Parameter["site.name"]
+    %title= Parameter["site.name"]
     = stylesheet_link_tag    "application", :media => "all"
     = javascript_include_tag "application"
     = csrf_meta_tags
-  -style = ""
-  -if Parameter.has?("site.background")
-    -style = "background: #FFF url(#{Parameter['site.background']}) left bottom no-repeat fixed"
+  - style = ""
+  - if Parameter.has?("site.background")
+    - style = "background: #FFF url(#{Parameter['site.background']}) top center no-repeat fixed; background-size: cover"
   %body{:style => style}
-    =menu_tag if current_user
+    = menu_tag if current_user
     #page.container{:class=>(current_user ? 'connected' : 'disconnected')}
       #wrap.row-fluid
         #main.span9
           .wrapper
-            =page_title
-            =notification(:error)
-            =notification(:warning)
-            =notification(:success)
-            =notification(:notice)
-            =yield
+            = page_title
+            = notification(:error)
+            = notification(:warning)
+            = notification(:success)
+            = notification(:notice)
+            = yield
         #aside.span3
           .wrapper
-            -if current_user
-              -content_for :side do
-                %h3="Contacter un membre"
-                .items.mini=render :partial => "users/mini_user", :collection => User.all, :spacer_template => "shared/spacer"
+            - if current_user
+              - content_for :side do
+                %h3= "Contacter un membre"
+                .items.mini= render :partial => "users/mini_user", :collection => User.all, :spacer_template => "shared/spacer"
 
-                -#%h3="Mot-clés"
-                -#=render :partial => "labels/all"
-            -else
-              -if Parameter.has?('site.logo')
+                -#%h3= "Mot-clés"
+                -#= render :partial => "labels/all"
+            - else
+              - if Parameter.has?('site.logo')
                 .site-logo{:style => "background-image: url(#{Parameter['site.logo']})"}
-            =yield :side
+            = yield :side
       .row-fluid
         #footer
-          =cache do
-            ="#{Parameter['site.name']} &ndash; #{Parameter['site.slogan']} &ndash; Copyright 2012-#{Date.today.year} &ndash; PelTex &ndash; ".html_safe
-            =version
+          = cache do
+            = "#{Parameter['site.name']} &ndash; #{Parameter['site.slogan']} &ndash; Copyright 2012-#{Date.today.year} &ndash; PelTex &ndash; ".html_safe
+            = version

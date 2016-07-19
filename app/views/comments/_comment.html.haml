@@ -1,12 +1,12 @@
 .comment
-  =toolbar(:class => "pull-right") do 
-    -if current_user == comment.author
-      =tool("Modifier", edit_comment_url(comment), :icon => :edit)
-      -if comment.last?
-        =tool("Supprimer", comment_url(comment), :method => :delete, :confirm => 'labels.are_you_sure'.t, :icon => :destroy)
-  =logo_tag(avatar_url(comment.author, :size => 32), :title => comment.author.full_name)
+  = toolbar(:class => "pull-right") do 
+    - if current_user == comment.author
+      = tool("Modifier", edit_comment_url(comment), :icon => :edit)
+      - if comment.last?
+        = tool("Supprimer", comment_url(comment), :method => :delete, :confirm => 'labels.are_you_sure'.t, :icon => :destroy)
+  = logo_tag(avatar_url(comment.author, :size => 32), :title => comment.author.full_name)
   .ms
-    %span=beautify(comment.content)
+    %span= beautify(comment.content)
     .meta-info
-      =link_to(comment.author.full_name, comment.author, :class => "author")
-      =on(comment.created_at)
+      = link_to(comment.author.full_name, comment.author, :class => "author")
+      = on(comment.created_at)

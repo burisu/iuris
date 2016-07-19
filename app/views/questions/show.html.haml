@@ -1,35 +1,34 @@
 %h2
-  =logo_tag(avatar_url(@question.author, :size => 96))
-  =beautify(@question.name)
-=labels_for(@question)
-=toolbar(:class => "pull-right") do
-  -if @question.author == current_user
-    =tool("Modifier", edit_question_url(@question), :icon => :edit)
-    -if @question.answers.count.zero? and @question.comments.count.zero?
-      =tool("Supprimer", question_url(@question), :method => :delete, :confirm => 'labels.are_you_sure'.t, :icon => :destroy)
-  -#=tool("labels.answer_to_question".t(:count => @question.answers.count), new_question_answer_url(@question))
-  =tool("Commenter la question", new_question_comment_url(@question), :icon => :comment)
+  = logo_tag(avatar_url(@question.author, :size => 96))
+  = beautify(@question.name)
+= labels_for(@question)
+= toolbar(:class => "pull-right") do
+  - if @question.author == current_user
+    = tool("Modifier", edit_question_url(@question), :icon => :edit)
+    - if @question.answers.count.zero? and @question.comments.count.zero?
+      = tool("Supprimer", question_url(@question), :method => :delete, :confirm => 'labels.are_you_sure'.t, :icon => :destroy)
+  -#= tool("labels.answer_to_question".t(:count => @question.answers.count), new_question_answer_url(@question))
 
--unless @question.content.blank?
-  .question.content=beautify(@question.content)
+- unless @question.content.blank?
+  .question.content= beautify(@question.content)
 .meta-info
-  %span=@question.author.full_name
+  %span= @question.author.full_name
   %span a posé cette question
-  =on(@question.created_at)+"."
+  = on(@question.created_at)+"."
 
-=comments_of(@question)
+= comments_of(@question, :new_path => new_question_comment_url(@question), :new_label => "Commenter la question")
 
--if @question.answers.count > 0
+- if @question.answers.count > 0
   %h3="labels.x_answers".t(:count => @question.answers.count)
 .items
-  =render :partial => "questions/answer", :collection => @question.answers, :spacer_template => "shared/spacer"
-  =render :partial => "shared/spacer"
+  = render :partial => "questions/answer", :collection => @question.answers, :spacer_template => "shared/spacer"
+  = render :partial => "shared/spacer"
 
 %h3 Nouvelle réponse
-=form_tag({:action => :create, :controller => :answers, :question_id => @question.id}, {:class => "form-horizontal"}) do |f|
-  =simple_fields_for @answer do |f|
+= form_tag({:action => :create, :controller => :answers, :question_id => @question.id}, {:class => "form-horizontal"}) do |f|
+  = simple_fields_for @answer do |f|
     .fields
-      =f.input :content, :as => :text, :input_html => {:rows => 7, :cols => 60}
+      = f.input :content, :as => :text, :input_html => {:rows => 7, :cols => 60}
     .form-actions
-      =logo_tag(avatar_url(@answer.author, :size => 32), :class => "pull-right")
-      =button_tag("Répondre", :type => :submit, :class => "btn btn-primary")
+      = logo_tag(avatar_url(@answer.author, :size => 32), :class => "pull-right")
+      = button_tag("Répondre", :type => :submit, :class => "btn btn-primary")
