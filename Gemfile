@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '3.2.19'
+gem 'rails', '3.2.22.2'
 
 gem 'annotate'
 
@@ -9,7 +9,7 @@ gem 'annotate'
 
 gem 'pg'
 gem 'haml'
-gem 'devise', '~> 2.1.0'
+gem 'devise', '~> 2.0'
 gem 'audited-activerecord', '~> 3.0'
 gem 'paperclip'
 gem 'simple_form'
@@ -29,7 +29,7 @@ group :assets do
   gem 'font-awesome-sass-rails'
 
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
-  gem 'therubyracer', :platforms => :ruby
+  gem 'therubyracer', platforms: :ruby
 
   gem 'uglifier', '>= 1.0.3'
 end
@@ -53,7 +53,7 @@ gem 'jquery-ui-rails'
 # gem 'debugger'
 
 group :test do
-  gem "mocha"
+  gem 'mocha'
 end
 
 group :development do
