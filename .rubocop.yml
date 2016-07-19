@@ -1,0 +1,15 @@
+AllCops:
+  TargetRubyVersion: 1.9
+  Exclude:
+    - 'vendor/**/*'
+    - 'tmp/**/*'
+    - 'db/schema.rb'
+
+Rails:
+  Enabled: true
+
+Metrics/LineLength:
+  Enabled: false
+
+Metrics/MethodLength:
+  Max: 60
