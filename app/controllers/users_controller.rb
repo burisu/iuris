@@ -80,4 +80,22 @@ class UsersController < BackendController
     end
   end
 
+  def deactivate
+    @user = User.find(params[:id])
+    @user.deactivate!
+    respond_to do |format|
+      format.html { redirect_to (params[:redirect] || users_url) }
+      format.json { head :no_content }
+    end
+  end
+
+  def activate
+    @user = User.find(params[:id])
+    @user.activate!
+    respond_to do |format|
+      format.html { redirect_to (params[:redirect] || users_url) }
+      format.json { head :no_content }
+    end
+  end
+
 end

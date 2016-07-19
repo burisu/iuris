@@ -1,23 +1,28 @@
 %h2
-  =logo_tag(avatar_url(@user, :size => 96))
-  =@user.full_name
-%h3=@user.post
+  = logo_tag(avatar_url(@user, :size => 96))
+  = @user.full_name
+%h3= @user.post
 %dl.dl-horizontal
-  %dt="Enregistré(e) depuis le"
-  %dd=@user.created_at.to_date.l
--for info in [:address, :phone, :public_email, :skills]
+  %dt= "Enregistré(e) depuis le"
+  %dd= @user.created_at.to_date.l
+- for info in [:address, :phone, :public_email, :skills]
   - unless @user.send(info).blank?
     %dl.dl-horizontal
-      %dt=User.human_attribute_name(info)
-      %dd=beautify(@user.send(info))
+      %dt= User.human_attribute_name(info)
+      %dd= beautify(@user.send(info))
    
--if @user == current_user or current_user.administrator
-  =toolbar do
-    =tool("Mettre à jour ses.meta-informations", edit_user_url(@user), :icon => :edit)
-    -if current_user.administrator?
-      =tool("Changer de mot de passe", edit_user_url(@user, :mode => :password), :icon => :lock)
+- if @user == current_user or current_user.administrator
+  = toolbar do
+    = tool("Mettre à jour ses meta-informations", edit_user_url(@user), :icon => :edit)
+    - if current_user.administrator?
+      = tool("Changer de mot de passe", edit_user_url(@user, :mode => :password), :icon => :lock)
+    - if current_user.administrator
+      - if @user.activated?
+        = tool("Désactiver", deactivate_user_url(@user), :method => :post, :icon => :ban, :text => true)
+      - else
+        = tool("Activer", activate_user_url(@user), :method => :post, :icon => :ban, :text => true)
 
-%h3="labels.x_questions".t(:count => @user.questions.count)
-%h3="labels.x_answers".t(:count => @user.answers.count)
-%h3="labels.x_comments".t(:count => @user.comments.count)
-%h3="labels.x_publications".t(:count => @user.publications.count)
+%h3= "labels.x_questions".t(:count => @user.questions.count)
+%h3= "labels.x_answers".t(:count => @user.answers.count)
+%h3= "labels.x_comments".t(:count => @user.comments.count)
+%h3= "labels.x_publications".t(:count => @user.publications.count)

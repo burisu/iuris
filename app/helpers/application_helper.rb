@@ -200,7 +200,7 @@ module ApplicationHelper
     html << "<span class=\"tags\" id=\"#{tags_id}\">"
     html << tags_of(tagged)
     html << "</span>"
-    if current_user == tagged.author
+    if current_user == tagged.author || current_user.administrator
       field_id = tagged_id + "-label"
       form =  text_field_tag("label", nil, :id => field_id, "data-autocomplete-with" => unroll_labels_url)
       form << button_tag(content_tag(:i, "", :class => "icon-tag"), "data-add-tag-label" => field_id, "data-add-tag-url"=>url_for(:controller => :tags, :action => :create, :tagged => tagged_id), "data-add-tag-to" => tags_id, :class => "btn")

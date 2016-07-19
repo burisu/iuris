@@ -30,6 +30,11 @@ Iuris::Application.routes.draw do
   end
   resources :tags, :except => [:index, :show]
 
-  resources :users
+  resources :users do
+    member do
+      post :activate
+      post :deactivate
+    end
+  end
   root :to => "home#index"
 end

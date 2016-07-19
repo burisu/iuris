@@ -1,15 +1,15 @@
-=simple_fields_for @user do |f|
-  -if params[:mode] != "password"
-    =f.input :first_name
-    =f.input :last_name
-    =f.input :email
+= simple_fields_for @user do |f|
+  - if params[:mode] != "password"
+    = f.input :first_name
+    = f.input :last_name
+    = f.input :email
 
-    =f.input :post
-    =f.input :address, :as => :text, :input_html => {:rows => 3, :cols => 40}
-    =f.input :phone, :input_html => {:size => 15}
-    =f.input :public_email
-    =f.input :skills, :input_html => {:rows => 8, :cols => 40}
+    = f.input :post
+    = f.input :address, :as => :text, :input_html => {:rows => 3, :cols => 40}
+    = f.input :phone, :input_html => {:size => 15}
+    = f.input :public_email
+    = f.input :skills, :input_html => {:rows => 8, :cols => 40}
 
-  -if current_user.administrator? and params[:mode] == "password"
-    =f.input :password
-    =f.input :password_confirmation
+  - if f.object.new_record? || (current_user.administrator? && params[:mode] == "password")
+    = f.input :password
+    = f.input :password_confirmation

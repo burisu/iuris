@@ -1,9 +1,9 @@
--if current_user.administrator?
-  =toolbar do
-    =tool("Nouvel utilisateur", new_user_url, :icon => :new)
+- if current_user.administrator?
+  = toolbar do
+    = tool("Nouvel utilisateur", new_user_url, :icon => :new)
 
--paginator = will_paginate(@users)
-=paginator
+- paginator = will_paginate(@users)
+= paginator
 .items
-  =render :partial => @users, :spacer_template => "shared/spacer"
-=paginator
+  = render :partial => @users, :spacer_template => "shared/spacer"
+= paginator

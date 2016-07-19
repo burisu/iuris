@@ -53,6 +53,8 @@ class User < ActiveRecord::Base
   has_many :comments, :foreign_key => :author_id
   has_many :publications, :foreign_key => :author_id
 
+  scope :active, Proc.new { where('deactivated_at IS NULL') }
+  
   before_validation do
     self.first_name = self.first_name.to_s.mb_chars.capitalize
     self.last_name = self.last_name.to_s.mb_chars.upcase
@@ -72,6 +74,22 @@ class User < ActiveRecord::Base
     for user in User.where("id != ?", self.id).all
       Notifier.send(notification, user, *args).deliver
     end
+  end
+
+  def activated?
+    self.deactivated_at.blank?
+  end
+  
+  def deactivated?
+    !activated?
+  end
+  
+  def deactivate!
+    User.update_all({:deactivated_at => Time.zone.now}, {:id => self.id})
+  end
+
+  def activate!
+    User.update_all({:deactivated_at => nil}, {:id => self.id})
   end
 
 end
